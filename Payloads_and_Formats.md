@@ -1,3 +1,9 @@
+---
+layout: default
+title: Payload Data
+nav_order: 5
+---
+
 # Payload Data
 
 Open APIs have request and response payloads (media types) that typically use industry standard data such as JSON or XML.
