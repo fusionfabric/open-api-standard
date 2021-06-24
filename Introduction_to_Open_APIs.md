@@ -1,3 +1,9 @@
+---
+layout: default
+title: Introduction to Open APIs
+nav_order: 3
+---
+
 # Introduction to Open APIs
 
 Systems expose APIs to allow other systems to interact with them and APIs are the contracts which act as glue between systems.
