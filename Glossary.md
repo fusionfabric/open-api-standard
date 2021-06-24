@@ -1,3 +1,9 @@
+---
+layout: default
+title: Glossary
+nav_order: 16
+---
+
 # Glossary
 
 This section describes the terms used within this guide with emphasis on
