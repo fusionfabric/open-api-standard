@@ -1,3 +1,10 @@
+---
+layout: default
+title: Responses and Errors
+nav_order: 6
+---
+
+
 # Responses and Errors
 
 <!-- ## Return Code and Error Management -->
