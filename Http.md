@@ -1,10 +1,18 @@
-# HTTP
+---
+layout: default
+title: HTTP and RESTful APIs
+nav_order: 3
+---
+
+# HTTP and RESTful APIs
 
 This section provides an overview of the main components of REST APIs:
 
 -   HTTP Transport
 -   HTTP Methods
 -   HTTP Headers
+
+
 ## HTTP Transport
 
 REST architecture supports the creation and maintenance of resources
