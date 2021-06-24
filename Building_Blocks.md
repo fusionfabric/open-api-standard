@@ -1,3 +1,9 @@
+---
+layout: default
+title: Building Blocks
+nav_order: 2
+---
+
 # Building Blocks
 
 The following diagram shows the principal building blocks of Finastra integrations
