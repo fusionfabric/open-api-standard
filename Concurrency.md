@@ -1,3 +1,9 @@
+---
+layout: default
+title: Concurrency
+nav_order: 12
+---
+
 # Concurrency
 
 Concurrency in the context of REST APIs refers to the simultaneous occurrence of multiple requests.
