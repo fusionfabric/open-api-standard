@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Index
-nav_order: 15
+nav_order: 20
 ---
 
 Finastra Open API Design Guide
