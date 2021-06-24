@@ -1,3 +1,9 @@
+---
+layout: default
+title: Collections and Pagination
+nav_order: 8
+---
+
 # Collections and Pagination
 
 This section details the following topics regarding collection handling
