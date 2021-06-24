@@ -1,3 +1,9 @@
+---
+layout: default
+title: Versioning
+nav_order: 10
+---
+
 # Versioning
 
 Clients using Finastra APIs need to be aware of the impact of API changes in case they require client code changes, hence, this section provides details on the following topics:
