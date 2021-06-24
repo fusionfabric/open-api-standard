@@ -1,3 +1,9 @@
+---
+layout: default
+title: Customization
+nav_order: 10
+---
+
 # Customization
 
 This section describes how custom fields are defined within APIs.
