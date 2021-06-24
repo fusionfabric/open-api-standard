@@ -1,3 +1,10 @@
+---
+layout: default
+title: Customization
+nav_order: 1
+---
+
+
 # Welcome
 
 This document is the **Finastra Open API Design Guide** and the intended
