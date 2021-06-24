@@ -1,3 +1,9 @@
+---
+layout: default
+title: Document History
+nav_order: 18
+---
+
 # Document History
 
 <!-- ## Document History -->
