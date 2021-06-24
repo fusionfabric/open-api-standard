@@ -1,3 +1,9 @@
+---
+layout: default
+title: Naming Conventions
+nav_order: 7
+---
+
 # Naming Conventions
 
 This section details the naming conventions and standards associated with Finastra APIs.
