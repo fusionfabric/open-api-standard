@@ -1,3 +1,9 @@
+---
+layout: default
+title: Useful Resources
+nav_order: 17
+---
+
 # Useful Resources
 
 <!-- # Resources {-} -->
