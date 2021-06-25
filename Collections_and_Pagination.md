@@ -20,8 +20,8 @@ and pagination:
 ## Collections
 
 as part of a CRUD API the R(ead) part of it should contain 2 endpoints : 
-- GET /resources/{resourceId} return a unique instance of the designated resource. 
-- GET /resources   => returning a collection of items
+- `GET /resources/{resourceId}` => return a unique instance of the designated resource. 
+- `GET /resources`   => returning a collection of items
 
 The second endpoint can be enriched by adding query parameter to filter the resource collection.
 Usually this is about filtering based on the content (search) , or the size of the result (pagination)
@@ -32,11 +32,9 @@ e.g. GET /accounts, the API should provide a response object that is
 extensible, hence, a collection should be returned as an object
 containing an array of items - for example:
 
-``` notoggle
+```yaml
 GET /accounts 
-```
 
-``` notoggle
 {
   "items": [
     {
