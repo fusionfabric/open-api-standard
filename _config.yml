@@ -2,6 +2,6 @@ remote_theme: pmarsceill/just-the-docs
 logo: "/images/logo.png"
 aux_links:
   "Finastra Open API Design Guide on GitHub":
-    - "//github.com/fusionfabric/open-api-standards"
+    - "https://github.com/fusionfabric/open-api-standard"
 aux_links_new_tab: true
 footer_content: "Copyright &copy; 2021 Finastra. Distributed by an <a href=\"https://github.com/fusionfabric/open-api-standard/LICENSE\">MIT license.</a>"
