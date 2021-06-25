@@ -1,5 +1,3 @@
-
-
 ![Finastra Open API Design Guide](images/design-guide-logo.png)
 
 # Welcome
