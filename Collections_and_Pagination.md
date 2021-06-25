@@ -86,10 +86,10 @@ e.g. using query languages similar to:
 
 **Examples**
 
-``` notoggle
-* GET /accounts?name=tom&lastname=smith     = > basic using query parameter
-* GET /accounts/search/mostActive           = > well known search
-* GET /accounts/search/balance=lt=0         = > using FIQL
+```yaml
+- GET /accounts?name=tom&lastname=smith     = > basic using query parameter
+- GET /accounts/search/mostActive           = > well known search
+- GET /accounts/search/balance=lt=0         = > using FIQL
 ```
 
 **Finastra API Search and Filter Standards**
@@ -134,22 +134,17 @@ the API should provide sort capabilities as described in this section.
 
 -   Sort by `id`, in ascending order:
 
-``` notoggle
-GET /accounts?sort=id  
-```
+`GET /accounts?sort=id`
 
 -   Sort by `openDate`, in descending order:
 
-``` notoggle
-GET /accounts?sort=openDate+desc
-```
+`GET /accounts?sort=openDate+desc`
 
 -   Sort by `openDate`, in descending order, and then by `name`, in
     ascending order
 
-``` notoggle
-GET /accounts?sort=openDate+desc,name+asc
-```
+`GET /accounts?sort=openDate+desc,name+asc`
+
 
 ## Pagination Request
 
@@ -201,10 +196,9 @@ As limit value depends on the nature of the resource, three is no by default glo
 
 **Examples**
 
-``` notoggle
-* `GET /accounts?limit=`100`  => return the 100 first accounts 
-* `GET /accounts?offset=100`  => return accounts from 101 
-```
+- `GET /accounts?limit=100`  => return the 100 first accounts 
+- `GET /accounts?offset=100`  => return accounts from 101 
+
 
 > Finastra APIs supporting pagination **SHOULD** be implemented using
 > the **limit** and **offset** request keywords
@@ -218,15 +212,13 @@ a collection of items and includes the following:
 -   Return Metadata - with pagination navigation information
 -   Return Links - with associated relevant links
 
-
-``` notoggle
+```json
 {
   items : [ {} , {} ] 
   "_meta" : {}
   "_links" : {}
 }
 ```
-
 
 ### Return Metadata
 
@@ -237,7 +229,7 @@ containing metadata associated with the collection.
 The following example shows the standard Finastra pagination metadata
 response fields:
 
-``` notoggle
+```json
 {
 "_meta" :
   {
@@ -320,7 +312,7 @@ for further details.
 The following example shows a Swagger snippet containing the standard
 definition of links:
 
-``` notoggle
+```json
   PaginationLinks:
     type: object
     required:
