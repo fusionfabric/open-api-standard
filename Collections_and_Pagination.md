@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Collections and Pagination
-nav_order: 8
+nav_order: 9
 ---
 
 # Collections and Pagination
