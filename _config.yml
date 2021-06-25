@@ -4,4 +4,4 @@ aux_links:
   "Finastra Open API Design Guide on GitHub":
     - "//github.com/fusionfabric/open-api-standards"
 aux_links_new_tab: true
-footer_content: "Copyright &copy; 2021 Finastra. Distributed by an <a href=\"https://github.com/fusionfabric/open-api-standard/LICENSE.txt\">MIT license.</a>"
+footer_content: "Copyright &copy; 2021 Finastra. Distributed by an <a href=\"https://github.com/fusionfabric/open-api-standard/LICENSE\">MIT license.</a>"
