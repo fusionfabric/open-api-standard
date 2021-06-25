@@ -1,3 +1,9 @@
+---
+layout: default
+title: Readme
+nav_exclude: true
+---
+
 # Welcome
 
 This document is the **Finastra Open API Design Guide** and the intended
