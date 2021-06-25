@@ -4,6 +4,8 @@ title: Welcome
 nav_order: 1
 ---
 
+![Finastra Open API Design Guide](images/designGuide.png)
+
 
 # Welcome
 
