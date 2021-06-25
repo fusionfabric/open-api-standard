@@ -29,7 +29,7 @@ At OAS3 the `securitySchemes` keyword is used to define the authentication types
 
 - OAS2 security definition used for Finastra B2C and B2E APIs
 
-``` notoggle
+```yaml
 security:
   - Oauth2: []
 securityDefinitions:
@@ -56,7 +56,7 @@ securityDefinitions:
 
 - OAS3 security definition used for Finastra B2C and B2E APIs
 
-``` notoggle
+```yaml
 security:
   - Oauth2: []
 components:
@@ -73,7 +73,7 @@ components:
 
 - OAS3 security definition used for Finastra B2B APIs
 
-``` notoggle
+```yaml
 security:
   - Oauth2: []
 components:
