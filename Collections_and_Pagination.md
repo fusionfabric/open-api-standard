@@ -5,6 +5,7 @@ nav_order: 8
 ---
 
 # Collections and Pagination
+{: .no_toc}
 
 This section details the following topics regarding collection handling
 and pagination:
