@@ -1,6 +1,4 @@
 ---
-layout: default
-title: Readme
 nav_exclude: true
 ---
 
