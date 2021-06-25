@@ -214,9 +214,12 @@ a collection of items and includes the following:
 
 ```json
 {
-  items : [ {} , {} ] 
-  "_meta" : {}
-  "_links" : {}
+  "items": [
+    {},
+    {}
+  ],
+  "_meta": {},
+  "_links": {}
 }
 ```
 
@@ -231,15 +234,20 @@ response fields:
 
 ```json
 {
-"_meta" :
-  {
-    "limit" : 5         // maximum number of items returned  
-    "offset" : 60       // starting point of items returned 
-    "itemCount" : 3     // total number of items returned
-    "totalCount" : 63   // total number of items 
+  "_meta": {
+    "limit": 5,
+    "offset": 60,
+    "itemCount": 3,
+    "totalCount": 63
   }
 }
 ```
+
+where:
+-    `limit` is the maximum number of items returned  
+-    `offset`is the starting point of items returned 
+-    `itemCount` is the  number of items returned
+-    `totalCount` is thetotal number of items 
 
 The `_meta` object can be extended to include any relevant metadata
 as required e.g. computation time etc.
