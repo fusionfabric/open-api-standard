@@ -6,13 +6,9 @@ nav_order: 2
 
 Finastra's technical strategy is to adopt a REST(ful) architectural style by publishing Open APIs that use HTTP for communication to access or update resources, such as accounts, loans, deposits etc.
 
-This section provides an overview of the main components of REST APIs:
-
-- REST
-- REST Resources
-- REST and HTTP
-- REST and HTTP Methods
-- REST and HTTP Headers
+This section provides an overview of REST APIs:
+- TOC
+{:toc}
 
 
 ## REST
