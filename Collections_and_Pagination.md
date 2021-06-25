@@ -15,6 +15,8 @@ and pagination:
 
 ## Collections
 
+> show as important
+
 as part of a CRUD API the R(ead) part of it should contain 2 endpoints : 
 - `GET /resources/{resourceId}` => return a unique instance of the designated resource. 
 - `GET /resources`   => returning a collection of items
