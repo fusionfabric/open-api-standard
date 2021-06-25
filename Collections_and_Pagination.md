@@ -122,9 +122,7 @@ the API should provide sort capabilities as described in this section.
 > with `asc` and `desc` parameters where `desc` means reverse order and
 > `asc` means ascending order, for example:
 
-``` notoggle
-($propertyname,)+[asc|desc]
-```
+`($propertyname,)+[asc|desc]`
 
 > Finastra APIs supporting sort **MUST** specify the default sort
 > sequence in API documentation.
@@ -353,11 +351,9 @@ definition of links:
 The following example shows how *items* and `_meta` and `_links`
 can be used together:
 
-``` notoggle
-GET /accounts?limit=5&offset=60
-```
+`GET /accounts?limit=5&offset=60`
 
-``` notoggle
+```json
 {
   "items": [
     {
