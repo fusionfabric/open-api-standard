@@ -3,19 +3,14 @@ layout: default
 title: Collections and Pagination
 nav_order: 8
 ---
-- TOC
-{:toc}
 
 # Collections and Pagination
 
 This section details the following topics regarding collection handling
 and pagination:
 
--   Collections
--   Searching and Filtering
--   Sorting
--   Pagination Request
--   Pagination Response
+- TOC
+{:toc}
 
 ## Collections
 
