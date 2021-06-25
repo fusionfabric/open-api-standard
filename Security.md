@@ -48,7 +48,7 @@ securityDefinitions:
 
 - OAS2 security definition used for Finastra B2B APIs
 
-``` notoggle
+```yaml
 security:
   - Oauth2: []
 securityDefinitions:
