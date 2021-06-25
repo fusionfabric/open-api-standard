@@ -1,9 +1,3 @@
----
-layout: default
-title: Index
-nav_exclude: true
----
-
 Finastra Open API Design Guide
 ================
 **Fusion**Fabric.cloud Documentation Team
