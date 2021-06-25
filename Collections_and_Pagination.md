@@ -3,6 +3,8 @@ layout: default
 title: Collections and Pagination
 nav_order: 8
 ---
+- TOC
+{:toc}
 
 # Collections and Pagination
 
