@@ -378,7 +378,7 @@ can be used together:
     "itemCount": 3,
     "totalCount": 63
   },
-  "_links": {
+  "_links": [
     {
       "self": "/accounts?limit=5&offset=60"
     },
@@ -391,7 +391,7 @@ can be used together:
     {
       "last": "/accounts?limit=5&offset=60"
     }
-  }
+  ]
 }
 ```
 
