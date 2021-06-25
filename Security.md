@@ -5,6 +5,12 @@ nav_order: 10
 ---
 
 # Security
+{: .no_toc}
+
+This section provides an overview of Security considerations for APIs:
+
+- TOC
+{:toc}
 
 **Introduction**
 
@@ -94,7 +100,6 @@ Splitting by channel enforce that token are dedicated to a single channel. It me
 
 Finastra distinguishes 4 kind of channel. 
 
-
 - B2B (Business-to-Business) : 
   - A B2B API is used to build apps whose target is another business. 
   - This channel supports server-to-server data interchange with good security level (token rotation).
@@ -111,7 +116,6 @@ Finastra distinguishes 4 kind of channel.
   - A B2E API is used to build apps whose target is the employee of a Financial Institution. This category of users have
   - Authentication is geared toward the institution's employees.
 
-
 - SERVICE Channel: 
   - The APIs available for the Service channel are useful to consume  financial services offered by Finastra or third-parties. 
   - They support authenticated server-to-server data interchange. 
@@ -123,4 +127,4 @@ Finastra distinguishes 4 kind of channel.
   - Support Client Credentials OAuth2 authentication flow. 
   - Work with Finastra maintained tenants - platform-dev, platform-uat, and platform-prod, corresponding to the promotion stage of your application.
 
-> API **MUST** specifies the channel use define in the OAS  `info` section `x-finastra-channel-type` with the various channel defined
+> API **MUST** specify the channel use define in the OAS  `info` section `x-finastra-channel-type` with the various channel defined
