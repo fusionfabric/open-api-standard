@@ -5,8 +5,11 @@ nav_order: 7
 ---
 
 # Responses and Errors
+{: .no_toc}
 
-<!-- ## Return Code and Error Management -->
+This page contains the following sections:
+- TOC
+{:toc}
 
 ### Response Status Codes
 
