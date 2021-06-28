@@ -51,14 +51,14 @@ This secion provides extra details on Finastra channel types:
   - A B2E API is used to build apps whose target is the employee of a Financial Institution
   - Authentication is geared toward the institution's employees
 
-- SERVICE 
+- **SERVICE** 
   - The APIs available for the Service channel are useful to consume  financial services offered by Finastra or third-parties
   - They support authenticated server-to-server data interchange
   - Support the Client Credentials OAuth2 authentication flow
   - Work with Finastra maintained tenants - finastra-dev, finastra-uat, and finastra-prod, corresponding to the promotion stage of your application
 
 
-> API **MUST** specify the channel use define in the OAS  `info` section `x-finastra-channel-type` with the various channel defined
+> APIs **MUST** specify the channel use define in the OAS  `info` section `x-finastra-channel-type` with the various channel defined
 
 
 ## API Security Definitions
