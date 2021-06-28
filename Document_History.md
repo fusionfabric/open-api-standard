@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Document History
-nav_order: 18
+nav_order: 17
 ---
 
 # Document History
@@ -25,14 +25,15 @@ nav_order: 18
 <tr class="odd">
 <td style="text-align: left;">2.3</td>
 <td style="text-align: left;">June 2021</td>
-<td style="text-align: left;">Pagination refactored including 
+<td style="text-align: left;>"Includes the following modifications:</td>
 <ul>
-<li>added section : <a href="#concurrency">Security</a> </li>
-<li>refactoring <a href="#Payloads_and_Formats">Naming convention </a></li>
-<li>refactoring <a href="#Payloads_and_Formats"> Payloads_and_Formats</a></li>
-<li>refactoring <a href="#Payloads_and_Formats">concurency </a></li>
-<li>refactoring <a href="#Payloads_and_Formats">idempotency</a></li>
-</ul></td>
+<li>Removed Bulk Operations section</li>
+<li>Removed Server Events and Long Running Tasks section</li>
+<li>Refactored most sections with limited changes to content</li>
+<li>Included minor changes to Pagination rules</li>
+<li>Added Security section</li>
+</ul>
+</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2.2</td>
