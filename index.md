@@ -1,3 +1,4 @@
+
 ![Finastra Open API Design Guide](images/design-guide-logo.png)
 
 # Welcome
@@ -19,3 +20,9 @@ details associated Open API development standards.
     sections, the standard is shown in the following format:
 
 > Finastra API designers and developers **SHOULD** follow this document however be aware there is no guarantee that publicly available Finastra APIs will fully adhere to these standards
+
+
+----
+**Fusion**Fabric.cloud Documentation Team
+30 June 2021
+----
