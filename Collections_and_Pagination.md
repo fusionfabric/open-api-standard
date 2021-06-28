@@ -3,7 +3,6 @@ layout: default
 title: Collections and Pagination
 nav_order: 9
 ---
-
 # Collections and Pagination
 {: .no_toc}
 
@@ -15,24 +14,20 @@ and pagination:
 
 ## Collections
 
-> show as important
+APIs typically provide Create, Read, Update, Delete (CRUD) capabilities against a business resource e.g. CRUD accounts.
 
-as part of a CRUD API the R(ead) part of it should contain 2 endpoints : 
-- `GET /resources/{resourceId}` => return a unique instance of the designated resource. 
-- `GET /resources`   => returning a collection of items
+The R(ead) business resource should contain the following two endpoints : 
+- `GET /resources/{resourceId}` => return a unique instance of the designated resource
+- `GET /resources`   => return a collection of items
 
-The second endpoint can be enriched by adding query parameter to filter the resource collection.
-Usually this is about filtering based on the content (search) , or the size of the result (pagination)
-
+The second endpoint can be enriched by adding query parameters to filter the resource collection based on the content (search) or the size of the result (pagination).
 
 When a Finastra API provides a `GET` endpoint that returns a collection
-e.g. GET /accounts, the API should provide a response object that is
+e.g. `GET /accounts`, the API should provide a response object that is
 extensible, hence, a collection should be returned as an object
-containing an array of items - for example:
+containing an array of items e.g.:
 
-```yaml
-GET /accounts 
-
+```
 {
   "items": [
     {
@@ -54,6 +49,9 @@ GET /accounts
 }
 ```
 
+
+> Finastra APIs supporting `GET` collections **SHOULD** support extensibility using an object with the `items` keyword
+
 > Finastra APIs supporting `GET` collections **SHOULD** return the
 > collection as an Object containing an Array of items because this
 > approach can extend to support meta data without breaking changes
@@ -61,9 +59,7 @@ GET /accounts
 >  GET collections **SHOULD** support extensibility using an object with the `items` keyword.
 
 >  items **SHOULD** be an 'Object' to ensure extensibility of the model.
-
-> When 'GET' query does return no elements, server **MUST** return a `200` response code with an empty collection. (NB : not a `404`) 
-
+> Finastra APIs supporting `GET` collections **MUST** return a `200` (not a '404') response code when a `GET` query returns an empty collection. Note that a `200` response is preferred to a `204` response for an empty collection
 
 
 ## Searching and Filtering
@@ -97,16 +93,16 @@ e.g. using query languages similar to:
 **Finastra API Search and Filter Standards**
 
 > Support for searching and filtering **SHOULD** be provided using GET
-> and query parameters to allow searches to be bookmarked. It is the recommended approach
+> and query parameters to allow searches to be bookmarked - this is the recommended approach
 
-> RSQL, FIQL syntax **MAY** be used for the GET on the search
-> resource
+> when a query parameter is considered as a classified data (personally identifiable information - PII) `POST` **SHOULD** be used instead of `GET` so that the query parameters are contained in the `POST` body rather than the url path
 
-> The choice of technology **MUST** be based on functional requirements.
+> RSQL, FIQL syntax **MAY** be used for the GET on the search resource
+
+> The choice of technology **MUST** be based on functional requirements
 
 > GraphQL, and OData  **SHOULD NOT** be the default choice for API style
 
-> if a query parameter is considered as a PII, a POST **SHOULD** be used instead. 
 
 
 
@@ -140,11 +136,11 @@ the API should provide sort capabilities as described in this section.
 
 `GET /accounts?sort=openDate+desc`
 
+
 -   Sort by `openDate`, in descending order, and then by `name`, in
     ascending order
 
 `GET /accounts?sort=openDate+desc,name+asc`
-
 
 ## Pagination Request
 
@@ -203,6 +199,7 @@ As limit value depends on the nature of the resource, three is no by default glo
 > Finastra APIs supporting pagination **SHOULD** be implemented using
 > the **limit** and **offset** request keywords
 
+
 ## Pagination Response
 
 This section provides details on the contents of the response object for
@@ -255,11 +252,9 @@ as required e.g. computation time etc.
 The following example shows *items* and `_meta` in a typical response
 object:
 
-``` notoggle
-GET /accounts?limit=5&offset=60
-```
+`GET /accounts?limit=5&offset=60`
 
-``` notoggle
+```json
 {
   "items": [
     {
@@ -320,7 +315,7 @@ for further details.
 The following example shows a Swagger snippet containing the standard
 definition of links:
 
-```json
+```yaml
   PaginationLinks:
     type: object
     required:
@@ -400,4 +395,3 @@ request parameters then the “next” link is omitted from the response.
 
 > Finastra APIs supporting GET collections **SHOULD** support navigation
 > using the `_links` keyword
-
