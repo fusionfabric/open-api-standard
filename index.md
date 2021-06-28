@@ -1,3 +1,8 @@
+---
+layout: default
+title: Welcome
+nav_order: 1
+---
 
 ![Finastra Open API Design Guide](images/design-guide-logo.png)
 
