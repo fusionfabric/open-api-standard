@@ -5,13 +5,11 @@ nav_order: 11
 ---
 
 # Versioning
+{: .no_toc}
 
 Clients using Finastra APIs need to be aware of the impact of API changes in case they require client code changes, hence, this section provides details on the following topics:
-- API semantic versioning
-- API non-breaking and breaking changes
-- API backward compatibility
-- API maturity levels
-- API lifecycle
+- TOC
+{:toc}
 
 ##  API Semantic Versioning
 
