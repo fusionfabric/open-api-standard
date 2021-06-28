@@ -24,26 +24,27 @@ A business domain resource **MUST**:
 convention is to use `accounts` rather than `account` for all HTTP operations defined within the API. This aligns with common industry convention. 
 
 Example:
-
-``` notoggle
+```
 paths:
   /accounts:
     "GET"   < return a list
-    "POST"  > create a single entity (no matter if the ressources is plural)
+    "POST"  > create a single entity (no matter if the resources is plural)
 ```
 
-### Resource Names
+## Finastra Standards for Resource Names
 
->   **MUST** define *useful* resources - see the \[Finastra Open API
-    Principles
+>   **MUST** define *useful* resources - see the *Finastra Open API
+    Principles* section
 
 >   **MUST** use Finastra common business object names where available
 
 >   **MUST** name resources with nouns
 
->   **SHOULD** name resources as plural 
+>   **SHOULD** name resources as plural - this applies to `GET` requests against both an individual resource and the associated resource collection e.g. `GET /accounts/{accountId}` and `GET /accounts`
 
->   **MUST NOT** use verbs or actions in the path - use resources
+>   **SHOULD** use a noun as the resource name
+
+>   **SHOULD NOT** use verbs or actions in the path - use resources
 
 >   **MUST** name resources in *kebab case* using the characters a-z, 0-9 and hyphens
     e.g.`/shipment-orders` e.g. a **Big Car** resource should be mapped to
@@ -62,27 +63,24 @@ paths:
 Use cases may arise where the HTTP method is not adequate to perform an
 action on the resource.
 
-In these cases an action, named a **resource controller**, **MAY** be
+In these cases an action, named a *resource controller*, **MAY** be
 used against a resource, for example:
 
--   `POST /accounts/{accountId}/transactions/{transid}/confirm`, would
+-   `POST /accounts/{accountId}/transactions/{transId}/confirm` would
     confirm an existing transaction but the same result can be achieved
     with:
 
--   `POST /accounts/{accountId}/transactions/{transid}/confirmation`,
+-   `POST /accounts/{accountId}/transactions/{transId}/confirmation`
     that would create a confirmation.
 
-> Note that the **resource controller** approach is **NOT** recommended
+> Note that the *resource controller* approach is **NOT** recommended
 > and alternative designs should be explored
 
 Finastra API Standards:
 
-> Use standard HTTP Verbs for CRUD operations against a resource
+> CRUD operations against a resource **SHOULD** use standard HTTP verbs
 
-> Queries for an individual resource and collection of resources
-> **SHOULD** use a plural noun as the resource name
-
-> Actions and Commands **MAY** be use a present tense verb
+> Actions and commands **MAY** use a present tense verb
 
 ### Resource Identifier
 
@@ -101,14 +99,10 @@ For example:
 > `key/identifier` path e.g. incremental identifiers may provide
 > guessable identifiers
 
-
 In some cases the resource identifier represents the concatenation of
 one or more fields of the resource. In these cases a composite key
-**MUST** use hyphen as a separator.
-
-For example -
-
-``` notoggle
+**MUST** use hyphen as a separator, for example:
+```json
 {
     key1 : ABC
     key2 : 123
@@ -116,7 +110,6 @@ For example -
     ...
 }
 ```
-
 is addressable as `GET /resource/ABC-123-A`.
 
 > It is recommended that an alternative approach is adopted if possible. In any case the combination of keys **MUST** not provide Personally Identifiable Information (PII).
@@ -124,11 +117,7 @@ is addressable as `GET /resource/ABC-123-A`.
 ### Child Resources
 
 Child resources **MAY** be used when the child resource has a life
-cycle related to the parent resource, for example:
-
-``` notoggle
-/accounts/{id}/transactions
-```
+cycle related to the parent resource, for example: `/accounts/{id}/transactions`
 
 The number of nested child resources **MUST** be limited to a maximum of
 three to reduce the complexity of the API
@@ -145,9 +134,13 @@ three to reduce the complexity of the API
     simple guideline is to ensure that Google shows relevant links on
     the first returned page
 
+>   **MUST** align with the accepted business domain terminology
+
 >   **MUST** adhere to the Finastra Open API data dictionary where
     possible e.g. `country`; where further clarity is required a prefix
     can be used e.g. `taxCountry`
+
+>   **MUST** only use commonly accepted abbreviations
 
 >   **MUST NOT** introduce new terminology where existing equivalents
     are available
@@ -157,7 +150,10 @@ three to reduce the complexity of the API
 >   **MUST NOT** be technical in nature because Open APIs target
     business rather than technical domains
 
->   **SHOULD NOT** use terms that relate to a specific geography e.g. use
+>   **MUST NOT** use terms that relate to a specific product e.g. use
+    the agnostic term `region` rather than `processingArea`
+
+>   **MUST NOT** use terms that relate to a specific geography e.g. use
     the agnostic term `alternateAccountId` rather than `micr`
 
 >   Abbreviations (e.g. txn) **MUST NOT** be used, to avoid ambiguity. Commonly used well known
@@ -169,7 +165,7 @@ abbreviations still **SHOULD** be used e.g. URL, IBAN, SEPA etc.
 
 For example:
 
--   good: `inputDate`
+-   valid: `inputDate`
 -   invalid: `InputDate`, `Input_Date`
 
     
@@ -205,42 +201,39 @@ e.g. the following shows a set of possible values for an item’s status:
 
 >  Enumeration **MUST NOT** include spaces or special characters e.g. underscores
 
-> Boolean field **MUST** be unambiguous hence `isValid` is preferred to `isInvalid`.
+> Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyorCountry`.
 
 > for query parameter when type is `Array' 
 
 ### Date & Time
 
-Date and time are defined using OAS 2 specification so following the [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339). However the OAS2, and 3 are defining date and time as JSON string with a defined format. Format are defined following the JSON schema [format extension](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-7.3).
+Date and time are defined by the OAS2 specification as [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339). Both OAS2 and OAS3 define date and time as a JSON string with a format defined by the JSON schema [format extension](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-7.3).
 
-
-here is the mapping between the RFC ad the JSON schema. Notice than time is not set in OAS2 specification, but accepted as an extension 
+The following table shows the mapping between the RFC and the JSON schema format extension. Note that `time` is not defined in the OAS2 specification but is accepted as an extension 
 
 | Format in OAS specification | RFC 3339 | Example  |
 |-----------------------------|----------|----------|
-|  date                       | full-date|   "2010-01-26"       |
+|  date                       | full-date|2010-01-26       |
 |  time                       | full-time| 23:20:50.52Z or 1996-12-19T16:39:57-08:00        |
-|  partial-time               | partial-time| 23:20:50  ie with no time zone information| 
 |  date-time                  | date-time| 1985-04-12T23:20:50.52Z or 1996-12-19T16:39:57-08:00 |
+|  partial-time               | partial-time| 23:20:50  i.e. with no time zone information| 
 
-> Format `time` **SHOULD** be used following UTC format 23:20:50.52Z and not with time zone specification. 
 
-> Format `partial-time` **SHOULD** be avoided 
+> When using the format `time`, the UTC format (23:20:50.52Z) and not the time zone specification **SHOULD** be used
 
-Exemple : 
+> The format `partial-time` **SHOULD** be avoided 
 
-``` notoggle
-   aDate:
+Example : 
+
+```yaml
+   fromDate:
     name: fromDate
     in: query
-    description: |
-      First date of the date range
-      Date range can be up to 13 months
+    description: First date of the date range. Date range can be up to 13 months
     required: true
     type: string
     format: date
-    exemple :  "2010-01-26"
-
+    example : 2010-01-26
 ```
 
 ### Fields values
