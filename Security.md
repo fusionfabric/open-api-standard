@@ -11,19 +11,59 @@ This section provides an overview of Security considerations for Finastra APIs:
 - TOC
 {:toc}
 
-##Introduction
+## Introduction
 
-Finastra APIs use one of the following OAuth2 flows: 
-- Client Credentials - B2B for APIs targeted server to server communication
-- Authorization Code - B2C and B2E for APIs targeted at customer and employee communication
+Finastra APIs must define a **channel type** using the `x-finastra-channel-type` attribute - the channel type can be one of the following:
+- **B2B** - Business-to-Business
+- **SERVICE** - Business-to-Business for specific Finastra services 
+- **B2C** - Business-to-Customer
+- **B2E** - Business-to-Employee
+
+A single API cannot define more than one channel type and client application must be aware of the API type 
+so that the correct token is obtained.
+
+The channel type determines the **OAuth2 flow** that will be used by the API: 
+- **Client Credentials** - for B2B and SERVICE APIs for server to server communication
+- **Authorization Code** - for B2C and B2E APIs for customer and employee communication
 
 These flows are detailed in [RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749), section 4 .
 
 > Finastra Open APIs MUST secure endpoints with oAuth2 
 
-##Authentication
 
-Authentication is described by using combinations of the Open API specification (OAS2 or OAS3) security keywords.
+## API Channel Types
+
+This secion provides extra details on Finastra channel types:
+
+- **B2B** - Business-to-Business
+  - A B2B API is used to build apps whose target is another business
+  - This channel supports server-to-server data interchange with good security level (token rotation)
+  - Authentication is geared toward a technical account; user level authentication is not available
+  - Support the Client Credentials OAuth2 authentication flow
+
+- **DIGITAL** - Business-to-Customer	
+  - The Business-to-Customer channel (B2C) groups APIs that are used to build apps targeting customers of a financial institution
+  - The APIs on this channel support mobile banking applications on browsers, smartphones and tablets
+  - Support the Authorization Code grant flow
+  - Authentication is geared toward the institution's customers Identity provider
+
+- **B2E** - Business-to-Employee
+  - A B2E API is used to build apps whose target is the employee of a Financial Institution
+  - Authentication is geared toward the institution's employees
+
+- SERVICE 
+  - The APIs available for the Service channel are useful to consume  financial services offered by Finastra or third-parties
+  - They support authenticated server-to-server data interchange
+  - Support the Client Credentials OAuth2 authentication flow
+  - Work with Finastra maintained tenants - finastra-dev, finastra-uat, and finastra-prod, corresponding to the promotion stage of your application
+
+
+> API **MUST** specify the channel use define in the OAS  `info` section `x-finastra-channel-type` with the various channel defined
+
+
+## API Security Definitions
+
+Authentication for a specific channel types is described by using combinations of the Open API specification (OAS2 or OAS3) security keywords.
 
 At OAS2 the `securityDefinitions` keyword is used to define the authentication types supported by the API, and the `security` keyword then applies specific authentication types to the whole API (global setting) or to individual operations.
 
@@ -91,41 +131,3 @@ components:
           tokenUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/oidc/token'
 ```
 
-
-## API Channel Types
-
-Finastra API are split by 'Channel'. Split correspond the securities flow to a dedicated domain of usage. For instance to avoid avoid having an application mixing B2C, and B2B call.
-Splitting by channel enforce that token are dedicated to a single channel. It means that given a client application you need to leverage on different set of credential. 
-
-Finastra distinguishes 4 kind of channel. 
-
-
-- B2B (Business-to-Business) : 
-  - A B2B API is used to build apps whose target is another business. 
-  - This channel supports server-to-server data interchange with good security level (token rotation).
-  - Authentication is geared toward a technical account; user level authentication is not available.
-  - Support the Client Credentials OAuth2 authentication flow
-
--	Digital Channel (B2C): 	
-  - The Business-to-Customer channel (B2C) groups APIs that are used to build apps targeting customers of a financial institution. 
-  - The APIs on this channel support mobile banking applications on browsers, smartphones and tablets. 
-  - Support the Authorization Code grant flow.
-  - Authentication is geared toward the institution's customers Identity provider.
-
-- B2E (Business-to-Employee) Channel: 
-  - A B2E API is used to build apps whose target is the employee of a Financial Institution. This category of users have
-  - Authentication is geared toward the institution's employees.
-
-
-- SERVICE Channel: 
-  - The APIs available for the Service channel are useful to consume  financial services offered by Finastra or third-parties. 
-  - They support authenticated server-to-server data interchange. 
-  - Support the Client Credentials OAuth2 authentication flow.
-  - Work with Finastra maintained tenants - finastra-dev, finastra-uat, and finastra-prod, corresponding to the promotion stage of your application.
-
-- Platform : 
-  - The APIs available for the Platform channel are used to interact with FusionFabric.cloud platform itself. They don’t provide financial or business data or services, but rather act as meta-APIs, to enable you manage your applications. 
-  - Support Client Credentials OAuth2 authentication flow. 
-  - Work with Finastra maintained tenants - platform-dev, platform-uat, and platform-prod, corresponding to the promotion stage of your application.
-
-> API **MUST** specify the channel use define in the OAS  `info` section `x-finastra-channel-type` with the various channel defined
