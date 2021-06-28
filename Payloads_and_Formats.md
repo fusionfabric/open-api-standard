@@ -5,10 +5,14 @@ nav_order: 6
 ---
 
 # Payload Data
+{: .no_toc}
 
 Open APIs have request and response payloads (media types) that typically use industry standard data such as JSON or XML.
 
-This section provides details of common media types associated with Finastra API payloads.
+This section provides details of common media types associated with Finastra API payloads:
+- TOC
+{:toc}
+
 
 ## Media Types 
 
