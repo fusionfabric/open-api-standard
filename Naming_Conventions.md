@@ -5,8 +5,12 @@ nav_order: 8
 ---
 
 # Naming Conventions
+{: .no_toc}
 
 This section details the naming conventions and standards associated with Finastra APIs.
+
+- TOC
+{:toc}
 
 ## Resources
 
