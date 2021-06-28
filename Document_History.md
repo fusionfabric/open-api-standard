@@ -41,8 +41,8 @@ nav_order: 17
 <td style="text-align: left;"><p>Revised pagination section to remove page concept.</p>
 <p>Included the following new sections:</p>
 <ul>
-<li><a href="#concurrency">Concurrency</a></li>
-<li><a href="#idempotency">Idempotency</a></li>
+<li>Concurrency</li>
+<li>Idempotency</li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -57,16 +57,16 @@ nav_order: 17
 <p>Resequenced and reworded sections for clarification</p>
 <p>Included <strong>Appendix</strong> with sections containing:</p>
 <ul>
-<li><a href="#standards-summary">Standards Summary</a></li>
-<li><a href="#rest-dictionary">Dictionary</a></li>
-<li><a href="#rest-patterns">Patterns</a></li>
+<li>Standards Summary</li>
+<li>Dictionary</li>
+<li>Patterns</li>
 <li>Document History</li>
 </ul>
 <p>Included the following new sections:</p>
 <ul>
-<li><a href="#glossary">Glossary</a></li>
-<li><a href="#openapi-principles">Open API Principles</a></li>
-<li><a href="#rest-customisations">Customisation</a></li>
+<li>Glossary</li>
+<li>Open API Principles</li>
+<li>Customisation</li>
 </ul>
 <p>Modified as follows:</p>
 <ul>
