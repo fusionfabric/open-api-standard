@@ -8,7 +8,6 @@ nav_order: 10
 {: .no_toc}
 
 This section provides an overview of Security considerations for Finastra APIs:
-
 - TOC
 {:toc}
 
