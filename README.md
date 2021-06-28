@@ -7,14 +7,14 @@ nav_exclude: true
 This document is the **Finastra Open API Design Guide** and the intended
 audience are designers, developers, or consumer of Finastra Open APIs platform (https://developer.fusionfabric.cloud/ )  .
 
-This document introduces the concepts of Finastra RESTful Open APIs and
-details associated Open API development standards.
+This document is available here (https://fusionfabric.github.io/open-api-standard/). It introduces the concepts of Finastra RESTful Open APIs and
+details associated Open API development standards. 
 
 Finastra strategy is **API as a Product** and **API First** and these
 approaches lead to successful implementation of a Finastra Open API
 as a product.
 
-<span class="text-title">**Document Conventions**</span>
+### Document Conventions
 
 -   The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
     “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in
