@@ -4,7 +4,6 @@ title: Responses and Errors
 nav_order: 7
 ---
 
-
 # Responses and Errors
 
 <!-- ## Return Code and Error Management -->
@@ -31,35 +30,41 @@ The following table summarizes these response codes:
 | **428**       | **Precondition Required** - this code indicates that the server expects the request to be conditional e.g. this might be issued when a PUT requests is missing an `If-Match` HTTP header                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **500**       | **Internal Server Error** - this code is a generic error message, given when an unexpected condition was encountered and no other specific message is suitable                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **501**       | **Not Implemented** - this code indicates that the server does not support the functionality required to fulfill the request                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **503**       | **Service Unavailable** - this code indicates that the server is currently unable to handle the request as a result of a temporary condition which may be alleviated after some delay                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
  
 
-## Responses
+## Finastra Responses
 
 The following lists Finastra rules for response codes: 
 
-> `GET` and `HEAD` operations **MUST** return 200 or 204 for a successful response. 
 
-> Endpoints **MUST** support the following return codes: 400, 401, 500
 
-> `GET` with filter **MUST NOT** return 404 if no elements ,  but a 200.
+> Endpoints **MUST** support the following return codes: 400, 401, 404, 500
 
-> APIs **MUST NOT** return 200 (OK) when there is a technical or functional error, but a 4XX code.
 
-> `POST` operations used to create a resource **MUST** return  either 200 , 201 or 202 for a successful response.
 
-> `POST` operations used to get data with complex queries MAY return 200 or 204 for a successful response.
+> APIs **MUST NOT** return 200 (OK) when there is a technical or functional error, but a 4XX code
 
-> `PUT` or `PATCH` operations **MUST** return 200 or 204 for a successful response.
+> POST operations used to create a resource **MUST** return 201 or 202 for a successful response
+
+> `POST` operations **MUST** return  either 200 , 201 or 202 for a successful response
+
+> `POST` operations used to get data with complex queries MAY return 200 or 204 for a successful response
+
+> `PUT` or `PATCH` operations **MUST** return 200 or 204 for a successful response
 
 > `PUT` or `PATCH` operations **SHOULD** suport 412 and 428 responses for concurrency purposes
 
-> `DELETE` operations **MUST** return 200 or 202 or 204 for a successful response.
+> `GET` and `HEAD` operations **MUST** return 200 or 204 for a successful response
 
-> APIs **MAY** use other error codes such as: 403, 409, 429, 503.
+> `DELETE` operations **MUST** return 200 or 202 or 204 for a successful response
 
-> APIs **MUST NOT** contain response fields when a 204 (No Content) is returned.
+> APIs **MAY** use other error codes such as: 403, 409, 501, 503
 
+> APIs **MUST NOT** contain response fields when a 204 (No Content) is returned
+
+> `GET` with filter **MUST NOT** return 404 if no elements ,  but a 200
 ## Error Message Structure
 
 This section includes the following:
@@ -85,7 +90,7 @@ describes the principal fields of the error message structure that :
     it provides human-readable documentation for the problem type,
     using, for example, HTML (\[W3C.REC-html5-20141028\]). When this
     member is not present, its value is assumed to be
-    `{.notoggle .json}about:blank`.
+    `about:blank`.
 -   `title` (string) - A short, human-readable summary of the problem
     type. It SHOULD NOT change from occurrence to occurrence of the
     problem, except for purposes of localisation using, for example,
@@ -119,7 +124,7 @@ The following are the Finastra Open API error message standards:
 
 The standard Finastra error message structure is as follows:
 
-``` notoggle
+```json
 {
     "type": "https://api.finastra.com/validation-error",
     "title": "The request could not be processed due to applicable business validation",
@@ -134,7 +139,7 @@ of `causes` is not mandated.
 
 The following example shows how `causes` might be used:
 
-``` notoggle
+```json
 {
   "type": "https://api.finastra.com/validation-error",
   "title": "The request is invalid",
