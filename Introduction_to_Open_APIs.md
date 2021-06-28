@@ -6,18 +6,24 @@ nav_order: 5
 
 # Introduction to Open APIs
 
-Systems expose APIs to allow other systems to interact with them and APIs are the contracts which act as glue between systems.
+Systems provide APIs to allow other systems to interact with them and API contracts define the behavior and content of the system interaction.
 
-## Open APIs and OpenAPI
+Finastra APIs are Open APIs defined using the OpenAPI specification and they are publicly available on the Finastra Developer Portal.
 
-<span class="text-title">**Open API**</span>
+This page contains details of:
+- the terms Open APIs and OpenAPI
+- Finastra Open APIs and their design approach
+- the Finastra principles that Finastra API contracts adhere to
+- the REST API maturity levels targeted by Finastra APIs
+
+## Open APIs
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Open_API): *“An open API
 (often referred to as a public API) is a publicly available application
 programming interface that provides developers with programmatic access
 to a proprietary software application or web service”*
 
-<span class="text-title">**OpenAPI**</span>
+## OpenAPI
 
 The most common format to describe Open APIs is the [OpenAPI
 Specification (OAS)](https://www.openapis.org/) standard which
@@ -41,7 +47,7 @@ recourse to further documentation. This requires the API documentation
 to contain full details of data structures, validation rules and
 expected behaviors for the operations within the API.
 
-**References**
+### References
 
 -   [Open API Initiative](https://www.openapis.org/)
 -   [OpenAPI
@@ -86,9 +92,6 @@ The audience for these principles is API designers and developers with
 focus on the quality attributes of the API definition and the underlying
 API implementation.
 
-The Open API initiative adheres to the broader organisation architecture
-principles.
-
 The Open API principles are:
 
 -   [Useful](#openapi-principle-useful)
@@ -97,8 +100,7 @@ The Open API principles are:
 -   [Consistent](#openapi-principle-consistent)
 -   [Backward Compatible](#openapi-principle-backwardcompatible)
 
-It is assumed that an **API First** approach is adopted to deliver
-**APIs as Products**.
+It is assumed that an **API First** approach is adopted to deliver **APIs as Products**.
 
 ### Useful
 
@@ -205,7 +207,7 @@ Finastra Open API designers MUST ensure that:
 -   APIs are versioned
 -   Breaking changes to an API are not introduced
 
-## API Maturity Levels
+## REST API Maturity Levels
 
 The **[Richardson Maturity
 Model](https://www.martinfowler.com/articles/richardsonMaturityModel.html).**
@@ -227,54 +229,3 @@ The following table describes the Richardson Maturity Model:
 > Finastra Open APIs **SHOULD** target level 2: HTTP Verbs
 
 > Finastra Open APIs **MAY** target level 3: Hypermedia Controls
-
-## REST
-
-REST stands for [REpresentation State Transfer
-
-Finastra’s technical strategy is to adopt a REST(ful) architectural
-style by publishing Open APIs that use HTTP for communication to access
-or update resources, such as accounts, loans, deposits etc.
-
-
-[(REST) wikipedia definition](https://en.wikipedia.org/wiki/Representational_state_transfer).
-
-REST is an *architectural style* for providing *interoperability*
-between systems.
-
-REST is a concept and not a definitive standard. This guide is about moving from a concept to a standard, that can be implemented, and validated. 
-
-REST APIs allow API consumers to execute a predefined set of stateless
-operations on resources e.g. create, read, update or delete (CRUD) an
-account
-
-The following six guidelines (constraints) are used to define a RESTful
-system:
-
--   Uniform Interface - based on resources
--   Client–Server architecture
--   Stateless
--   Layered
--   Cacheable
--   Code on Demand (optional)
-
-### REST Resources
-
-*The key abstraction of information in REST is a resource* - **Roy
-Fielding**.
-
-Any information that can be named can be a resource, for example:
-
--   a document
--   an image
--   a bank account
--   a temporal service e.g. “today’s weather in Los Angeles”
--   a collection of other resources
--   a non-virtual object e.g. a person
--   etc.
-
-REST resources should reflect the relevant business domain and should have
-identifiers (keys) that change as infrequently as possible.
-
-Finastra APIs define resources aligned with the Banking business domain
-e.g. currencies, accounts etc.
