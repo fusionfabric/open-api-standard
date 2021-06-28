@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Glossary
-nav_order: 16
+nav_order: 15
 ---
 
 # Glossary
@@ -98,11 +98,9 @@ where OAS is an abbreviation for ‘OpenAPI Specification’.
 The operations, or endpoints, define the exposed capabilities of the API
 as operations against resources, such as:
 
-``` notoggle
-*   GET /trades : to list all trades
-*   POST /trades : to create a new trade
-*   GET /trades/{id} : to read a trade
-```
+*   `GET /trades`  to list all trades
+*   `POST /trades`  to create a new trade
+*   `GET /trades/{id}`  to read a trade
 
 In this example, there are 3 endpoints, 2 operations named GET and POST,
 and 1 resource named trades
