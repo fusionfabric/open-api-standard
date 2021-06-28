@@ -5,16 +5,15 @@ nav_order: 5
 ---
 
 # Introduction to Open APIs
+{: .no_toc}
 
 Systems provide APIs to allow other systems to interact with them and API contracts define the behavior and content of the system interaction.
 
 Finastra APIs are Open APIs defined using the OpenAPI specification and they are publicly available on the Finastra Developer Portal.
 
-This page contains details of:
-- the terms Open APIs and OpenAPI
-- Finastra Open APIs and their design approach
-- the Finastra principles that Finastra API contracts adhere to
-- the REST API maturity levels targeted by Finastra APIs
+This page contains the following:
+- TOC
+{:toc}
 
 ## Open APIs
 
