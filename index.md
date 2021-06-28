@@ -8,7 +8,7 @@ audience are designers, developers, or consumer of Finastra Open APIs platform (
 This document introduces the concepts of Finastra RESTful Open APIs and
 details associated Open API development standards.
 
-##Document Conventions
+## Document Conventions
 
 -   The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
     “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in
