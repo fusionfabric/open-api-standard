@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Concurrency
-nav_order: 12
+nav_order: 13
 ---
 
 # Concurrency
@@ -60,7 +60,7 @@ If concurrency is implemented then the following Finastra standards apply:
 
 The following code snippets show sample OAS2 definitions of GET and PUT operations within a Finastra API that supports concurrency:
 
-```{.notoggle .yaml}
+```yaml
  get:
 ...
    responses:
@@ -74,7 +74,7 @@ The following code snippets show sample OAS2 definitions of GET and PUT operatio
 ```
 
 
-```{.notoggle .yaml} 
+```yaml
  put:
    operationId: putEntry
    parameters:
