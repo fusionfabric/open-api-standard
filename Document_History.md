@@ -21,11 +21,13 @@ nav_order: 17
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
+
+
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">2.3</td>
 <td style="text-align: left;">June 2021</td>
-<td style="text-align: left;>"Includes the following modifications:</td>
+<td style="text-align: left;"><p>Included the following modifications:</p>
 <ul>
 <li>Removed Bulk Operations section</li>
 <li>Removed Server Events and Long Running Tasks section</li>
@@ -35,6 +37,7 @@ nav_order: 17
 </ul>
 </td>
 </tr>
+
 <tr class="odd">
 <td style="text-align: left;">2.2</td>
 <td style="text-align: left;">January 2020</td>
