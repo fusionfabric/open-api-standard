@@ -11,7 +11,7 @@ This section provides an overview of Security considerations for Finastra APIs:
 - TOC
 {:toc}
 
-**Introduction**
+##Introduction
 
 Finastra APIs use one of the following OAuth2 flows: 
 - Client Credentials - B2B for APIs targeted server to server communication
@@ -21,7 +21,7 @@ These flows are detailed in [RFC 6749](https://datatracker.ietf.org/doc/html/rfc
 
 > Finastra Open APIs MUST secure endpoints with oAuth2 
 
-**Authentication**
+##Authentication
 
 Authentication is described by using combinations of the Open API specification (OAS2 or OAS3) security keywords.
 
@@ -92,7 +92,7 @@ components:
 ```
 
 
-**Channel** 
+## API Channel Types
 
 Finastra API are split by 'Channel'. Split correspond the securities flow to a dedicated domain of usage. For instance to avoid avoid having an application mixing B2C, and B2B call.
 Splitting by channel enforce that token are dedicated to a single channel. It means that given a client application you need to leverage on different set of credential. 
