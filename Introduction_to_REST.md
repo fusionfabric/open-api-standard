@@ -423,6 +423,8 @@ Note that Finastra APIs do not explicitly define `Content-Type`, `Accept` or `Au
 
 The following Finastra standards apply to HTTP headers:
 
+>   **MAY** use standard HTTP headers.
+
 >   **MUST** use Train-Case for HTTP custom header Fields.
 
 >   **SHOULD**: use `ETag` Together With `If-Match` Header.
