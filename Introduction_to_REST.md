@@ -439,7 +439,7 @@ The following Finastra standards apply to HTTP headers:
 >   even if not compliant ``GET`` **SHOULD** accept request with a content-type.
 
 
-#### Custom HTTP Headers
+### Custom HTTP Headers
 
 Custom headers **MAY** be used to add extra functionality which is
 exposed via HTTP. All usage should be confirmed with the Finastra API
