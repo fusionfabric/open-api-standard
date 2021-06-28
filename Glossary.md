@@ -5,9 +5,14 @@ nav_order: 15
 ---
 
 # Glossary
+{: .no_toc}
 
 This section describes the terms used within this guide with emphasis on
 their meaning within Finastra.
+
+- TOC
+{:toc}
+
 
 **API**
 
