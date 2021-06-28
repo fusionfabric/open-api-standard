@@ -5,8 +5,12 @@ nav_order: 14
 ---
 
 # Idempotency
+{: .no_toc}
 
 This section describes the concept of idempotency for REST APIs and the implications for Finastra APIs.
+
+- TOC
+{:toc}
 
 ## Idempotency and REST APIs
 
