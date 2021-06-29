@@ -371,9 +371,6 @@ function, without a resource representation, to complex workflows which
 interact with multiple resources, for example: `POST /accounts/{id}/activate`.
 
 
-> Resource-based actions **SHOULD** be avoided where possible by using a relevant
-> resource e.g. use `POST accounts/{id}` with a payload of `{ status : closed }`
-
 ### Finastra HTTP Methods Standards
 
 The following Finastra API standards apply to HTTP methods: 
@@ -390,7 +387,10 @@ The following Finastra API standards apply to HTTP methods:
 >   **SHOULD NOT** use verbs within paths
     e.g. `POST /resources/{resourceId} {"status" : "active"}` rather
     than `POST /resources/{resourceId}/activate`
-    
+
+> **SHOULD** avoid resource-based actions where possible by using a relevant
+ resource e.g. use `POST accounts/{id}` with a payload of `{ status : closed }`    
+
 >   **SHOULD NOT** use constructs such as `GET /accounts?id=12` except
     for filtering - prefer `GET /accounts/12` for retrieval of a single
     resource
