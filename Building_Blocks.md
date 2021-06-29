@@ -8,7 +8,9 @@ nav_order: 2
 
 The following diagram shows the principal building blocks of Finastra integrations
 that allow clients (FinTechs and Financial Institutions) consented access to systems managed and operated by 
-tenants (Financial Institutions) of the FusionFabric.cloud platform:
+tenants (Financial Institutions) of the FusionFabric.cloud platform.
+
+The Finastra Open APIs referred to in this document are hosted by FFDC in the diagram.
 
 ![buildingblocks http](images/buildingblocks.png)
 
