@@ -20,11 +20,6 @@ Finastra’s technical strategy is to adopt a REST(ful) architectural
 style by publishing Open APIs that use HTTP for communication to access
 or update resources, such as accounts, loans, deposits etc.
 
-REST is an *architectural style* for providing *interoperability*
-between systems.
-
-REST is a concept and not a definitive standard. This guide is about moving from a concept to a standard, that can be implemented, and validated. 
-
 REST APIs allow API consumers to execute a predefined set of stateless
 operations on resources e.g. create, read, update or delete (CRUD) an
 account
@@ -38,6 +33,10 @@ system:
 -   Layered
 -   Cacheable
 -   Code on Demand (optional)
+
+REST is an *architectural style* for providing *interoperability*
+between systems but REST is not a definitive standard hence 
+this document provides standards related to REST Open APIs.
 
 ### REST Resources
 
@@ -379,66 +378,47 @@ interact with multiple resources, for example: `POST /accounts/{id}/activate`.
 
 The following Finastra API standards apply to HTTP methods: 
 
->   **MUST** use the standard GET, POST, PUT, DELETE methods against a resource.
+>   **MUST** use the standard GET, POST, PUT, DELETE methods against a resource
     
 >   **MUST** fully consider relevant and necessary resources when using
-    HTTP methods.
+    HTTP methods
     
->   **MUST NOT** use POST if GET can be used.
+>   **MUST NOT** use POST if GET can be used
 
->   **MUST** handle a single resource {id} in the path.
+>   **MUST** handle a single resource {id} in the path
 
 >   **SHOULD NOT** use verbs within paths
     e.g. `POST /resources/{resourceId} {"status" : "active"}` rather
-    than `POST /resources/{resourceId}/activate`.
+    than `POST /resources/{resourceId}/activate`
     
 >   **SHOULD NOT** use constructs such as `GET /accounts?id=12` except
     for filtering - prefer `GET /accounts/12` for retrieval of a single
-    resource.
+    resource
     
 >   **SHOULD** ensure API operations on resources are complete in their
-    CRUD scope.
+    CRUD scope
     
->   **SHOULD** ensure that non RESTful actions are avoided.
+>   **SHOULD** ensure that non RESTful actions are avoided
 
->   **MAY** use HEAD and OPTIONS methods.
+>   **MAY** use HEAD and OPTIONS methods
 
 ## HTTP Headers
 
 This section provides details on the standard and custom HTTP headers
 that may be used by clients using Finastra Open APIs.
 
-### HTTP Headers
+### Standard HTTP Headers
 
 | Header           | Description                                                                                                                                                                                                                                                                                            |
-|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `Content-Type`   | Represents the format of the payload returned in the response. <BR>Content-type MUST be `application/json`, as a content header in response to requests that return a HTTP body i.e. all POST and GET requests.                                                                                        |
 | `Accept`         | Represents the format of the payload as input.<BR>Accept SHOULD be `application/json`.                                                                                                                                                                                                                 |
 | `Authorization`  | Allows Credentials to be provided to the Authorization / Resource Server depending on the type of resource being requested.<BR> For OAuth 2.0 / OIDC, this comprises of either the Basic / Bearer Authentication Schemes. Bearer token MUST follow the [RFC6570](https://tools.ietf.org/html/rfc6750). |
 | `ETag`           | The value of this header is returned by GET methods and represents the state or version of the resource. It is used for Concurrency validation for resource updates - see the *Concurrency* section for further details.                                                                               |
 | `If-Match`       | The value of this header is passed by clients on PUT methods to allow the server to perform Concurrency validation. Its value is typically an ETag value obtained from a GET method - see the *Concurrency* section for further details.                                                               |
-|`Idempotency-Key` |  
+|`Idempotency-Key` |  The value of this header is passed by clients on POST methods to allow the server to perform Idempotency validation. Its value is typically an UUID - see the *Idempotency* section for further details.
 
-Note that Finastra APIs do not explicitly define `Content-Type`, `Accept` or `Authorization` as HTTP headers in the API contracts but follows 
-
-The following Finastra standards apply to HTTP headers:
-
->   **MAY** use standard HTTP headers.
-
->   **MUST** use Train-Case for HTTP custom header Fields.
-
->   **SHOULD**: use `ETag` Together With `If-Match` Header.
->   **SHOULD** use `Idempotency-Key` for POST requests.
-
->   **MAY** use `X-Request-ID` for tracking requests.
-
->   **MAY** use `X-External-Context-ID` to specify context associated with an API.
-
->   **MAY**: use Content-Location Header.
-
->   **SHOULD**: use Location Header instead of Content-Location Header.
-
->   even if not compliant ``GET`` **SHOULD** accept request with a content-type.
+Finastra APIs do not explicitly define `Content-Type`, `Accept` or `Authorization` as HTTP headers in the API contracts.
 
 
 ### Custom HTTP Headers
@@ -446,5 +426,25 @@ The following Finastra standards apply to HTTP headers:
 Custom headers **MAY** be used to add extra functionality which is
 exposed via HTTP. All usage should be confirmed with the Finastra API
 team.
+
+### Finastra Rules for HTTP Headers
+
+The following Finastra standards apply to HTTP headers:
+
+>   **MAY** use standard HTTP headers
+
+>   **MUST** use Train-Case for HTTP custom header Fields
+
+>   **SHOULD**: use `ETag` with `If-Match` Header for concurrency validation
+
+>   **SHOULD** use `Idempotency-Key` for POST requests
+
+>   **MAY** use `X-Request-ID` for tracking requests
+
+>   **MAY** use `X-External-Context-ID` to specify context associated with an API
+
+>   **SHOULD**: use `Location` header
+
+>   **MAY** define a content-type for `GET` requests even though the content type is not used ​- this is for compatibility with tooling
 
 
