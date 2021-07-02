@@ -81,7 +81,7 @@ securityDefinitions:
   Oauth2:
     type: oauth2
     description: Oauth 2.0 authentication
-    tokenUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/auth'
+    tokenUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/auth'
     flow: application
 ```
 
@@ -94,8 +94,8 @@ securityDefinitions:
   Oauth2:
     type: oauth2
     description: Oauth 2.0 authentication
-    authorizationUrl: 'https://any.local.keycloak:8443//login/v1/sandbox/oidc/authorize'
-    tokenUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/oidc/token'
+    authorizationUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/oidc/authorize'
+    tokenUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/oidc/token'
     flow: accessCode
 ```
 
