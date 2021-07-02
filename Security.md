@@ -111,8 +111,8 @@ components:
       description: Oauth 2.0 authentication
       flows:
         authorizationCode:
-          authorizationUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/oidc/auth'
-          tokenUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/oidc/token'
+          authorizationUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/oidc/auth'
+          tokenUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/oidc/token'
           scopes: {}
 ```
 
@@ -128,6 +128,6 @@ components:
       description: Oauth 2.0 authentication
       flows:
         clientCredentials:
-          tokenUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/oidc/token'
+          tokenUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/oidc/token'
 ```
 
