@@ -24,7 +24,7 @@ details the associated Open API development standards.
 -   When a Finastra Open API standard is highlighted within the
     sections, the standard is shown in the following format:
 
---> Finastra API designers and developers **SHOULD** follow this document however be aware there is no guarantee that publicly available Finastra APIs will fully adhere to these standards
+--- Finastra API designers and developers **SHOULD** follow this document however be aware there is no guarantee that publicly available Finastra APIs will fully adhere to these standards
 
 
 -----
