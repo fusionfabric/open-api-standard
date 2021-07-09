@@ -424,8 +424,13 @@ Finastra APIs do not explicitly define `Content-Type`, `Accept` or `Authorizatio
 ### Custom HTTP Headers
 
 Custom headers **MAY** be used to add extra functionality which is
-exposed via HTTP. All usage should be confirmed with the Finastra API
-team.
+exposed via HTTP. 
+
+All custom header usage should be confirmed with the Finastra API team who will determine
+the name of the custom header based on [RFC6648](https://datatracker.ietf.org/doc/html/rfc6648) recommendations 
+regarding the use of `X-` prefix. It is anticipated that most of the Finastra API custom headers will be specific to Finastra and should be prefixed with `X-`. 
+The prefix `X-finastra` should not be used.
+
 
 ### Finastra Rules for HTTP Headers
 
@@ -433,7 +438,7 @@ The following Finastra standards apply to HTTP headers:
 
 >   **MAY** use standard HTTP headers
 
->   **MUST** use Train-Case for HTTP custom header Fields
+>   **SHOULD** use Train-Case for HTTP custom header fields
 
 >   **SHOULD**: use `ETag` with `If-Match` Header for concurrency validation
 
@@ -446,5 +451,7 @@ The following Finastra standards apply to HTTP headers:
 >   **SHOULD**: use `Location` header
 
 >   **MAY** define a content-type for `GET` requests even though the content type is not used ​- this is for compatibility with tooling
+
+>   **MUST** not prefix custom headers with `X-Finastra`
 
 
