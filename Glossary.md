@@ -72,11 +72,11 @@ that is exposed to developers by a platform such as
 
 When an organisation publishes a set of Open APIs they typically
 have the following attributes:
-[Useful](/Introduction_to_Open_APIs), 
-[Keep it Simple](/Introduction_to_Open_APIs), 
-[Easy to Use](/Introduction_to_Open_APIs), 
-[Consistent](/Introduction_to_Open_APIs), 
-[Backward Compatible](/Introduction_to_Open_APIs)
+[Useful](/open-api-standard/Introduction_to_Open_APIs), 
+[Keep it Simple](/open-api-standard/Introduction_to_Open_APIs), 
+[Easy to Use](/open-api-standard/Introduction_to_Open_APIs), 
+[Consistent](/open-api-standard/Introduction_to_Open_APIs), 
+[Backward Compatible](/open-api-standard/Introduction_to_Open_APIs)
 
 **OpenAPI** (without space)
 
