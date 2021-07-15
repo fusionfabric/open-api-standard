@@ -38,10 +38,6 @@ POST, GET, PUT, and DELETE.
 Many Finastra products publish CRUD API operations to allow clients to
 capture and retrieve data stored in the product data store.
 
-CRUD operations may not be relevant to products that adopt a [Command
-and Query Responsibility Sgeregation
-(CQRS)](https://martinfowler.com/bliki/CQRS.html) pattern.
-
 **HAL**
 
 [HAL](https://en.wikipedia.org/wiki/Hypertext_Application_Language)
@@ -76,11 +72,11 @@ that is exposed to developers by a platform such as
 
 When an organisation publishes a set of Open APIs they typically
 have the following attributes:
-[Useful](#FinastraOpenAPIs-Principles-Useful) [Keep it
-Simple](#FinastraOpenAPIs-Principles-KeepitSimple) [Easy to
-Use](#FinastraOpenAPIs-Principles-EasytoUse)
-[Consistent](#FinastraOpenAPIs-Principles-Consistent) [Backward
-Compatible](#FinastraOpenAPIs-Principles-BackwardCompatible)
+[Useful](/Introduction_to_Open_APIs), 
+[Keep it Simple](/Introduction_to_Open_APIs), 
+[Easy to Use](/Introduction_to_Open_APIs), 
+[Consistent](/Introduction_to_Open_APIs), 
+[Backward Compatible](/Introduction_to_Open_APIs)
 
 **OpenAPI** (without space)
 
@@ -95,7 +91,7 @@ document, or code, that is used to describe RESTful APIs.
 Finastra APIs are compliant with [OAS
 2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md)
 or [OAS
-3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md)
+3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md)
 where OAS is an abbreviation for ‘OpenAPI Specification’.
 
 **Operation** **(or** **Endpoint)**
