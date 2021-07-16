@@ -36,9 +36,9 @@ An extensive OSS community provides tools for OAS APIs such as code generator,
 editors, and documentation generator.
 
 The Open API definition is agnostic to the server implementation in that
-the underlying services can be written in various stacks - .NET, Spring,
+the underlying services can be written in various technical stacks e.g. .NET, Spring,
 etc., without change to the Open API. Similarly, the underlying services
-must be agnostic of clients calling their APIs.
+are agnostic of clients calling their APIs.
 
 A well written API allows external API developers to use the
 contents of the API definition to develop their own client without
@@ -52,32 +52,30 @@ expected behaviors for the operations within the API.
 -   [OpenAPI
     v2.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md)
 -   [OpenAPI
-    v3.0.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
+    v3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md)
 -   [Swagger Editor](https://editor.swagger.io/)
 
 ------------------------------------------------------------------------
 
 ## Finastra Open APIs
 
-FInastra APIs are Open APIs as far as possible and a Finastra API should be designed so that:
+FInastra APIs are Open APIs (public) as far as possible and a Finastra API should be designed so that:
 
 -   it exposes functionality in a manner that is understood by
     developers with domain knowledge rather than knowledge of the
     underlying system
+-   it hides the internal implementations of the system it exposes
 -   it is future proofed as far as possible so that it does not require
     significant future changes because once an API has been published it
     becomes difficult to change
--   it hides the internal implementations of the system it exposes
 
 Within Finastra the following rules apply:
 
-> Finastra Open APIs **MUST** be defined using the OpenAPI Specification
-> (OAS)
+> Finastra Open APIs **MUST** be defined using the OpenAPI Specification (OAS)
 
 > Finastra Open APIs **MUST** be well documented
 
-> Finastra Open APIs **SHOULD** adopt API First and API as a Product
-> strategies
+> Finastra Open APIs **SHOULD** adopt API First and API as a Product strategies
 
 > Finastra Open APIs **MAY** be be defined using OpenAPI v2 or v3
 
@@ -87,7 +85,7 @@ The following principles are specific to the Finastra Open API
 initiative and reflect the strategic goals when designing and developing
 Finastra Open APIs.
 
-The audience for these principles is API designers and developers with
+These principles are aimed at API designers and developers so that they 
 focus on the quality attributes of the API definition and the underlying
 API implementation.
 
@@ -105,13 +103,13 @@ It is assumed that an **API First** approach is adopted to deliver **APIs as Pro
 
 > Finastra Open APIs must be useful.
 
-**Rationale**
+*Rationale*
 
 Finastra Open APIs MUST be designed based on client requirements. They
 should contain as much information as necessary but as little as
 possible. They can support multiple related use cases.
 
-**Implications**
+*Implications*
 
 Finastra Open API designers must ensure that the API’s target audience
 and use cases are well known so that they can fulfill product
@@ -126,7 +124,7 @@ quality.
 
 > Finastra Open APIs must be designed to be as simple as possible.
 
-**Rationale**
+*Rationale*
 
 Finastra Open APIs are publicly accessible and are used
 primarily by external API developers. The successful adoption of
@@ -135,9 +133,9 @@ Finastra APIs is determined by API developers' experience.
 API developers adopt and promote Finastra Open APIs that are
 simple.
 
-**Implications**
+*Implications*
 
-Finastra Open API designers MUST assume that the audience are:
+Finastra Open API designers MUST assume that the API audience are:
 
 -   NOT Finastra product experts - do NOT use product specific
     vocabulary.
@@ -149,12 +147,12 @@ Finastra Open API designers MUST assume that the audience are:
 > Finastra Open APIs must be designed to be (1) easy to use and (2) hard
 > to misuse.
 
-**Rationale**
+*Rationale*
 
 Finastra Open APIs are not adopted if they pose any barriers to API
 developers.
 
-**Implications**
+*Implications*
 
 Finastra Open API designers MUST ensure that the API is:
 
@@ -169,7 +167,7 @@ Finastra Open API designers MUST ensure that the API is:
 
 > All Finastra Open APIs must be consistent in vocabulary and behavior.
 
-**Rationale**
+*Rationale*
 
 Finastra Open APIs must be professional:
 
@@ -177,7 +175,7 @@ Finastra Open APIs must be professional:
 -   They MUST have a look and feel that is consistent across all
     Finastra Open APIs.
 
-**Implications**
+*Implications*
 
 Finastra Open API designers and developers MUST ensure that:
 
@@ -193,13 +191,13 @@ Finastra Open API designers and developers MUST ensure that:
 
 > All Finastra Open APIs must be backward compatible between releases.
 
-**Rationale**
+*Rationale*
 
 Once a client has adopted a Finastra Open API the client expects that
 API to function correctly on all future releases unless the client is
 explicitly told that the API is being deprecated and obsoleted
 
-**Implications**
+*Implications*
 
 Finastra Open API designers MUST ensure that:
 
