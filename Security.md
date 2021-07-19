@@ -81,7 +81,7 @@ securityDefinitions:
   Oauth2:
     type: oauth2
     description: Oauth 2.0 authentication
-    tokenUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/auth'
+    tokenUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/auth'
     flow: application
 ```
 
@@ -94,8 +94,8 @@ securityDefinitions:
   Oauth2:
     type: oauth2
     description: Oauth 2.0 authentication
-    authorizationUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/oidc/authorize'
-    tokenUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/oidc/token'
+    authorizationUrl: 'https://any.local.keycloak:8443//login/v1/sandbox/oidc/authorize'
+    tokenUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/oidc/token'
     flow: accessCode
 ```
 
@@ -111,8 +111,8 @@ components:
       description: Oauth 2.0 authentication
       flows:
         authorizationCode:
-          authorizationUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/oidc/auth'
-          tokenUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/oidc/token'
+          authorizationUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/oidc/auth'
+          tokenUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/oidc/token'
           scopes: {}
 ```
 
@@ -128,6 +128,42 @@ components:
       description: Oauth 2.0 authentication
       flows:
         clientCredentials:
-          tokenUrl: 'https://api.fusionfabric.cloud/login/v1/sandbox/oidc/token'
+          tokenUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/oidc/token'
 ```
 
+## Data classification 
+
+Finastra has a wide range of requirements to protect the confidentiality, integrity and availability of data under its custody. Finastra protects data by applying safeguards and controls which are appropriate given the sensitivity and criticality of the data.
+
+To classify the data there are two levels:
+
+1. Public data - for example Market data.
+2. Restricted data - this is information that is protected under General Data Protection Regulation (GDPR) compliance or California Consumer Privacy ACT (CCPA).
+
+For more information about GDPR/CCPA compliance please check [General Data Protection Regulation guide](https://gdpr-info.eu/)  and [California Consumer Privacy Act](https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CIV&division=3.&title=1.81.5.&part=4.&chapter=&article=)
+
+The data classification informs users about appropriate policies to protect the privacy, compliant to GDPR or CCPA.
+
+Information provided to Finastra from the Banks for business intelligence purposes that is classified as `Restricted` must comply with regulations such as GDPR or CCPA when using the data in your apps.
+
+Fields that are `Restricted` are shown in APIs with a custom Finastra tag named `x-finastra-data-classification`. 
+
+The data classification tag is applied to the API, its endpoints and at parameter level.
+
+If an endpoint uses a definition that is defined as `Restricted`, the endpoint is declared as `Restricted`, and similarly the API is declared as `Restricted`.
+
+For example, in the following excerpt from the Account Information API, the `x-finastra-data-classification` field is added to the GET /accounts because data in the payload is restricted. 
+
+```
+"/accounts": {
+    "get": {
+      "tags": ["Accounts"],
+      "summary": "Retrieve a Summary of Accounts for an Account Holder",
+      "operationId": "accounts",
+      "description": "This call returns a summary of all accounts owned by an account holder.",
+      "parameters": [...],
+      "responses": {...},
+      "x-finastra-data-classification": ["Restricted"]
+    }
+  }
+```
