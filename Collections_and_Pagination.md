@@ -49,6 +49,8 @@ containing an array of items e.g.:
 }
 ```
 
+### Finastra API Collections Standards ###
+
 > Finastra APIs supporting `GET` collections **SHOULD** support extensibility by returning the
 collection as an object containing an array of `items` because this approach can be extended
 to support additional data without imposing breaking changes on the API
@@ -80,7 +82,7 @@ e.g. using query languages similar to:
 -   [GraphQL](https://graphql.org/)
 -   [OData](https://www.odata.org/)
 
-*Examples*
+Examples:
 |  **Request**                          | **Description**                   |
 |-------------------------------------------|-----------------------------------|
 | `GET /accounts?name=tom&lastname=smith` | Basic search using query parameter|
@@ -171,8 +173,7 @@ In Offset-Limit Based pagination:
     set of results can be retrieved in 3 requests by varying the offset
     value: `offset=0`, `offset=5`, and `offset=10`
 
-*Examples*
-
+Examples:
 |  **Request**                          | **Description**     |
 |-------------------------------|-------------------|
 | `GET /accounts?limit=100` | return the 100 first accounts |
@@ -279,7 +280,7 @@ object:
 }
 ```
 
-### Response Links
+### Response Links ###
 
 When a Finastra API provides a `GET` endpoint that returns a collection
 the API should provide the client with the following links to navigate
