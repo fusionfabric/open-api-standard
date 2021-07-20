@@ -383,7 +383,7 @@ can be used together:
 Note that in the example, since the last 3 items are shown based on the
 request parameters then the “next” link is omitted from the response.
 
-### Finastra Standards for Pagination Responses ###
+### Finastra API Pagination Response Standards ###
 
 > Finastra APIs supporting `GET` collections **SHOULD** support the
 > provision of metadata using the `_meta` keyword
