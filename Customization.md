@@ -276,7 +276,8 @@ Finastra APIs **MAY** implement localization, however, note that:
 to the customer and not with content negotiation. The UI and its
 supporting services should be responsible for these concerns
 - localisation can be expensive to implement and full consideration must be given 
-to which data types support locales e.g. amount fields might be better excluded from supporting locales
+to which data types support locales e.g. for amount, date and time fields it might be 
+to allow the client to manage the locale translation
 
 If adopting localization in an API, then the standard HTTP Header `Accept-Language` informs the service what
 languages the client is able to understand, and what locale variant is
@@ -294,6 +295,10 @@ format, is identified by the two-letter code `ch`.
 Example: `FR-ch`
 
 For more details, about `Accept-Language` see [HTTP 1.1 RFC:section-5.3.5](https://tools.ietf.org/html/rfc7231#section-5.3.5).
+
+For details on the relationship between localization and customization see [Localization vs Internationalization](https://www.w3.org/International/questions/qa-i18n).
+
+### Finastra API Localization Standards ###
 
 > APIs that support localization **MUST** use the `Accept-Language` header to facilitate content
 > negotiation with the client and **MUST** inform the client of the selection in the `Content-Language` header
