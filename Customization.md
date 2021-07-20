@@ -13,63 +13,6 @@ and includes the following sections:
 - TOC
 {:toc}
 
-## Localization , Internationalization 
-
-Localization and internationalization are expensive to implement
-correctly.
-
-APIs should be concerned with providing a business capability
-to the customer and not with content negotiation. The UI and its
-supporting services should be responsible for these concerns.
-
-> APIs **SHOULD NOT** be concerned with either localization or
-> internationalization.
-
-> The difference between localization and internationalization is out of scope for this
-> guide. For details, see [Localisation
-> vs. Internationalization](https://www.w3.org/International/questions/qa-i18n)
-> article by W3C.
-
-
-Out of scope for APIs:
-
--   Localization
-    -   Translations
-    -   Right To Left and other orientations
--   Internationalization
-    -   Decimal separators
-    -   Currency
-
-In scope for APIs:
-
--   Date
--   Date-Time
--   Time
-
-> APIs that support either localization or internationalization **MUST**
-> understand the `Accept-Language` header to facilitate content
-> negotiation with the client and inform the client of the selection in
-> the `Content-Language` header.
-
-The standard HTTP Header `Accept-Language` informs the service what
-languages the client is able to understand, and what locale variant is
-preferred. Using content negotiation, the service selects one of the
-proposed language and locales, and confirms the selection within the
-response header `Content-Language`. Browsers use this header to align
-their UI.
-
-The `Accept-Language` header format contains two items: language,
-culture.
-
-In the following example, the French language is identified with the two
-letter code `FR`; the Swiss culture/locale, which is optional in this
-format, is identified by the two-letter code `ch`.
-
-Example: `FR-ch`
-
-For more details, about `Accept-Language` [HTTP 1.1 RFC:section-5.3.5](https://tools.ietf.org/html/rfc7231#section-5.3.5).
-
-
 ## Custom Fields
 
 Many products provide the capability for Banks to define additional custom fields alongside 
@@ -90,70 +33,64 @@ For example
 ```
   { "firstName" : "Luke" , "lastName" : "Skywalker" } 
 ```
-Bank A can defines a custom fields size that is an integer with a minimal value of 0. 
+Bank A can define a custom fields named `rating` that is an integer with a minimum value of 0. 
 ```
-  { "firstName" : "Luke" , "lastName" : "Skywalker" , "size" : 183} 
+  { "firstName" : "Luke" , "lastName" : "Skywalker" , "rating" : 183} 
 ```
-Bank B can defines a custom fields contact that is a complex object composed of 2 field email and phone.
+Bank B can define a custom field named `contact` that is a complex object composed of two fields: `email` and `phone_number`.
 ```
-  { "firstName" : "Luke" , "lastName" : "Skywalker" , "contact" : { "email" : "luke.skywalker@star.com" , "phone_number": "911"}}
+  { "firstName" : "Darth" , "lastName" : "Vader" , "contact" : { "email" : "ldarth.vader@star.com" , "phone_number": "111"}}
 ```
 
-Custom fields differ from other fields in the API because custom fields are Bank specific and cannot be determined in advance i.e. custom fields are dynamic.
+Custom fields differ from other fields in the API because custom fields are Bank specific and cannot be determined in advance i.e. custom fields are dynamic in nature so the custom fields can only be defined in a static API as an object whereas
+Open APIs define a fixed set of well-known and documented fields adhering to the the OpenAPI Specification.
 
-In the sample above, the available set of custom fields can be described by a separate Json schema containing the field name, field type and constraints.
+In the example above, the available set of custom fields can be described by a separate Json schema containing the field name, field type and constraints.
 
 The custom fields schema represents a contract for any external developers and as such it has a lifecycle that
-must be managed in the same way as APIs i.e. versioned and avoidance (where possible) of breaking changes.
-
-> It is NOT expected that Open APIs provide support for by default custom 
-> fields because of the increased complexity to the developer and
-> support overheads, however, there may be use cases for
-> specific products where custom fields are a necessary requirement for
-> an API.
-
-### Problems Defining Custom Fields
-
-Open APIs are expected to define a fixed set of well-known and documented fields for Fintechs which are defined in files adhering to the the OpenAPI Specification.
+must be managed in the same way as APIs i.e. the schema should be versioned and should avoid (where possible) 
+breaking changes.
 
 In the OAS standard custom fields can be supported using the `additionalProperties` keyword, however, this support does not allow clients to discover the schema of the custom fields. 
 
-Since custom fields are specific to a Bank then the customization breaks one of the fundamental FusionFabric principles which is 'code once, run everywhere'. 
-This is why it is not recommended to push for customization within APIs. Note that most Open APIs on the market do not offer customization, however, 
-Finastra APIs may need to support custom fields because Banks expect it to be implemented to complement their Finastra products.
-
 Another constraint is that the custom field names must not collide with the other field names defined in the API.
+
+> Support for custom fields in Finastra APIs is NOT provided by default and is NOT recommended but custom field support **MAY** be provided. The reason for not recommending custom fields within APIs is because of the increased complexity to the developer and the support overheads, however, there may be use cases for specific products where custom fields are a necessary requirement
 
 ### Custom Fields Rules Summary
 
-Custom field data extension can be supported in Finastra APIs by ensuring that clients using the API can obtain details of the expected custom fields for a specific Bank.
+> custom field data extension **MAY** be supported in Finastra APIs by ensuring that clients using the API can obtain details of the expected custom fields for a specific Bank.
 
-- **MUST NOT** provide dedicated Bank specific APIs support data extension customization, use the technique below to avoid duplicating APIs
-- Custom fields **MAY** be considered for API request
-- When implemented, custom fields **SHOULD** be included in the payload of the associated business object i.e avoid providing a separate endpoint solely for custom-fields
-- When implemented, custom fields **MUST** be grouped under the name ```custom-fields```
-- When implemented, custom fields **SHOULD** use the ```additionalProperties``` keyword against the ```custom-fields``` field
-- When implemented, custom field schemas **SHOULD** be provided as an endpoint in the associated business object API using the path name ```/custom-fields-schema```
-as e.g ```GET /parties/custom-fields-schema```
-  
-- When implemented, custom fields **MUST** be grouped under the name or prefix ```custom-fields```
-- When implemented, custom fields schemas **MUST** adhere to [JSON Schema](https://json-schema.org/understanding-json-schema/basics.html)
+> **MUST NOT** provide dedicated Bank specific APIs support data extension customization, use the technique below to avoid duplicating APIs
+
+> Custom fields **MAY** be considered for API request
+
+> When implemented, custom fields **SHOULD** be included in the payload of the associated business object i.e avoid providing a separate endpoint solely for custom-fields
+
+> When implemented, custom fields **MUST** be grouped under the name `custom-fields`
+
+> When implemented, custom fields **SHOULD** use the `additionalProperties` keyword against the `custom-fields` field
+
+> When implemented, custom field schemas **SHOULD** be provided as an endpoint in the associated business object API using the path name `/custom-fields-schema` as e.g. `GET /parties/custom-fields-schema`
+
+> When implemented, custom fields **MUST** be grouped under the name or prefix `custom-fields`
+
+> When implemented, custom fields schemas **MUST** adhere to [JSON Schema](https://json-schema.org/understanding-json-schema/basics.html)
 
 
 ### Implementation
 
 The following APIs and endpoints must be fully considered when implementing custom fields for a resource:
 
-1. The **resource API** must ensure that ```POST```, ```PUT``` and ```GET``` support custom fields e.g ```GET /customer/{id}``` allows a **client** to retrieve common and 
-   custom **data** fields and ```POST /customer``` creates common and custom fields
-2. The **resource API** must ensure that a client can ```GET``` the schema of the "customized part" e.g. ```GET /customer/custom-fields-schema``` allows a 
-   **client** to retrieve the **schema** of the custom fields for the specific Bank (tenant)
-3. In a **resource meta data API** consider supporting ```POST, PUT, GET, DELETE``` e.g. ```POST /customer/custom-fields-schema``` allows a **Bank** to define the custom field **schema** for a business object
+1. The **resource API** must ensure that `POST`, `PUT` and `GET` support custom fields e.g `GET /customer/{id}` allows a **client** to retrieve common and 
+   custom **data** fields and `POST /customer` creates common and custom fields
+2. The **resource API** must ensure that a client can `GET` the schema of the "customized part" e.g. `GET /customer/custom-fields-schema` allows a **client** to retrieve the **schema** of the custom fields for the specific Bank (tenant)
+3. In a **resource meta data API** consider supporting `POST`, `PUT`, `GET`, `DELETE` e.g. `POST /customer/custom-fields-schema` allows a **Bank** to define the custom field **schema** for a business object
 
 #### Resource Definition
 
->In the resource API ensure that POST, PUT and GET support custom fields e.g (1) ```GET /parties/{id}``` 
->allow a client to retrieve both common and custom data fields and (2) ```POST /parties``` creates common and custom fields
+>In the resource API ensure that `POST`, `PUT` and `GET` operations support custom fields e.g (1) `GET /parties/{id}` 
+allow a client to retrieve both common and custom data fields and (2) `POST /parties` creates common and custom fields
 
 Given the previous example here is an instance of the payload retrieved for Bank A
 ** GET /parties/{id}**
@@ -162,7 +99,7 @@ Given the previous example here is an instance of the payload retrieved for Bank
    "firstName" : "Luke" ,
    "lastName" : "Skywalker" ,
    "custom-fields": {
-      "size": 183
+      "rating": 183
     }
 }
 ```
@@ -170,12 +107,12 @@ same query for a different implementation at Bank B would return
 **GET /parties/{id}** 
 ```
 {
-   "firstName" : "Luke" ,
-   "lastName" : "Skywalker" ,
+   "firstName" : "Darth" ,
+   "lastName" : "Vader" ,
    "custom-fields": {
       "contact" : {
-          "email" : "luke.skywalker@star.com" ,
-          "phone_number": "911"
+          "email" : "darth.vader@star.com" ,
+          "phone_number": "111"
       } 
     }
 }
@@ -183,10 +120,10 @@ same query for a different implementation at Bank B would return
 
 #### Resource Schema Definition
 
->- The custom-fields field defines the additionalProperties keyword as a object - this allows any additional properties including simple or complex type. 
->- The custom field names size, contact, email, phone_number are NOT defined in the API because they are dynamic fields
->- The custom field names size, phone_number do NOT require to adhere to Finastra API field naming standards because they are not explicitly defined in the API, rather they are defined externally e.g. in the Core backend
->- For further details of the additionalProperties keyword see [JSON schema](https://json-schema.org/understanding-json-schema/reference/object.html#id2)
+>- The `custom-fields` field defines the `additionalProperties` keyword as an object which supports both simple and complex additional properties
+>- The custom field names `rating`, `contact`, `email`, phone_number are NOT defined in the API because they are dynamic fields
+>- The custom field names, e.g. `phone_number`, do NOT need to adhere to Finastra API field naming standards because they are not explicitly defined in the API, rather they are defined externally e.g. in the Core backend
+>- For further details of the `additionalProperties` keyword see [JSON schema](https://json-schema.org/understanding-json-schema/reference/object.html#id2)
 
 ```
 customer:
@@ -256,12 +193,12 @@ customer:
 
 The custom-fields-schema is defined as an endpoint and must adhere to the OAS specification 
 as shown in the following example which shows a smaller set of the capabilities of customization
-e.g. it does not include the minLength attribute:
+e.g. it does not include the `minLength` attribute:
 
 ```
   customSchema:
     type: object
-    description:  this is the meta schema representing a subset of json schema. for instance here format, minLength is not available. Type and properties are mandatory. It is complex to read but short story is that it represents a json schema. 
+    description:  this is the meta schema representing a subset of json schema. This example contains  e.g. format, minLength is not available. Type and properties are mandatory. It is complex to read but short story is that it represents a json schema. 
     required: 
       - type
       - properties
@@ -280,21 +217,21 @@ e.g. it does not include the minLength attribute:
           - string
           - number      
       description:
-        description: allow to setup a description of the custom schema or a custom field.
+        description: a description of the custom schema or a custom field
         type: string
-      description:
-        description: allow to setup a title  of the custom schema or a custom field
+      title:
+        description: a title  of the custom schema or a custom field
         type: string
       required:
-        description:  this defines that the customization supports the keyword 'required'. That this keyword following json schema semantic must be an array of string            
+        description:  defines which custom fields are required
         type: array
         items:
           type: string
       maxLength : 
-        description:  support of maxLength constrains, only available at field level
+        description:  supports the maxLength constraint - only available at field level
         type : integer
       properties:
-        description:  it is the storage for the fields. It is following a recursive definition. some fields like $schema should be used only at top level, and not field level     
+        description:  stores the fields and uses a recursive definition - some fields like $schema should be used only at top level and not at field level     
         type: object
         additionalProperties:
           $ref: '#/definitions/customSchema'
@@ -324,8 +261,41 @@ in this case the endpoints would be :
 
 | Endpoint Format                                      |      Endpoint description                                     |  Example                                | Example description |
 |----------                                            |:-------------:                                                |------:                                  | ------:           |
-| ```POST /resources/custom-field-schema```                                | create a custom schema | POST /loans/custom-field-schema                    | create an instance of the new loan for instance bicycle|
-| ```GET /resources/custom-field-schema```            |  get all ```schemaIds``` associated with resources            | GET /loans/custom-field-schema         |get all ```schemaIds``` so all loan kind [car, bicycle ] |
-| ```GET /resources/custom-fields-schema/{schemaId}``` |  get the ```schema``` for the specific schemaId               | GET /loans/custom-fields-schema/{bicycle}  |get the schema for ```{schemaId}="bicycle"``` |
-| ```POST /resources/{schemaId}``` | create an object instance following the custom-schema definition ```schemaIds```| POST /loans/{bicycle} |create a loan for ```{schemaId}="bicycle"``` with all the constrains defined in the schema  /loans/custom-fields-schema/{bicycle} | 
+| `POST /resources/custom-field-schema`                                | create a custom schema | `POST /loans/custom-field-schema`                    | create an instance of the new loan for instance bicycle|
+| `GET /resources/custom-field-schema`            |  get all `schemaIds` associated with resources            | `GET /loans/custom-field-schema`         |get all `schemaIds` so all loan kind [car, bicycle ] |
+| `GET /resources/custom-fields-schema/{schemaId}` |  get the `schema``` for the specific schemaId               | `GET /loans/custom-fields-schema/{bicycle}`  |get the schema for `{schemaId}=bicycle` |
+| `POST /resources/{schemaId}` | create an object instance following the custom-schema definition `schemaIds`| `POST /loans/{bicycle}` |create a loan for `{schemaId}=bicycle` with all the constrains defined in the schema  `/loans/custom-fields-schema/{bicycle}` | 
+
+## Localization
+
+Localization in the context of APIs typically refers to the ability to return text messages and descriptions 
+in the language requested by the caller of the API i.e. by specifying their locale in the request.
+
+Finastra APIs **MAY** implement localization, however, note that:
+- APIs should be concerned with providing a business capability
+to the customer and not with content negotiation. The UI and its
+supporting services should be responsible for these concerns
+- localisation can be expensive to implement and full consideration must be given 
+to which data types support locales e.g. amount fields might be better excluded from supporting locales
+
+If adopting localization in an API, then the standard HTTP Header `Accept-Language` informs the service what
+languages the client is able to understand, and what locale variant is
+preferred. Using content negotiation, the service selects one of the
+proposed language and locales, and confirms the selection within the
+response header `Content-Language`. Browsers use this header to align
+their UI.
+
+The `Accept-Language` header format contains two items: `language` and `culture`.
+
+In the following example, the French language is identified with the two
+letter code `FR`; the Swiss culture/locale, which is optional in this
+format, is identified by the two-letter code `ch`.
+
+Example: `FR-ch`
+
+For more details, about `Accept-Language` see [HTTP 1.1 RFC:section-5.3.5](https://tools.ietf.org/html/rfc7231#section-5.3.5).
+
+> APIs that support localization **MUST** use the `Accept-Language` header to facilitate content
+> negotiation with the client and **MUST** inform the client of the selection in the `Content-Language` header
+
 
