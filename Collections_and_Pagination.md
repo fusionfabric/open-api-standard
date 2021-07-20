@@ -187,7 +187,7 @@ Examples:
 > Finastra APIs **SHOULD** implement pagination using offset-limit
 
 > Finastra APIs supporting pagination **SHOULD** be implemented using
-> the **limit** and **offset** request keywords
+> the `limit` and `offset` request keywords
 
 > Finastra APIs implementing pagination **MUST** specify a `default` value for the `limit` parameter
 
@@ -286,18 +286,18 @@ When a Finastra API provides a `GET` endpoint that returns a collection
 the API should provide the client with the following links to navigate
 the collection:
 
--   **self** - this returns the current set of items in the
+-   `self` - this returns the current set of items in the
     collection
--   **next** - this link returns the set of items in the collection
+-   `next` - this link returns the set of items in the collection
     after the last entry of the current set of items
--   **prev** - this link returns the set of items in the collection
+-   `prev` - this link returns the set of items in the collection
     before the first item of the current set of items
--   **first** - this link returns the first set of items in the
+-   `first` - this link returns the first set of items in the
     collection
--   **last** - this link returns the last set of items in the
+-   `last` - this link returns the last set of items in the
     collection
 
-All items are based on the passed limit and offset parameters.
+All items are based on the requested `limit` and `offset` parameters.
 
 Note that links can also be provided for `GET` operations that return a
 single item rather than a collection - see the *HATEOAS and HAL* section
