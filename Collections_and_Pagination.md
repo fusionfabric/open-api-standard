@@ -242,7 +242,7 @@ where:
 -    `limit` is the maximum number of items returned  
 -    `offset`is the starting point of items returned 
 -    `itemCount` is the  number of items returned
--    `totalCount` is thetotal number of items 
+-    `totalCount` is the total number of items 
 
 The `_meta` object can be extended to include any relevant metadata
 as required e.g. computation time etc.
@@ -383,6 +383,13 @@ can be used together:
 
 Note that in the example, since the last 3 items are shown based on the
 request parameters then the “next” link is omitted from the response.
+
+## Sample Pagination API
+
+The following link shows a sample of an OAS2 API that contains CRUD endpoints - the GET /parties endpoint shows an example of how to define limit, offset, sort, _meta and links.
+
+[Sample OAS2 Pagination API](https://github.com/fusionfabric/open-api-standard/blob/main/pagination-sample.yml) 
+
 
 ### Finastra API Pagination Response Standards ###
 
