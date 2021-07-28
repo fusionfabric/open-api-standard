@@ -26,27 +26,30 @@ fields:
 -   additional information fields
 -   user defined fields
 
-Custom field data extension capability is typically provided by back office systems as an 'out of the box' feature developed by the product R&D team to allow each individual Bank to add their own custom fields e.g. for head office reporting.
+Custom field data support is typically provided by back office systems as an 'out of the box' feature developed by the product R&D team to allow each individual Bank to add their own custom fields e.g. for head office reporting.
 
-For example, the following payload contains common fields:
+Finastra do not publish Bank specific APIs hence a single API for a resource must support custom fields e.g. Finastra 
+would expect to provide a single `parties` API that supports custom fields for multiple Banks. 
+
+The following examples show typical a payload which contains common fields and custom fields:
+
+1 - common fields:
 ```
   { "firstName" : "Luke" , "lastName" : "Skywalker" } 
 ```
-Alongside these common fields, Bank A can define a custom field named `rating`: 
+2 - alongside the common fields, Bank A can define a custom field named `rating`: 
 ```
   { "firstName" : "Luke" , "lastName" : "Skywalker" , "rating" : 183} 
 ```
-And similarly, Bank B can define a custom field named `contact` that is a complex object composed of two fields: `email` and `phone_number`:
+
+3 - alongside the common fields, Bank B can define a custom field named `contact` that is a complex object composed of two fields: `email` and `phone_number`:
 ```
-  { "firstName" : "Darth" , "lastName" : "Vader" , "contact" : { "email" : "ldarth.vader@star.com" , "phone_number": "111"}}
+  { "firstName" : "Darth" , "lastName" : "Vader" , "contact" : { "email" : "darth.vader@star.com" , "phone_number": "111"}}
 ```
 
-Custom fields differ from other fields in the API because custom fields are Bank specific and cannot be determined in advance i.e. custom fields are dynamic in nature so the custom fields can only be defined in a static API as an object rather than as individual fields, whereas Open APIs define a fixed set of well known, documented fields adhering to the the OpenAPI Specification (OAS).
+Custom fields differ from other fields in the API because custom fields are Bank specific and cannot be determined in advance i.e. custom fields are dynamic in nature so the custom fields can only be defined in a static API as an object rather than as individual fields, whereas Open APIs typically define a fixed set of well known, documented fields adhering to the the OpenAPI Specification (OAS).
 
-Bank specific APIs for a single resource are not supported hence a single API must support custom fields e.g. Finastra 
-would expect to provide a single `parties` API that supports multiple Banks with each defining their own custom fields. 
-
-In the example above, the available set of custom fields can be described by a separate Json schema containing the field name, field type and constraints. The custom fields schema represents a contract for any external developers and as such it has a lifecycle that must be managed in the same way as APIs i.e. the schema should be versioned and should avoid (where possible) 
+The available set of custom fields can be described by a separate Json schema containing the field name, field type and field constraints. The custom fields schema represents a contract for external developers and as such it has a lifecycle that must be managed in the same way as APIs i.e. the schema should be versioned and should avoid (where possible) 
 breaking changes.
 
 Custom fields are supported using the OAS `additionalProperties` keyword and clients must be able to discover 
@@ -55,7 +58,7 @@ the associated schema using a new endpoint that allows clients to retrieve a Ban
 
 ### Implementation
 
-The following APIs and endpoints must be fully considered when implementing custom fields for a resource:
+The following APIs and endpoints should be provided when implementing custom fields for a resource:
 
 1. The **resource API** must ensure that `POST`, `PUT` and `GET` support custom fields e.g.:
     - `GET /customer/{id}` should allow a client to retrieve a resource's common and custom **data** fields
@@ -72,7 +75,7 @@ allow clients to update the custom fields schema e.g.:
 
 In the resource API ensure that `POST`, `PUT` and `GET` operations support custom fields e.g.:
 - `GET /parties/{id}` should allow a client to retrieve a resource's common and custom data fields 
-- `POST /parties` should allow a client to create a resource with common and custom fields
+- `POST /parties` should allow a client to create a resource with common and custom data fields
 
 For example, Bank A must be able to get a custom field named `rating` whereas Bank B must be able to get a custom field object named `contact` so that `GET /parties/{id}` can return the following:
 ```
@@ -81,12 +84,12 @@ Bank A
 ```
 ```
 Bank B
-         { "firstName" : "Darth" , "lastName" : "Vader" , "contact" : { "email" : "ldarth.vader@star.com" , "phone_number": "111"}}
+         { "firstName" : "Darth" , "lastName" : "Vader" , "contact" : { "email" : "darth.vader@star.com" , "phone_number": "111"}}
 ```
 
 #### Resource Schema Definition
 
-The following guidelines show how the custom fields are defined in the resource API:
+The following guidelines show how the custom fields are defined in the APIs:
 - The `custom-fields` field defines the `additionalProperties` keyword as an object which supports both simple and complex additional properties
 - The custom field names, e.g. `rating`, `contact`, `email`, `phone_number`, are NOT defined in the API because they are dynamic fields which vary by Bank
 - The custom field names, e.g. `phone_number`, do NOT need to adhere to Finastra API field naming standards because they are not explicitly defined in the API, rather they are defined externally e.g. in the Core backend
@@ -117,7 +120,7 @@ customer:
 ```
 
 
-#### Resource Meta Data API Definition
+#### Resource Meta Data Definition
 
 In the resource API ensure that a client can `GET` the schema of the custom fields e.g. 
 `GET /parties/custom-fields-schema` would allow a client to retrieve the schema of the custom fields for the specific Bank.
@@ -160,6 +163,8 @@ returned from the `GET /parties/custom-fields-schema` endpoint:
 ```
 
 #### Resource Meta Data Schema, Schema Definition
+
+The resource API provides the ability to create, read, update and delete the custom fields associated with a resource as well as allowing the client to obtain the custom fields schema. The Resource Meta Data API allows a client to maint the custom field definitions.
 
 A **resource meta data API** can be optionally provided to support `POST`, `PUT`, `GET`, `DELETE` operations that 
 allow clients to update the custom fields schema.
@@ -217,7 +222,8 @@ e.g. it does not include the `minLength` attribute:
 
 It is anticipated that this endpoint would be included in a separate API and would not typically be required.
 
-> [Full Custom Field Data model Sample](./customization.yml)
+The following sample OAS2 API can be used as a reference API definition showing the cuztomization definitions on this page:
+- [Full Custom Field Data model Sample](https://github.com/fusionfabric/open-api-standard/blob/main/customization-sample.yml)
 
 ### Supporting Multiple Schemas
 
