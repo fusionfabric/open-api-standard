@@ -12,6 +12,10 @@ and pagination:
 - TOC
 {:toc}
 
+The following link shows a sample of an OAS2 API that contains an example of collection and pagination endpoint - the `GET /parties` - which can be used as a reference for this section:
+
+- [Sample OAS2 Pagination API](https://github.com/fusionfabric/open-api-standard/blob/main/pagination-sample.yml) 
+
 ## Collections
 
 APIs typically provide Create, Read, Update, Delete (CRUD) capabilities against a business resource e.g. CRUD accounts.
@@ -382,13 +386,7 @@ can be used together:
 ```
 
 Note that in the example, since the last 3 items are shown based on the
-request parameters then the “next” link is omitted from the response.
-
-## Sample Pagination API
-
-The following link shows a sample of an OAS2 API that contains CRUD endpoints - the GET /parties endpoint shows an example of how to define limit, offset, sort, _meta and links.
-
-[Sample OAS2 Pagination API](https://github.com/fusionfabric/open-api-standard/blob/main/pagination-sample.yml) 
+request parameters then the `next` link is omitted from the response.
 
 
 ### Finastra API Pagination Response Standards ###
