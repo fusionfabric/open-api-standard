@@ -12,6 +12,8 @@ and pagination:
 - TOC
 {:toc}
 
+## Sample
+
 The following link shows a sample of an OAS2 API that contains an example of collection and pagination endpoint - the `GET /parties` - which can be used as a reference for this section:
 
 - [Sample OAS2 Pagination API](https://github.com/fusionfabric/open-api-standard/blob/main/pagination-sample.yml) 
