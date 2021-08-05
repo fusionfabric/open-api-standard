@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Resource and Field Naming Conventions
+title: Paths and Resources
 nav_order: 7
 ---
 
-# Resource and Field Naming Conventions
+# Paths and Resources
 {: .no_toc}
 
 This section provides details on resources and fields and provides the associated Finastra naming conventions and standards.
