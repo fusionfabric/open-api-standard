@@ -9,7 +9,7 @@ nav_order: 1
 # Welcome
 
 This document is the **Finastra Open API Design Guide** and the intended
-audience are designers, developers and consumers of Finastra Open APIs available on the [Finastra Developer Portal](https://developer.fusionfabric.cloud/).
+audience is designers, developers and consumers of Finastra Open APIs available on the [Finastra Developer Portal](https://developer.fusionfabric.cloud/).
 
 This document introduces the concepts of Finastra RESTful Open APIs and
 details the associated Finastra Open API development standards.
@@ -29,5 +29,4 @@ details the associated Finastra Open API development standards.
 -----
 **Fusion**Fabric.cloud Documentation Team
 30 June 2021
-
 
