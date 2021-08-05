@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Collections and Pagination
-nav_order: 9
+nav_order: 10
 ---
 # Collections and Pagination
 {: .no_toc}
@@ -14,7 +14,7 @@ and pagination:
 
 ## Sample
 
-The following link shows a sample of an OAS2 API that contains an example of collection and pagination endpoint - the `GET /parties` - which can be used as a reference for this section:
+The following link shows an OAS2 API that contains an example of collection and pagination endpoint - the `GET /parties` - this endpoint can be used as a reference for the contents of this section:
 
 - [Sample OAS2 Pagination API](https://github.com/fusionfabric/open-api-standard/blob/main/pagination-sample.yml) 
 
@@ -22,11 +22,20 @@ The following link shows a sample of an OAS2 API that contains an example of col
 
 APIs typically provide Create, Read, Update, Delete (CRUD) capabilities against a business resource e.g. CRUD accounts.
 
-The R(ead) business resource should contain the following two endpoints : 
-- `GET /resources/{resourceId}` => return a unique instance of the designated resource
-- `GET /resources`   => return a collection of items
+The R(ead) business resource should contain the following two endpoints: 
 
-The second endpoint can be enriched by adding query parameters to filter the resource collection based on the content (search) or the size of the result (pagination).
+| Endpoint                      | Description                                        |
+|-------------------------------|----------------------------------------------------|
+| `GET /resources`              | return a **collection** of items                       |
+| `GET /resources/{resourceId}` | return a unique instance of the designated resource|
+
+
+This section is focused on the first endpoint and covers the following topics:
+- searching and filtering collections
+- sorting collections
+- pagination of collections
+
+###  Collection Response
 
 When a Finastra API provides a `GET` endpoint that returns a collection
 e.g. `GET /accounts`, the API should provide a response object that is
@@ -93,7 +102,7 @@ Examples:
 |-------------------------------------------|-----------------------------------|
 | `GET /accounts?name=tom&lastname=smith` | Basic search using query parameter|
 | `GET /accounts/search/mostActive`       | Well known search|
-| `GET /accounts/search/balance=lt=0 `    | using FIQL|
+| `GET /accounts/search/balance=lt=0 `    | Using FIQL|
 
 
 ### Finastra API Search and Filter Standards ###
@@ -114,6 +123,10 @@ Examples:
 
 When a Finastra API provides a `GET` endpoint that returns a collection
 the API should provide sort capabilities as described in this section.
+
+Finastra APIs supporting sort use the `sort` path keyword with a property name specifiying one of the 
+`asc` and `desc` parameters, where asc means ascending order and desc means reverse order 
+e.g.: `($propertyname,)+[asc|desc]`
 
 **Examples**
 
@@ -188,9 +201,9 @@ Examples:
 ### Finastra API Pagination Request Standards ###
 
 > Finastra APIs with resource collections **SHOULD** support pagination
-> in all but exceptional circumstances
+> in mos circumstances
 
-> Finastra APIs **SHOULD** implement pagination using offset-limit
+> Finastra APIs **SHOULD** implement pagination using offset-limit based pagination
 
 > Finastra APIs supporting pagination **SHOULD** be implemented using
 > the `limit` and `offset` request keywords
@@ -254,9 +267,9 @@ The `_meta` object can be extended to include any relevant metadata
 as required e.g. computation time etc.
 
 The following example shows `items` and `_meta` in a typical response
-object:
+object for the endpoint: 
 
-`GET /accounts?limit=5&offset=60`
+- `GET /accounts?limit=5&offset=60`
 
 ```json
 {
@@ -303,11 +316,10 @@ the collection:
 -   `last` - this link returns the last set of items in the
     collection
 
-All items are based on the requested `limit` and `offset` parameters.
+All links are based on the requested `limit` and `offset` parameters.
 
 Note that links can also be provided for `GET` operations that return a
-single item rather than a collection - see the *HATEOAS and HAL* section
-for further details.
+single item rather than a collection.
 
 The following example shows a Swagger snippet containing the standard
 definition of links:
@@ -390,6 +402,9 @@ can be used together:
 Note that in the example, since the last 3 items are shown based on the
 request parameters then the `next` link is omitted from the response.
 
+The following link shows an OAS2 API that contains an example of collection and pagination endpoint - the `GET /parties` - this endpoint can be used as a reference to show how the API can be defined:
+
+- [Sample OAS2 Pagination API](https://github.com/fusionfabric/open-api-standard/blob/main/pagination-sample.yml) 
 
 ### Finastra API Pagination Response Standards ###
 
