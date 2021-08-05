@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Security
-nav_order: 10
+nav_order: 11
 ---
 
 # Security
@@ -28,34 +28,33 @@ The channel type determines the **OAuth2 flow** that will be used by the API:
 
 These flows are detailed in [RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749), section 4 .
 
-> Finastra Open APIs MUST secure endpoints with oAuth2 
+> Finastra Open APIs **MUST** secure endpoints with oAuth2 
 
 
 ## API Channel Types
 
-This secion provides extra details on Finastra channel types:
+This section provides extra details on Finastra channel types:
 
 - **B2B** - Business-to-Business
-  - A B2B API is used to build apps whose target is another business
-  - This channel supports server-to-server data interchange with good security level (token rotation)
-  - Authentication is geared toward a technical account; user level authentication is not available
-  - Support the Client Credentials OAuth2 authentication flow
-
-- **DIGITAL** - Business-to-Customer	
-  - The Business-to-Customer channel (B2C) groups APIs that are used to build apps targeting customers of a financial institution
-  - The APIs on this channel support mobile banking applications on browsers, smartphones and tablets
-  - Support the Authorization Code grant flow
-  - Authentication is geared toward the institution's customers Identity provider
-
-- **B2E** - Business-to-Employee
-  - A B2E API is used to build apps whose target is the employee of a Financial Institution
-  - Authentication is geared toward the institution's employees
+  - B2B APIs are used to build apps whose target is another business system
+  - B2B APIs support server-to-server data interchange using tokens and associated token refresh policies
+  - B2B APIs support the OAuth2 Client Credentials authentication flow
+  - With B2B APIs, authentication is targeted at a technical account; user level authentication is not available
 
 - **SERVICE** 
-  - The APIs available for the Service channel are useful to consume  financial services offered by Finastra or third-parties
-  - They support authenticated server-to-server data interchange
-  - Support the Client Credentials OAuth2 authentication flow
-  - Work with Finastra maintained tenants - finastra-dev, finastra-uat, and finastra-prod, corresponding to the promotion stage of your application
+  - SERVICE APIs identify APIs that are implemented by Finastra rather than a financial institution e.g. IBAN validation 
+  - SERVICE APIs have the same attributes as B2B APIs
+
+- **B2C** - Business-to-Customer	
+  - B2C APIs are used to build apps targeting customers of a Financial Institution
+  - B2C APIs support mobile banking applications on browsers, smartphones and tablets
+  - B2C APIs support the OAuth2 Authorization Code grant flow
+  - With B2C APIs, authentication is targeted at a customer held in a financial institution's identity provider
+
+- **B2E** - Business-to-Employee
+  - B2E APIs ares used to build apps whose target is the employee of a financial institution
+  - B2E APIs support the OAuth2 Authorization Code grant flow
+  - With B2E APIs, authentication is targeted at an employee held in a financial institution's identity provide
 
 
 > APIs **MUST** specify the channel use define in the OAS  `info` section `x-finastra-channel-type` with the various channel defined
@@ -152,7 +151,7 @@ The data classification tag is applied to the API, its endpoints and at paramete
 
 If an endpoint uses a definition that is defined as `Restricted`, the endpoint is declared as `Restricted`, and similarly the API is declared as `Restricted`.
 
-For example, in the following excerpt from the Account Information API, the `x-finastra-data-classification` field is added to the GET /accounts because data in the payload is restricted. 
+For example, in the following excerpt from the Account Information API, the `x-finastra-data-classification` field is added to the `GET /accounts` because data in the payload is restricted. 
 
 ```
 "/accounts": {
