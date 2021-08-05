@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Payload Data
+title: Payload Formats
 nav_order: 6
 ---
 
-# Payload Data
+# Payload Formats
 {: .no_toc}
 
 Open APIs have request and response payloads (media types) that typically use industry standard data such as JSON or XML.
@@ -13,6 +13,7 @@ This section provides details of common media types associated with Finastra API
 - TOC
 {:toc}
 
+Additional details of specific data types can be found in the *Naming Conventions* section.
 
 ## Media Types 
 
@@ -56,8 +57,8 @@ The following Finastra rules apply to xml formats:
 > format standards.
 
 > Non-JSON standards such as FpML **SHOULD NOT** be converted to JSON,
-> rather use the content-type associated with the standard e.g. XML for
-> FpML.
+> rather use the content-type associated with the standard e.g. use XML 
+> to define FpML content.
 
 ## Files
 
