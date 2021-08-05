@@ -59,7 +59,7 @@ expected behaviors for the operations within the API.
 
 ## Finastra Open APIs
 
-FInastra APIs are Open APIs (public) as far as possible and a Finastra API should be designed so that:
+Finastra APIs are Open APIs (public) as far as possible and a Finastra API should be designed so that:
 
 -   it exposes functionality in a manner that is understood by
     developers with domain knowledge rather than knowledge of the
