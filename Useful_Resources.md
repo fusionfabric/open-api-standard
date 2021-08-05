@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Useful Resources
-nav_order: 16
+nav_order: 17
 ---
 # Useful Resources
 
@@ -15,4 +15,4 @@ The following references been used in the production of this guide:
 -   [HTTP Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 -   [REST Security Cheat Sheet](https://www.owasp.org/index.php/REST_Security_Cheat_Sheet)
 -   [Google API Design Guide](https://cloud.google.com/apis/design/)
--   [National Bank of Belgium REST API Design Guide](https://github.com/NationalBankBelgium/REST-A
+-   [National Bank of Belgium REST API Design Guide](https://github.com/NationalBankBelgium/REST-API-Design-Guide/wiki)
