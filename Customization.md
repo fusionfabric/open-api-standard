@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Customization
-nav_order: 12
+nav_order: 13
 ---
 
 # Customization
@@ -13,15 +13,20 @@ and includes the following sections:
 - TOC
 {:toc}
 
+## Sample
+
+The following sample OAS2 API can be used as a reference API definition showing the customization definitions on this page:
+- [Full Custom Field Data model Sample](https://github.com/fusionfabric/open-api-standard/blob/main/customization-sample.yml)
+
 ## Custom Fields
 
-Many products provide the capability for Banks to define additional fields alongside 
+Many products provide the ability for Banks to define additional fields alongside 
 common fields for resources (business objects) such as parties, accounts, loans etc.
 
 The following lists typical terms used to describe these additional
 fields:
 
--   custom fields - this is the term used in this log
+-   custom fields - this is the term used in this section
 -   extension fields
 -   additional information fields
 -   user defined fields
@@ -31,7 +36,7 @@ Custom field data support is typically provided by back office systems as an 'ou
 Finastra do not publish Bank specific APIs hence a single API for a resource must support custom fields e.g. Finastra 
 would expect to provide a single `parties` API that supports custom fields for multiple Banks. 
 
-The following examples show typical a payload which contains common fields and custom fields:
+The following examples show a typical payload which contains common fields and custom fields:
 
 1 - common fields:
 ```
@@ -65,11 +70,11 @@ The following APIs and endpoints should be provided when implementing custom fie
     - `POST /customer` should allow a client to create a resource with common and custom **data** fields
 
 2. The **resource API** must ensure that a client can `GET` the schema of the "customized part" e.g.:
-    -  `GET /customer/custom-fields-schema` should allow a client to retrieve the **schema** of the custom fields for the specific Bank (tenant)
+    -  `GET /customer/custom-fields-schemas` should allow a client to retrieve the **schema** of the custom fields for the specific Bank (tenant)
 
 3. A **resource meta data API** can be optionally provided to support `POST`, `PUT`, `GET`, `DELETE` operations that 
 allow clients to update the custom fields schema e.g.:
-    - `POST /customer/custom-fields-schema` may allow a **Bank** to define the custom field **schema** for a business object
+    - `POST /customer/custom-fields-schemas` may allow a **Bank** to define the custom field **schema** for a business object
 
 #### Resource Definition
 
@@ -77,7 +82,7 @@ In the resource API ensure that `POST`, `PUT` and `GET` operations support custo
 - `GET /parties/{id}` should allow a client to retrieve a resource's common and custom data fields 
 - `POST /parties` should allow a client to create a resource with common and custom data fields
 
-For example, Bank A must be able to get a custom field named `rating` whereas Bank B must be able to get a custom field object named `contact` so that `GET /parties/{id}` can return the following:
+Using the example above, Bank A must be able to get a custom field named `rating` and Bank B must be able to get a custom field object named `contact` so that `GET /parties/{id}` returns the following:
 ```
 Bank A
          { "firstName" : "Luke" , "lastName" : "Skywalker" , "rating" : 183} 
@@ -123,10 +128,10 @@ customer:
 #### Resource Meta Data Definition
 
 In the resource API ensure that a client can `GET` the schema of the custom fields e.g. 
-`GET /parties/custom-fields-schema` would allow a client to retrieve the schema of the custom fields for the specific Bank.
+`GET /parties/custom-fields-schemas` would allow a client to retrieve the schema of the custom fields for the specific Bank.
 
 The following example shows the custom fields schema for Bank B in the example above - this schema would be
-returned from the `GET /parties/custom-fields-schema` endpoint:
+returned from the `GET /parties/custom-fields-schemas` endpoint:
 
 ```
 {
@@ -164,19 +169,16 @@ returned from the `GET /parties/custom-fields-schema` endpoint:
 
 #### Resource Meta Data Schema, Schema Definition
 
-The resource API provides the ability to create, read, update and delete the custom fields associated with a resource as well as allowing the client to obtain the custom fields schema. The Resource Meta Data API allows a client to maint the custom field definitions.
+The Resource API provides the ability to create, read, update and delete the custom fields associated with a resource as well as allowing the client to obtain the custom fields schema. 
 
-A **resource meta data API** can be optionally provided to support `POST`, `PUT`, `GET`, `DELETE` operations that 
-allow clients to update the custom fields schema.
+The Resource Meta Data API allows a client to maintain the custom field definitions and can be optionally provided to support `POST`, `PUT`, `GET`, `DELETE` operations that allow clients to update the custom fields schema.
 
-The custom-fields-schema is defined as an endpoint and must adhere to the OAS specification 
-as shown in the following example which shows a smaller set of the capabilities of customization
-e.g. it does not include the `minLength` attribute:
+The `custom-fields-schemas` resource associated with the Resource Meta Data API is defined as an endpoint and must adhere to the OAS specification as shown in the following example which shows a set of typical attributes of customization schema:
 
 ```
   customSchema:
     type: object
-    description:  this is the meta schema representing a subset of json schema. This example contains  e.g. format, minLength is not available. Type and properties are mandatory. It is complex to read but short story is that it represents a json schema. 
+    description:  this is the meta schema representing a subset of json schema. This example contains  e.g. format, minLength is not available. Type and properties are mandatory. It is complex to read but short story is that it represents a Json schema. 
     required: 
       - type
       - properties
@@ -213,38 +215,27 @@ e.g. it does not include the `minLength` attribute:
         type: object
         additionalProperties:
           $ref: '#/definitions/customSchema'
-
 ```
-
->In a resource meta data API consider supporting ```POST, PUT, GET, DELETE```
-> e.g.```POST /parties/custom-fields-schema``` to allow a Bank to define 
-> the custom field schema for a business object
-
-It is anticipated that this endpoint would be included in a separate API and would not typically be required.
-
-The following sample OAS2 API can be used as a reference API definition showing the cuztomization definitions on this page:
-- [Full Custom Field Data model Sample](https://github.com/fusionfabric/open-api-standard/blob/main/customization-sample.yml)
 
 ### Supporting Multiple Schemas
 
 This page has described scenarios for custom fields whose payload for a Bank can be described 
 by a schema which is retrieved using a url similar to the following: 
-```GET /parties/custom-fields-schema```, where this endpoint would be used alongside 
-another endpoint e.g:  ```POST /parties``` to post commons and customs customer fields.
+`GET /parties/custom-fields-schemas`. This custom schema endpoint would be used alongside 
+another endpoint e.g: `POST /parties` which allows the client to add and update both common and custom party fields.
 
-There are scenarios where multiple schemas for a specific resource resource are required ```resources="party"``` and ```{schemaId}="corporate"``` . This it need to be taken with particular care. Here is typically a bad example as it would have been better to properly have a proper model for  a corporate party. This would be may be more relevant for a ``commercial product`` like a loan package, that marketing could create at on the way , for instance bicycle loan. 
+There are scenarios where multiple schemas for a specific resource resource are required, for example if the resource is `loans` then there may be custom fields schemas for different loan types such as `bicycle` or `car` loans.
 
 If having the capability to create a custom schema is possible, it is strongly not recommended to have a `PUT` end point, as it can create incompatibility between the data and the schema.
 
 in this case the endpoints would be : 
 
-| Endpoint Format                                      |      Endpoint description                                     |  Example                                | Example description |
-|----------                                            |:-------------:                                                |------:                                  | ------:           |
-| `POST /resources/custom-field-schema`                                | create a custom schema | `POST /loans/custom-field-schema`                    | create an instance of the new loan for instance bicycle|
-| `GET /resources/custom-field-schema`            |  get all `schemaIds` associated with resources            | `GET /loans/custom-field-schema`         |get all `schemaIds` so all loan kind [car, bicycle ] |
-| `GET /resources/custom-fields-schema/{schemaId}` |  get the `schema``` for the specific schemaId               | `GET /loans/custom-fields-schema/{bicycle}`  |get the schema for `{schemaId}=bicycle` |
-| `POST /resources/{schemaId}` | create an object instance following the custom-schema definition `schemaIds`| `POST /loans/{bicycle}` |create a loan for `{schemaId}=bicycle` with all the constrains defined in the schema  `/loans/custom-fields-schema/{bicycle}` | 
-
+| Endpoint Type | Endpoint Example | Endpoint Description |
+|---------------|------------------|----------------------|
+| Resource API  |`POST /loans/custom-field-schemas`|Create a new custom schema for e.g. `{bicycle}`, `{car}`|
+| Resource Meta Data API|`GET /loans/custom-field-schemas`|Get all `schemaId` associated with `loans` e.g. `{bicycle}`, `{car}`|
+|Resource Meta Data API |`GET /loans/custom-fields-schemas/{bicycle}`| Get the `schema` for the specific `schemaId`|
+| Resource Meta Data API|`POST /loans/{bicycle}`|Create a resource following the custom-schema definition `schemaId`| 
 
 
 ### Finastra APIs Custom Fields Standards ###
@@ -253,27 +244,25 @@ The following is a list of Finastra standards associated with custom fields:
 
 > Support for custom fields in Finastra APIs is NOT provided by default and is NOT recommended but custom field support **MAY** be provided. The reason for not recommending custom fields within APIs is because of the increased complexity to the developer and the support overheads, however, there may be use cases for specific products where custom fields are a necessary requirement
 
+> Bank specific APIs supporting specific bank specific data extension customization **MUST NOT** be provided, rather, follow the technique described in this section
+
 > Custom field data extension **MAY** be supported in Finastra APIs by ensuring that clients using the API can obtain details of the expected custom fields for a specific Bank
-
-> Custom fields schema payloads **MUST** be a valid Json schema
-
-> **MUST NOT** provide dedicated Bank specific APIs support data extension customization, use the technique below to avoid duplicating APIs
-
-> Custom fields **MAY** be considered for API request
-
-> When implemented, custom fields **SHOULD** be included in the payload of the associated business object i.e avoid providing a separate endpoint solely for custom-fields
-
-> When implemented, custom fields **MUST** be grouped under the name `custom-fields`
-
-> When implemented, custom fields **SHOULD** use the `additionalProperties` keyword against the `custom-fields` field
-
-> When implemented, custom field schemas **SHOULD** be provided as an endpoint in the associated business object API using the path name `/custom-fields-schema` as e.g. `GET /parties/custom-fields-schema`
-
-> When implemented, custom fields **MUST** be grouped under the name or prefix `custom-fields`
 
 > When implemented, custom fields schemas **MUST** adhere to [JSON Schema](https://json-schema.org/understanding-json-schema/basics.html)
 
+> When implemented, custom fields **SHOULD** be included in the payload of the associated business object i.e avoid providing a separate endpoint solely for custom-fields
+
+> When implemented, custom fields **SHOULD** be grouped under the name or prefix `custom-fields`
+
+> When implemented, custom fields **SHOULD** use the `additionalProperties` keyword against the `custom-fields` field
+
+> When implemented, custom field schemas **SHOULD** be provided as an endpoint in the associated business object API using the path name `/custom-fields-schemas` e.g. `GET /parties/custom-fields-schemas`
+
 > When implemented, custom field names *SHOULD NOT** collide with other field names defined in the API
+
+> When implemented, custom field schema maintenance **SHOULD** be considered by providing a resource meta data API 
+supporting `POST`, `PUT`, `GET`, `DELETE`, e.g.`POST /parties/custom-fields-schemas`, to allow a Bank to define 
+the custom field schema for a business object. It is anticipated that this endpoint would be included in a separate API and would not typically be required
 
 
 ## Localization
@@ -306,7 +295,7 @@ Example: `FR-ch`
 
 For more details, about `Accept-Language` see [HTTP 1.1 RFC:section-5.3.5](https://tools.ietf.org/html/rfc7231#section-5.3.5).
 
-For details on the relationship between localization and customization see [Localization vs Internationalization](https://www.w3.org/International/questions/qa-i18n).
+For details on the relationship between localization and internationalization see [Localization vs Internationalization](https://www.w3.org/International/questions/qa-i18n).
 
 ### Finastra API Localization Standards ###
 
