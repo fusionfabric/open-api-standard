@@ -48,13 +48,12 @@ Any information that can be named can be a resource, for example:
 -   a document
 -   an image
 -   a bank account
--   a temporal service e.g. “today’s weather in Los Angeles”
 -   a collection of other resources
 -   a non-virtual object e.g. a person
 -   etc.
 
 REST resources should reflect the relevant business domain and should have
-identifiers (keys) that change as infrequently as possible.
+unchanging identifiers (keys).
 
 Finastra APIs define resources aligned with the Banking business domain
 e.g. currencies, accounts etc.
@@ -156,7 +155,7 @@ RESTful APIs use the `GET` method to obtain data from a resource. `GET` is typic
 > against both an individual resource and its collection
 
 > `GET` methods against a collection **SHOULD** implement pagination and
-> search capabilities - see the *Navigation* section for details
+> search capabilities
 
 **Characteristics**
 
@@ -202,18 +201,15 @@ adding an item to a list.
 -   Idempotent: No
 -   **POST** requests are never cached
 
-> APIs **MUST** inform the client of the API the location of the newly
-> created resource using the `Location` header
-
 **Typical response status code**
 
 -   `200` - OK - returned when the client call is successful - 201 is
     preferred when resources are created using `POST`
--   `201` - Created - this is returned with a location header and the
-    created resource which should contain the id and data in the
-    response payload
--   `400` - Bad Request - this is used for **both technical and
-    functional** errors that did not result in a successful response
+-   `201` - Created - this is returned when a resource is created, 
+    the created resource identifier is returned in the response payload.
+     The resource data can optionally be returned in the response payload.
+-   `400` - Bad Request - this is used for both technical and
+    functional errors that did not result in a successful response
 -   `409` - Conflict - this is returned when a request to create a
     resource is made and the resource already exists
 
@@ -243,26 +239,26 @@ with the new state provided in the request. It is a *full replacement*.
 
 -   `200` - OK - this **MUST** be returned when the client call is
     successful
--   `400` - Bad Request - this is used for **both technical and
-    functional** errors that did not result in a successful response
+-   `400` - Bad Request - this is used for both technical and
+    functional errors that did not result in a successful response
 -   `404` - Not Found
 
 ### PATCH
 
 The `PATCH` method is used to partially update an existing resource.
-Only the information provided in the request is used to update the
+When using `PATCH` only the information provided in the request is used to update the
 resource.
 
-`PATCH` and `PUT` are both related to content update, and can been seen
-as overlap.
+For further details see: 
+- [RFC5789 - PATCH Method for HTTP](https://tools.ietf.org/html/rfc5789).
+- [RFC6902 - JavaScript Object Notation (JSON) Patch](https://tools.ietf.org/html/rfc6902)
 
-According to [RFC5789](https://tools.ietf.org/html/rfc5789), PATCH comes with a
-defined semantic. The `PATCH` method requests that a **set of changes**,
+`PATCH` and `PUT` are both related because they both update a resource, however, `PATCH` 
+uses specific semantics to define how an update is made, For example, 
+the `PATCH` method requests that a **set of changes**,
 described in the request entity, must be applied to the resource
-identified by the request’s URI. This set contains instructions
-describing how a resource currently residing on the origin server should
-be modified to produce a new version. To implements correctly the set of
-changes, PATCH is couple with the [JSON Patch](https://tools.ietf.org/html/rfc6902) RFC
+identified by the request. This set of changes contains instructions
+describing how a resource should be modified to produce a new version.
 
 **Example**
 
@@ -271,7 +267,7 @@ changes, PATCH is couple with the [JSON Patch](https://tools.ietf.org/html/rfc69
 `[  { "op": "replace", "path": "/email", "value": "new.email@example.org" }   ]`
 
 
-> ‘PATCH’ **SHOULD** be avoided as far as possible
+> `PATCH` **SHOULD** be avoided as far as possible
 
 **Characteristics**
 
@@ -285,8 +281,8 @@ changes, PATCH is couple with the [JSON Patch](https://tools.ietf.org/html/rfc69
 
 -   `200` - OK - this **MUST** be returned when the client call is
     successful
--   `400` - Bad Request - this is used for **both technical and
-    functional** errors that did not result in a successful response
+-   `400` - Bad Request - this is used for both technical and
+    functional errors that did not result in a successful response
 -   `404` - Not Found
 
 ### DELETE
@@ -328,8 +324,8 @@ idempotent.
     successful
 -   `204` - No content - this **MAY** be used when there is no resource
     to delete
--   `400` - Bad Request - this is used for **both technical and
-    functional** errors that did not result in a successful response
+-   `400` - Bad Request - this is used for both technical and
+    functional errors that did not result in a successful response
 -   `404` - Not Found
 
 ### HEAD
@@ -416,7 +412,7 @@ that may be used by clients using Finastra Open APIs.
 | `Authorization`  | Allows Credentials to be provided to the Authorization / Resource Server depending on the type of resource being requested.<BR> For OAuth 2.0 / OIDC, this comprises of either the Basic / Bearer Authentication Schemes. Bearer token MUST follow the [RFC6570](https://tools.ietf.org/html/rfc6750). |
 | `ETag`           | The value of this header is returned by GET methods and represents the state or version of the resource. It is used for Concurrency validation for resource updates - see the *Concurrency* section for further details.                                                                               |
 | `If-Match`       | The value of this header is passed by clients on PUT methods to allow the server to perform Concurrency validation. Its value is typically an ETag value obtained from a GET method - see the *Concurrency* section for further details.                                                               |
-|`Idempotency-Key` |  The value of this header is passed by clients on POST methods to allow the server to perform Idempotency validation. Its value is typically an UUID - see the *Idempotency* section for further details.
+|`Idempotency-Key` |  The value of this header is passed by clients on POST methods to allow the server to perform Idempotency validation. Its value is typically an UUID - see the *Idempotency* section for further details.|
 
 Finastra APIs do not explicitly define `Content-Type`, `Accept` or `Authorization` as HTTP headers in the API contracts.
 
@@ -447,8 +443,6 @@ The following Finastra standards apply to HTTP headers:
 >   **MAY** use `X-Request-ID` for tracking requests
 
 >   **MAY** use `X-External-Context-ID` to specify context associated with an API
-
->   **SHOULD**: use `Location` header
 
 >   **MAY** define a content-type for `GET` requests even though the content type is not used ​- this is for compatibility with tooling
 
