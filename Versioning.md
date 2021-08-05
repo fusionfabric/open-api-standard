@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Versioning
-nav_order: 11
+nav_order: 12
 ---
 
 # Versioning
@@ -87,11 +87,11 @@ The Finastra backward compatibility policy has the following implications for AP
 
 - servers providing APIs **MAY** be forward compatible, however, this approach is not recommended
 
-- servers **MUST** apply update operations using PUT so that fields that are not included in the request payload are not updated.
+- servers **MUST** apply update operations using `PUT` so that fields that are not included in the request payload are not updated.
 
-For example a server may support a payload of field A and optional field B but a client may only be aware of payload A. If a PUT operation with payload A (not B) is made against the server then only field A must be updated and field B must remain as is i.e the value is unchanged 
+For example a server may support a payload of field A and optional field B but a client may only be aware of payload A. If a `PUT` operation with payload A (not B) is made against the server then only field A must be updated and field B must remain as is i.e the value is unchanged 
 
-- servers **MUST** issue an HTTP 501 error if a client request an update (POST or PUT) for a field that it does not recognize in the payload 
+- servers **MUST** issue an HTTP 501 error if a client request an update (`POST` or `PUT`) for a field that it does not recognize in the payload 
 
 ### Policy Implications for Clients
 
@@ -180,7 +180,7 @@ backwardly compatible API:
 
 | Id  | Change                                                 | Description                                                                                                                                                                                                             |                                            
 |-----|--------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|  1  | **Adding an endpoint or operation to an existing API** |Adding a new endpoint or a new operation e.g. GET) to an existing API is not a breaking change since clients would not need to modify their existing code to use the new version of the API.                  |
+|  1  | **Adding an endpoint or operation to an existing API** |Adding a new endpoint or a new operation e.g. `GET`) to an existing API is not a breaking change since clients would not need to modify their existing code to use the new version of the API.                  |
 |  2  | **Extending the range of a request value**             |If a new optional parameter is introduced in any part of the 'query','path' or 'body', of a request, then the change is deemed to be a non-breaking change. If a new mandatory parameter with a default value is introduced then this would also be deemed a non-breaking change.|
 |  3  | **Adding a field or header to a response**                       |The server assumes that the client is fault tolerant, hence, adding a new field or header to a response message is deemed to be a non-breaking change.|
 |  4  | **Making a behavioral change**                                 |A behavioral change within the API is not necessarily considered a breaking change e.g. a 'rate limiting' error is not considered a breaking change because the client is assumed to be capable of handling any 4XX or 5XX errors.|
@@ -197,7 +197,7 @@ The following is a list of breaking changes that would result in a backwardly in
 |  3  |**Changing the type of a field**                        |When a field type is changed this can break the client code and client libraries and therefore **MUST** result in a major version change.|
 |  4  |**Adding a required parameter**                              |Adding the keyword `required` to a parameter is considered a breaking change because clients may need to change their code to include the required parameter, therefore adding a required parameter **MUST** result in a major client version change.|
 |  5  |**Changing the default value**                               |Changing the default value of a field is considered a breaking change because clients might may have made assumptions about a field's default value. For example, a client, who is using the initial version of an API, may create a new resource without explicitly setting the value of a field with a default value of 1. When the client uses a new version with the default value of a the field changed to 2 then when the client gets the resources they will receive a mix of 1 and 2 as the defaults. Therefore changing the default value of a field **MUST** result in a major client version change.|
-|  6  |**Changing an operation**                               |Changing an API endpoint verbs from PUT to PATCH, or POST is considered as breaking change and therefore **MUST** result in a major version change. |
+|  6  |**Changing an operation**                               |Changing an API endpoint verbs from `PUT` to `PATCH`, or `POST` is considered as breaking change and therefore **MUST** result in a major version change. |
 |  7  |**Adding or removing mime types for request or response content** |Changing the mime type of request or response content is considered as breaking change and therefore **MUST** result in a major version change e.g. replacing `application/json` with `application/xml` is a breaking change. |
 |  8  |**Changing the type of a parameter**                        |When a parameter type is changed e.g. from `- in: path` to `- in: query` this can break the client code and client libraries and therefore **MUST** result in a major version change.|
 |  9  |**Adding or removing additional properties for a field**                        |When the `additionalProperties` keyword is added to a field or removed from a field, this can break the client code and client libraries and therefore **MUST** result in a major version change.|
