@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Paths and Resources
+title: Resource and Field Naming Conventions
 nav_order: 7
 ---
 
@@ -12,27 +12,27 @@ This section provides details on resources and fields and provides the associate
 - TOC
 {:toc}
 
-## Paths and Resources
+## Paths
 
-A key principle of REST involves separating APIs into logical
-resources that are aligned with the business domain.
+A REST API's path consists of an HTTP method, a base path and one or more resources and identifiers.
 
-A business domain resource must be a concrete concept e.g. `accounts` and 
-must have a unique identifier and URI.
+This section is concerned with the resources and identifiers.
+
+A resource is a concrete concept related to the business domain e.g. `accounts`.
+
+An identifier is the unique value or key that is used to identify a resource.
 
 Business domain resources are manipulated using HTTP methods as
 required by the business and resources should be addressable via a URI that is 
-DNS compatible with [RFC1035](https://tools.ietf.org/html/rfc1035).
+compatible with [RFC1035](https://tools.ietf.org/html/rfc1035).
 
-The following is a pseudo-OAS example of a set of CRUD endpoints against an `accounts` resource:
+The following is an example of a set of CRUD endpoints against an `accounts` resource with an identifier of `{id}`:
 ```
-paths:
-  /accounts:
-    POST          < - - create a single account
-    GET           < - - return a list of accounts
-    GET/{id}      < - - return a single account
-    PUT/{id}      < - - update a single account
-    DELETE/{id}   < - - delete a single account
+    POST     /accounts           < - - create a single account
+    GET      /accounts           < - - return a list of accounts
+    GET      /accounts/{id}      < - - return a single account
+    PUT      /accounts/{id}      < - - update a single account
+    DELETE   /accounts/{id}      < - - delete a single account
 ```
 
 ## Defining Resources and Identifiers
@@ -44,12 +44,15 @@ This section provides guidelines on defining resources and identifiers.
 Resource names **MUST** be defined consistently both within an API for each `GET`, `POST`, `PUT`, `DELETE` method
  and across APIs.
 
-When defining Finastra APIs and paths, it is recommended that the name of the API is the same as the principal resource within the API, for example, an account API should be named Accounts and have at least one endpoint using a `/accounts` resource. API designers SHOULD avoid prefixing the `/accounts` resource in the Accounts API with parent resources e.g. **avoid** `/customer/{customerId}/accounts` unless necessary
+When defining Finastra APIs and paths, it is recommended that the name of the API is the same as the principal resource within the API, for example, an account API should be named Accounts and have at least one endpoint using a `/accounts` resource. 
+
+API designers SHOULD avoid prefixing the `/accounts` resource in the Accounts API with parent resources e.g. **avoid** `/customer/{customerId}/accounts` unless necessary
 
 ### Prefer Single Root Resource
 
 In most scenarios the following paths which use a resource at root level can be used. This approach is used when the resource is not a sub-resource and the identifier is unique for all instances of the resource:
 - `POST /resource`
+- `GET /resource`
 - `GET /resource/{id}`
 - `PUT /resource/{id}`
 - `DELETE /resource/{id}`
@@ -61,13 +64,13 @@ In most scenarios the following paths which use a resource at root level can be 
 
 There are scenarios where multiple path segments and sub-resources can be used.
 
-Sub-resources can be used when they are clearly associated with the parent resource, for example:
-- `GET /clients/{clientId}/ratings/{ratingId}`
-is preferred because it provides context to the ratings resource and is more easily understood, unlike the following:
-- `GET /ratings/{ratingId}`
+Sub-resources can be used when they are related to and dependant on the associated parent resource, for example:
+ `GET /clients/{clientId}/ratings/{ratingId}`
+is used rather than `GET /ratings/{ratingId}` when a `rating` cannot be created in isolation. 
 
-> sub-resources **MAY** be used when the sub-resource has a life
-cycle related to the parent resource, for example: `clients/{clientId}/ratings/{ratingId}`
+If the `rating` resource is not dependant on the `client` resource then `GET /ratings/{ratingId}` should be used.
+
+> sub-resources **SHOULD** be used when the sub-resource cannot exists without the parent resource, for example: `clients/{clientId}/ratings/{ratingId}`
 
 > when using sub-resources, where possible, the number of path segments **SHOULD** be limited to four to reduce the complexity of the API
 
@@ -80,9 +83,10 @@ cycle related to the parent resource, for example: `clients/{clientId}/ratings/{
 
 When a resource identifier is NOT unique across all instances of a resource then there are the following options for defining the path:
 
-**Sub-resources** can be used, for example, the following path handles scenarios where the `accountId` is not unique across all accounts, but is unique for a given `clientId`:
+**Sub-resources** can be used, for example, the following path handles scenarios where the `accountId` is not unique across all accounts, but is unique for a given `clientId`: 
 - `GET /clients/{clientId}/accounts/{accountId}`
-note that the following path would not support the same scenario because `accountId` is not unique across all accounts: `GET accounts/{accountId}`
+
+Note that `GET accounts/{accountId}` would not support the same scenario because `accountId` is not unique across all accounts.
 
 > when using sub-resources to handle resources with non-unique identifiers the number of path segments SHOULD not exceed four – see the compound keys section for further details 
 
@@ -97,7 +101,7 @@ rather than
 
 > the API contract **SHOULD NOT** leak implementation details of the compound keys 
 
-> when using compound keys the implementation **SHOULD** take care to ensure that conflicts with the compound key identifier and any compound key values in the body of a request are handled appropriately and consistently e.g. so that the constituent parts of a compound key are not modified by a PUT operation
+> when using compound keys the implementation **SHOULD** take care to ensure that conflicts with the compound key identifier and any compound key values in the body of a request are handled appropriately and consistently e.g. so that the constituent parts of a compound key are not modified by a `PUT` operation
 
 > compound keys with delimeters such as a slash or hyphen **SHOULD NOT** be used to define individual compound key identifiers because they are not easily extensible if the compound key implementation differs between providers of the API e.g. one provider might use two identifiers to ensure uniqueness of the compound key whereas another provider might require three identifiers to ensure uniqueness of the compound key:
 - MUST NOT use - `GET /resource/{parentId}/{id}`
@@ -117,14 +121,9 @@ used against a resource, for example:
 -   `POST /accounts/{accountId}/transactions/{transId}/confirm` would
     confirm an existing transaction
 
-Note that the same result can be achieved with:
-
--   `POST /accounts/{accountId}/transactions/{transId}/confirmation`
-    with a payload of `{"confirmation-status" : "complete" }` that would create a confirmation.
-
 > Note that the *resource controller* approach is **NOT** recommended
-> and alternative designs should be explored
-
+and alternative designs should be explored, for example, the same result can be achieved with:
+`POST /accounts/{accountId}/transactions/{transId}/confirmation` with a payload of `{"confirmation-status" : "complete" }` 
 
 ### Finastra Standards for Paths and Resources
 
@@ -140,7 +139,6 @@ The following lists the Finastra standards for paths and resources:
 > **SHOULD** name resources as plural - this applies to `GET` requests against both an individual resource and the associated resource collection e.g. `GET /accounts/{accountId}` and `GET /accounts`
 
 > **SHOULD NOT** use verbs or actions in the path, rather use resources where possible.
-If a verb is used it should be in the present tense
 
 > Where a verb or action is used in the path it **SHOULD** use a present tense verb e.g. `/accounts/{id}/activate`
 
@@ -152,4 +150,4 @@ If a verb is used it should be in the present tense
 
 > **MUST NOT** use an underscore character
 
-> **MUST** not provide Personally Identifiable Information (PII) in the path
+> **MUST** not use Personally Identifiable Information (PII) in the path
