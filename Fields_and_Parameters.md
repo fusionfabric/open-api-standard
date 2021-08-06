@@ -4,7 +4,7 @@ title: Fields and Parameters
 nav_order: 8
 ---
 
-# Field and Parameter Naming Conventions
+# Fields and Parameters
 {: .no_toc}
 
 This section provides details on fields and parameters and the associated Finastra naming conventions and standards.
@@ -12,9 +12,32 @@ This section provides details on fields and parameters and the associated Finast
 - TOC
 {:toc}
 
-## Field and Parameters Names
+## Field and Parameter Definitions
 
-The following lists the Finastra standards for field and parameter naming:
+Fields are defined in OAS2 using the [definitions object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#definitionsObject) - an example is shown below where the name of the field is `partyId`. At OAS3 fields are defined in a similar manner.
+```
+definitions:
+  partyId:
+    description: The unique ID that identifies the Party.
+    type: string
+    minLength: 1
+    maxLength: 10
+    example: "PTY-005432"
+```
+
+Parameters are defined either against an operation in the [paths object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#pathsObject) as per the OAS2 example below and they can also be defined as a [parameter definitions object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#parametersDefinitionsObject). At OAS3 parameters are defined in a similar manner. 
+```
+parameters:
+  - in: body
+      name: Party Payload
+      description: Party Payload.
+      required: true
+      schema:
+        $ref: '#/definitions/Party'
+```
+## Finastra Field and Parameter Naming Conventions
+
+The following lists the Finastra standards for field and parameter names:
 
 >   **MUST** align with the accepted business domain terminology
 
@@ -66,6 +89,9 @@ For example:
     
 >   **SHOULD** specify relevant defaults where applicable
 
+
+>  **SHOULD** have a maxLength for string data types
+
 >   **MUST NOT** specify a default for a required parameter
  
 >   **SHOULD** use empty string to remove a field's value
@@ -73,7 +99,7 @@ For example:
 >   **SHOULD NOT** use `allowEmptyValue`
 
 
-## Field Type and Format
+## Finastra Field and Parameter Type and Format STandards
 
 The following lists the Finastra standards for field types and formats:
 
@@ -81,6 +107,8 @@ The following lists the Finastra standards for field types and formats:
     `format`
 
 >   **MUST NOT** define binary content as string
+
+>  **SHOULD** use string type and date or date-time format for date and/or time fields
 
 >  Enumerations **SHOULD** be used to define a closed set of allowed field values
 e.g. the following shows a set of possible values for an item’s status:
@@ -91,10 +119,10 @@ e.g. the following shows a set of possible values for an item’s status:
 
 >  Enumeration **MUST NOT** include spaces or special characters e.g. underscores
 
-> Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyorCountry`.
+>  Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyorCountry`.
 
 
-## Date & Time
+## Date & Time Fields
 
 Date and time are defined by the OAS2 specification as [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339). Both OAS2 and OAS3 define date and time as a JSON string with a format defined by the JSON schema [format extension](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-7.3).
 
