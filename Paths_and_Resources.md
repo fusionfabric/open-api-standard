@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Resource and Field Naming Conventions
+title: Paths and Resources
 nav_order: 7
 ---
 
