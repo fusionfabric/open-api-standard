@@ -28,12 +28,14 @@ definitions:
 Parameters are defined either against an operation in the [paths object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#pathsObject) as per the OAS2 example below and they can also be defined as a [parameter definitions object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#parametersDefinitionsObject). At OAS3 parameters are defined in a similar manner. 
 ```
 parameters:
-  - in: body
-      name: Party Payload
-      description: Party Payload.
-      required: true
-      schema:
-        $ref: '#/definitions/Party'
+  partyId:
+    name: partyId
+    in: path
+    required: true
+    type: string
+    minLength: 1
+    maxLength: 10
+    description: The unique ID that identifies the Party.
 ```
 ## Finastra Field and Parameter Naming Conventions
 
@@ -47,11 +49,19 @@ The following lists the Finastra standards for field and parameter names:
     simple guideline is to ensure that Google shows relevant links on
     the first returned page
 
->   **MUST** align with the accepted business domain terminology
+>  **MUST** define query parameter names and field names in lower `camelCase` using only the characters: 
+    `a-z` and `0-9`, for example:
+> -   valid: `inputDate`
+> -   invalid: `InputDate`, `Input_Date`
 
 >   **MUST** adhere to the Finastra Open API data dictionary where
     possible e.g. `country`; where further clarity is required a prefix
     can be used e.g. `taxCountry`
+
+>   **SHOULD NOT** use word abbreviations e.g. use `transaction` rather than `txn` unless
+the abbreviation is commonly used
+
+>   **MAY** use commonly used abbreviations or acronyms e.g. `memo`, `email`, `uri`, `IBAN`, `SEPA`, etc.
 
 >   **MUST** only use commonly accepted abbreviations
 
@@ -68,19 +78,8 @@ The following lists the Finastra standards for field and parameter names:
 
 >   **SHOULD NOT** use terms that relate to a specific geography e.g. consider using 
 the agnostic term `alternateAccountId` rather than `micr`
-
->   **MUST NOT** use abbreviations e.g. `txn`, however, commonly used, well known
-abbreviations **MAY** be used e.g. `uri`, `IBAN`, `SEPA`, etc.
-
->  **MUST** define query parameters, field name in lower `camelCase` restricted to
-    characters a-z and 0-9
-
-For example:
-
--   valid: `inputDate`
--   invalid: `InputDate`, `Input_Date`
     
->   **MUST** define the resource's unique identifier with a UUID `{id}`
+>   **SHOULD** define the resource's unique identifier with a UUID `{id}`
 
 >   **MUST** list parameters in a specific order: required, followed by
     optional
@@ -89,8 +88,11 @@ For example:
     
 >   **SHOULD** specify relevant defaults where applicable
 
+> **SHOULD** be as precise as possible with field and parameter definitions
 
->  **SHOULD** have a maxLength for string data types
+>  **MUST** have `maxLength` for `string` data types
+
+>  **SHOULD** have `minLength` and `pattern` for `string` data types
 
 >   **MUST NOT** specify a default for a required parameter
  
@@ -99,7 +101,7 @@ For example:
 >   **SHOULD NOT** use `allowEmptyValue`
 
 
-## Finastra Field and Parameter Type and Format STandards
+## Finastra Field and Parameter Type and Format Standards
 
 The following lists the Finastra standards for field types and formats:
 
@@ -108,41 +110,44 @@ The following lists the Finastra standards for field types and formats:
 
 >   **MUST NOT** define binary content as string
 
->  **SHOULD** use string type and date or date-time format for date and/or time fields
+>  **SHOULD** use a `string` data type and a `date` or `date-time` format for date and/or time fields
 
->  Enumerations **SHOULD** be used to define a closed set of allowed field values
-e.g. the following shows a set of possible values for an item’s status:
+>  **SHOULD** define enumerations as a **closed** set of allowed field values
+e.g. the following shows a set of possible values for an item's status:
 `PENDING`, `APPROVED`, `COMPLETE`.
 
 >  **SHOULD** ensure that enumerations are lowercase a-z and/or upper
-    case A-Z with hyphens are permitted to separate words
+    case A-Z with hyphens, for example: `SPOT-RATE` or `spot-rate`
 
->  Enumeration **MUST NOT** include spaces or special characters e.g. underscores
+>  Enumerations **MUST NOT** include spaces or special characters e.g. underscores
 
 >  Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyorCountry`.
 
 
 ## Date & Time Fields
 
-Date and time are defined by the OAS2 specification as [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339). Both OAS2 and OAS3 define date and time as a JSON string with a format defined by the JSON schema [format extension](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-7.3).
+Date and time are defined by the OAS2 specification as [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) which is a profile of [ISO8601](https://en.wikipedia.org/wiki/ISO_8601). Both OAS2 and OAS3 define date and time as a JSON string with a format defined by the JSON schema [format extension](https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-7.3).
 
 The following table shows the mapping between the RFC and the JSON schema format extension. Note that `time` is not defined in the OAS2 specification but is accepted as an extension.
 
 | Format in OAS specification | RFC 3339 | Example  |
 |-----------------------------|----------|----------|
-|  date                       | full-date|2010-01-26       |
-|  time                       | full-time| 23:20:50.52Z or 1996-12-19T16:39:57-08:00        |
-|  date-time                  | date-time| 1985-04-12T23:20:50.52Z or 1996-12-19T16:39:57-08:00 |
-|  partial-time               | partial-time| 23:20:50  i.e. with no time zone information| 
+|  date                       | full-date|`2010-01-26`       |
+|  date-time                  | date-time| `1985-04-12T23:20:50.52Z` or `1996-12-19T16:39:57-08:00` |
+|  time                       | full-time| `23:20:50.52Z` or `1996-12-19T16:39:57-08:00`        |
+|  partial-time               | partial-time| `23:20:50`  i.e. with no time zone information| 
 
 
-> When using the format `time`, the UTC format (23:20:50.52Z) and not the time zone specification **SHOULD** be used
 
-> The format `partial-time` **SHOULD** be avoided 
+>  **SHOULD** use a `string` data type and a `date` or `date-time` format for date and/or time fields
+
+>  **MAY** use the the format `time` with UTC format (23:20:50.52Z) not the time zone specification
+
+> **SHOULD** avoid the format `partial-time`
 
 Example : 
 
-```yaml
+```
    fromDate:
     name: fromDate
     in: query
@@ -153,8 +158,38 @@ Example :
     example : 2010-01-26
 ```
 
-## Fields with ISO Values
+## ISO Fields
 
->   **MUST** adhere to standards for common business objects
-    e.g. country - ISO 3166, currency - ISO 4217, amounts, etc.
+ISO standards must be used for the following common business objects:
+
+>   **MUST** use ISO 8601/RFC 3339 for dates and times
+
+>   **MUST** use ISO 3166 for countries
+
+>   **MUST** use ISO 4217 for currencies
+
+
+## Amount Fields
+
+The following is a snippets of an OAS2 definition for an amount field. This definition is recommended rather than mandated.
+
+```
+MonetaryAmount:
+  type: object
+  description: A monetary amount in a given currency supporting an amount format of 18.3 - a decimal point is expected for currencies that support them e.g. 1.00 GBP
+  required:
+    - amount
+    - currency
+  properties: 
+    amount:
+      type: string
+      description: tbc
+      pattern: '-?[0-9]{1,18}(\.[0-9]{1,3})?'
+      example: '-5877.78'
+    currency:
+      description: ISO 4217 Alpha 3 currency code
+      type: string
+      pattern: '[A-Z]{3}'
+      example: EUR
+```
 
