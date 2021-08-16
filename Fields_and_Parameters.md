@@ -60,7 +60,7 @@ Note that whilst Finastra APIs support multiple nested fields, the use of `$ref`
         description: Nested field level 3
 ```
 
-## Finastra Field and Parameter Naming Conventions
+## Finastra Field and Parameter Standards
 
 The following lists the Finastra standards for field and parameter names:
 
@@ -123,6 +123,9 @@ the agnostic term `alternateAccountId` rather than `micr`
 
 >   **SHOULD NOT** use `allowEmptyValue`
 
+>   **MUST NOT** define fields are parameters that are not used
+
+>   **MUST** only use characters in the ASCII  character set for all descriptions within an API definition
 
 ## Finastra Field and Parameter Type and Format Standards
 
