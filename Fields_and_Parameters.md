@@ -24,7 +24,6 @@ definitions:
     maxLength: 10
     example: "PTY-005432"
 ```
-
 Parameters are defined either against an operation in the [paths object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#pathsObject) as per the OAS2 example below and they can also be defined as a [parameter definitions object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#parametersDefinitionsObject). At OAS3 parameters are defined in a similar manner. 
 ```
 parameters:
@@ -37,6 +36,30 @@ parameters:
     maxLength: 10
     description: The unique ID that identifies the Party.
 ```
+## Objects and Arrays
+
+Fields can be nested within objects (or arrays) as per the following OAS2 example.
+
+Note that whilst Finastra APIs support multiple nested fields, the use of `$ref` is mandated so that any individual structure does not contain more than two levels.
+```
+  nestedObject1:
+    description: Nested object
+    type: object
+    properties:
+      nestedlevel2:
+        $ref: '#/definitions/nestedObject2'
+  nestedObject2:
+    type: object
+    description: Nested object level 2
+    properties:
+      nestedlevel3a:
+        type: string
+        description: Nested field level 3
+      nestedlevel3b:
+        type: string
+        description: Nested field level 3
+```
+
 ## Finastra Field and Parameter Naming Conventions
 
 The following lists the Finastra standards for field and parameter names:
@@ -117,7 +140,7 @@ e.g. the following shows a set of possible values for an item's status:
 `PENDING`, `APPROVED`, `COMPLETE`.
 
 >  **SHOULD** ensure that enumerations are lowercase a-z and/or upper
-    case A-Z with hyphens, for example: `SPOT-RATE` or `spot-rate`
+    case A-Z with hyphens, for example: `SPOT-RATE` or `spot-rate` or `Spot-Rate`
 
 >  Enumerations **MUST NOT** include spaces or special characters e.g. underscores
 
