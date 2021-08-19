@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
-  title : Parties schema with custom field model
-  description : This sample show case the a single level custom fields model
+  title : Parties schema with custom fields model
+  description : This sample showcases a single level custom fields model
 
   version: 1.0.0
 schemes:
@@ -9,30 +9,30 @@ schemes:
 paths:
   /parties/{partyId}:
     get:
-      summary: returns a complete view of the party, including custom-fields.
+      summary: Returns a complete view of a party including custom-fields.
       parameters:
         - $ref: '#/parameters/partyId'
       responses:
         '200':
-          description: Successful response
+          description: Successful Response
           schema:
             $ref: '#/definitions/party'
 
   /parties/:
     post:
-      summary: create a party following the custom-fields definition
+      summary: Creates a party allowing custom-fields definition
       parameters:
         - $ref: '#/parameters/createParty' 
       responses:
         '200':
-          description: Successful response
+          description: Successful Response
   
-  /parties/custom-field-schemas:
+  /parties/custom-fields-schemas:
     get:
-      summary: returns a the schema of the customized, party specification.
+      summary: Returns the schema of theparty custom fields specification.
       responses:
         '200':
-          description: Successful response
+          description: Successful Response
           schema:
             $ref: '#/definitions/customSchema'
 
@@ -42,7 +42,7 @@ parameters:
     in: path
     required: true
     type: string
-    description: UUID of the party.
+    description: UUID of the party
 
   createParty:
     name: createParty
@@ -69,7 +69,7 @@ definitions:
   
       custom-fields:
         type: object
-        description : additional fields as defined by the financial institution, schema and
+        description : Custom fields defined by the financial institution. The schema and
                       documentation can be found using the associated meta data endpoint
         additionalProperties:
           type: object
@@ -77,42 +77,41 @@ definitions:
   
   customSchema:
     type: object
-    description:  this is the meta schema representing a subset of json schema. for instance here format, minLength is not available. Type and properties are mandatory. It is complex to read but short story is that it represents a json schema. 
+    description:  Ths defines the schema of the custom fields that will be returned to the client. The definition is a subset of json schema. Extra properties can be included as required e.g. format, minLength, pattern, etc. In this sample the custom field type and properties are mandatory and the maxLength is included. The example shows how this structure is used 
     required: 
       - type
       - properties
     properties:
       $schema:
-        description: schema fields according to json-schema 
+        description: Describes which  dialect of JSON Schema this schema was written for - see JSON schema documentation for further details. 
         type: string
       $id:
-        description: id field according to json-schema
+        description: Used to identify the schema - see JSON schema documentation for further details
         type: string
       type:
         type: string
-        description: subset of json schema specification, here integer is not available 
+        description: Defines the type of available fields. Extra field types can be added as required e.g. integer
         enum:
           - object
           - string
           - number      
       description:
-        description: allow to setup a description of the custom schema
+        description: Provides a description of the custom fields schema
         type: string
       required:
-        description:  this defines that the customization supports the keyword 'required'. That this keyword following json schema semantic must be an array of string            
+        description:  Used to state that the custom fields support the 'required' keyword 
         type: array
         items:
           type: string
       maxLength : 
-        description:  support of maxLength constrains
+        description:  Used to state that the custom fields support the 'maxLength' keyword
         type : integer
       properties:
-        description:  it is the storage for the fields. It is following a recursive definition. some fields like $schema should be used only at top level, and not field level     
+        description:  Used to define the custom fields. It has a recursive definition. Note that some fields like $schema should only be used at the top level and not at field level     
         type: object
         additionalProperties:
           $ref: '#/definitions/customSchema'
 
-          
     example: 
       {
         "$schema": "http://json-schema.org/draft-07/schema",
