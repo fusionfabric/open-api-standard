@@ -1,16 +1,38 @@
 swagger: '2.0'
+
 info:
   title : Parties schema with custom fields model
   description : This sample showcases a single level custom fields model
   version: 1.0.0
+  x-finastra-category: Corporate Banking
+  x-finastra-subcategory: Common Services
+  x-finastra-short-description: 'Sample Party Customization API'
+  x-finastra-tags:
+    - Fusion Essence
+  x-finastra-channel-type: B2B
+  x-finastra-maturity-level: BETA
+  x-finastra-audience: PUBLIC
+  x-finastra-implementability: INTERNAL
+  x-finastra-icon: Icons_2e.svg
 
 schemes:
   - https
 
+securityDefinitions:
+  Oauth2:
+    type: oauth2
+    description: Oauth 2.0 authentication
+    tokenUrl: 'https://any.local.keycloak:8443/login/v1/sandbox/auth'
+    flow: application
+security:
+  - Oauth2: []
+
 paths:
   /parties/{partyId}:
     get:
-      summary: Returns a complete view of a party including custom-fields.
+      summary: Get party details with bank specific custom fields.
+      description: Returns a complete view of a party including bank specific custom-fields.
+      operationId: get-parties-partyId
       parameters:
         - $ref: '#/parameters/partyId'
       responses:
@@ -18,25 +40,67 @@ paths:
           description: Successful Response
           schema:
             $ref: '#/definitions/party'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: 'Access forbidden, invalid Authorization was used.'
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: A party with the given partyId does not exist.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: 'Access forbidden, invalid Authorization was used.'
+          schema:
+            $ref: '#/definitions/Error'
 
-  /parties/:
+  /parties:
     post:
-      summary: Creates a party allowing custom-fields definition
+      summary: Create party with Bank specific custom-fields.
+      description: Creates a party including bank specific custom-fields.
+      operationId: post-parties
       parameters:
         - $ref: '#/parameters/createParty' 
       responses:
         '200':
           description: Successful Response
-  
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: 'Access forbidden, invalid Authorization was used.'
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: 'Access forbidden, invalid Authorization was used.'
+          schema:
+            $ref: '#/definitions/Error'
   /parties/custom-fields-schemas:
     get:
-      summary: Returns the schema of theparty custom fields specification.
+      summary: Get party custom fields schema.
+      description: Returns the schema of the party custom fields specification.
+      operationId: get-parties-schema
       responses:
         '200':
           description: Successful Response
           schema:
             $ref: '#/definitions/customSchema'
-
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: 'Access forbidden, invalid Authorization was used.'
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: 'Access forbidden, invalid Authorization was used.'
+          schema:
+            $ref: '#/definitions/Error'
 parameters:
   partyId:
     name: partyId
@@ -48,11 +112,38 @@ parameters:
   createParty:
     name: createParty
     in : body
+    description: Party
     schema:
       $ref: '#/definitions/party'
 
 definitions:
+  Error:
+    title: Error details
+    type: object
+    properties:
+      type:
+        type: string
+        maxLength: 500
+        description: 'A URI reference [RFC3986] that identifies the problem type.'
+        example: 'https://api.finastra.com/validation-error'
+      title:
+        type: string
+        maxLength: 500
+        description: A short summary of the problem type.
+        example: Your request parameters didn't validate.
+      status:
+        type: integer
+        format: int32
+        description: 'The HTTP status code. For example,[RFC7231], Section 6.'
+        example: 400
+      detail:
+        type: string
+        maxLength: 500
+        description: The details that define the source of the problem.
+    description: This general error structure is used throughout the common service APIs that comply with RFC7807. Note that unrecognized parameters must be ignored.
+    
   party:
+    description: Party
     type: object
     required:
     - lastName
@@ -60,14 +151,17 @@ definitions:
     properties:
       partyId:
         type: string
+        description: UUID of the party
         readOnly: true
 
       lastName:
         type: string
+        description: Surname
         example: Skywalker
 
       firstName:
         type: string
+        description: Frst name
         example: Luke 
   
       custom-fields:
@@ -80,10 +174,9 @@ definitions:
   
   customSchema:
     type: object
-    description:  Ths defines the schema of the custom fields that will be returned to the client. The definition is a subset of json schema. Extra properties can be included as required e.g. format, minLength, pattern, etc. In this sample the custom field type and properties are mandatory and the maxLength is included. The example shows how this structure is used 
+    description:  Ths defines the schema of the custom fields that will be returned to the client. The definition is a subset of json schema. Extra properties can be included as required e.g. format, minLength, pattern, etc. In this sample the custom field type is mandatory and the maxLength is included. The example shows how this structure is used 
     required: 
       - type
-      - properties
     properties:
       $schema:
         description: Describes which  dialect of JSON Schema this schema was written for - see JSON schema documentation for further details. 
