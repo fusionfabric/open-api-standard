@@ -121,7 +121,7 @@ customer:
                     documentation can be found using the associated meta data endpoint
       additionalProperties:
         type: object
-        example: { "custom-field-name": "custom-field-value" }
+        example: { "custom-fields-name": "custom-fields-value" }
 ```
 
 
@@ -232,10 +232,10 @@ in this case the endpoints would be :
 
 | Endpoint Type | Endpoint Example | Endpoint Description |
 |---------------|------------------|----------------------|
-| Resource API  |`POST /loans/custom-field-schemas`|Create a new custom schema for e.g. `{bicycle}`, `{car}`|
-| Resource Meta Data API|`GET /loans/custom-field-schemas`|Get all `schemaId` associated with `loans` e.g. `{bicycle}`, `{car}`|
-|Resource Meta Data API |`GET /loans/custom-fields-schemas/{bicycle}`| Get the `schema` for the specific `schemaId`|
-| Resource Meta Data API|`POST /loans/{bicycle}`|Create a resource following the custom-schema definition `schemaId`| 
+| Resource Meta Data API|`GET /loans/custom-fields-schemas`|Get all `schemaId` associated with `loans` e.g. `{bicycle}`, `{car}`|
+| Resource Meta Data API|`POST /loans/custom-fields-schemas`|Create a new custom schema for e.g. `{bicycle}`, `{car}`. This is an optional endpoint|
+| Resource Meta Data API|`GET /loans/custom-fields-schemas/{bicycle}`| Get the `schema` for the specific `schemaId`|
+| Resource API|`POST /loans/{bicycle}`|Create a resource following the custom-schema definition `schemaId`| 
 
 
 ### Finastra APIs Custom Fields Standards ###
