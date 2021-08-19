@@ -2,10 +2,11 @@ swagger: '2.0'
 info:
   title : Parties schema with custom fields model
   description : This sample showcases a single level custom fields model
-
   version: 1.0.0
+
 schemes:
   - https
+
 paths:
   /parties/{partyId}:
     get:
@@ -55,6 +56,7 @@ definitions:
     type: object
     required:
     - lastName
+
     properties:
       partyId:
         type: string
@@ -63,6 +65,7 @@ definitions:
       lastName:
         type: string
         example: Skywalker
+
       firstName:
         type: string
         example: Luke 
@@ -113,34 +116,35 @@ definitions:
           $ref: '#/definitions/customSchema'
 
     example: 
-      {
-        "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "http://example.com/example.json",
-        "type": "object",
-        "title": "Bank B customization of customer schema",
-        "properties": {
-          "contact": {
-            "$id": "#/properties/custom-fields/properties/contact",
-            "type": "object",
-            "title": "The contact schema",
-            "description": "This represents the contact schema as a custom extension.",
-            "required": [
-              "email",
-            ],
-            "properties": {
-              "email": {
-                "$id": "#/properties/custom-fields/properties/contact/properties/email",
-                "type": "string",
-                "title": "The email schema",
-              },
-              "phone_number": {
-                "$id": "#/properties/custom-fields/properties/contact/properties/phone_number",
-                "type": "string",
-                "title": "The phone_number schema",
-                "description": "This is the phone_number. this custom fields supports constrains like maxLength",
-                "maxLength" : 12
+            {
+              "$schema": "http://json-schema.org/draft-07/schema",
+              "$id": "http://example.com/example.json",
+              "type": "object",
+              "title": "Bank A customized party schema",
+              "properties": {
+                "contact": {
+                  "$id": "#/properties/custom-fields/contact",
+                  "type": "object",
+                  "title": "Contact custom field",
+                  "description": "Party contact details.",
+                  "required": [
+                    "email"
+                  ],
+                  "properties": {
+                    "email": {
+                      "$id": "#/properties/custom-fields/contact/email",
+                      "type": "string",
+                      "title": "Email custom field",
+                      "description": "Party email address."
+                    },
+                    "phone_number": {
+                      "$id": "#/properties/custom-fields/contact/phone_number",
+                      "type": "string",
+                      "title": "Phone number custom field",
+                      "description": "Party phone number.",
+                      "maxLength": 12
+                    }
+                  }
+                }
               }
             }
-          }
-        }
-      }
