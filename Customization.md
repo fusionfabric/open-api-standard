@@ -16,7 +16,7 @@ and includes the following sections:
 ## Sample
 
 The following sample OAS2 API can be used as a reference API definition showing the customization definitions on this page:
-- [Full Custom Field Data model Sample](https://github.com/fusionfabric/open-api-standard/blob/main/customization-sample.yml)
+- [Full Custom Field Data model Sample](https://github.com/fusionfabric/open-api-standard/blob/main/customization-sample.yml). 
 
 ## Custom Fields
 
@@ -103,25 +103,35 @@ The following guidelines show how the custom fields are defined in the APIs:
 The following example shows a sample resource API definition for `custom-fields`:
 
 ```
-customer:
-  type: object
-  required:
-  - lastName
-  properties:
-    lastName:
-      type: string
-      example: Skywalker
-    firstName:
-      type: string
-      example: Luke 
- 
-    custom-fields:
-      type: object
-      description : additional fields as defined by the financial institution, schema and
-                    documentation can be found using the associated meta data endpoint
-      additionalProperties:
+  party:
+    description: Party
+    type: object
+    required:
+    - lastName
+
+    properties:
+      partyId:
+        type: string
+        description: UUID of the party
+        readOnly: true
+
+      lastName:
+        type: string
+        description: Surname
+        example: Skywalker
+
+      firstName:
+        type: string
+        description: Frst name
+        example: Luke 
+  
+      custom-fields:
         type: object
-        example: { "custom-fields-name": "custom-fields-value" }
+        description : Custom fields defined by the financial institution. The schema and
+                      documentation can be found using the associated meta data endpoint
+        additionalProperties:
+          type: object
+          example: { "contact" : { "email" : "luke.skywalker@star.com" , "phone_number": "911"}}
 ```
 
 
@@ -138,33 +148,35 @@ returned from the `GET /parties/custom-fields-schemas` endpoint:
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "http://example.com/example.json",
   "type": "object",
-  "title": "Bank B customization of customer schema",
-	"properties": {
-		"contact": {
-			"$id": "#/properties/custom-fields/properties/contact",
-			"type": "object",
-			"title": "The contact schema",
-			"description": "This represents the contact schema as a custom extension.",
-			"required": [
-				"email",
-			],
-			"properties": {
-				"email": {
-					"$id": "#/properties/custom-fields/properties/contact/properties/email",
-					"type": "string",
-					"title": "The email schema",
-				},
-				"phone_number": {
-					"$id": "#/properties/custom-fields/properties/contact/properties/phone_number",
-					"type": "string",
-					"title": "The phone_number schema",
-          "description": "This is the phone_number. this custom fields supports constrains like maxLength",
-          "maxLength" : 12
-				}
-			}
+  "title": "Bank A customized party schema",
+  "properties": {
+	 "contact": {
+		"$id": "#/properties/custom-fields/contact",
+		"type": "object",
+		"title": "Contact custom field",
+		"description": "Party contact details.",
+		"required": [
+		  "email"
+		],
+		"properties": {
+		  "email": {
+			 "$id": "#/properties/custom-fields/contact/email",
+			 "type": "string",
+			 "title": "Email custom field",
+			 "description": "Party email address."
+		  },
+		  "phone_number": {
+			 "$id": "#/properties/custom-fields/contact/phone_number",
+			 "type": "string",
+			 "title": "Phone number custom field",
+			 "description": "Party phone number.",
+			 "maxLength": 12
+		  }
 		}
-	}
+	 }
+  }
 }
+
 ```
 
 #### Resource Meta Data Schema, Schema Definition
@@ -178,43 +190,40 @@ The `custom-fields-schemas` resource associated with the Resource Meta Data API 
 ```
   customSchema:
     type: object
-    description:  this is the meta schema representing a subset of json schema. This example contains  e.g. format, minLength is not available. Type and properties are mandatory. It is complex to read but short story is that it represents a Json schema. 
+    description:  Ths defines the schema of the custom fields that will be returned to the client. The definition is a subset of json schema. Extra properties can be included as required e.g. format, minLength, pattern, etc. In this sample the custom field type and properties are mandatory and the maxLength is included. The example shows how this structure is used 
     required: 
       - type
       - properties
     properties:
       $schema:
-        description: schema fields according to json-schema 
+        description: Describes which  dialect of JSON Schema this schema was written for - see JSON schema documentation for further details. 
         type: string
       $id:
-        description: id field according to json-schema
+        description: Used to identify the schema - see JSON schema documentation for further details
         type: string
       type:
         type: string
-        description: subset of json schema specification, here integer is not available. must be object for the top level. 
+        description: Defines the type of available fields. Extra field types can be added as required e.g. integer
         enum:
           - object
           - string
           - number      
       description:
-        description: a description of the custom schema or a custom field
-        type: string
-      title:
-        description: a title  of the custom schema or a custom field
+        description: Provides a description of the custom fields schema
         type: string
       required:
-        description:  defines which custom fields are required
+        description:  Used to state that the custom fields support the 'required' keyword 
         type: array
         items:
           type: string
       maxLength : 
-        description:  supports the maxLength constraint - only available at field level
+        description:  Used to state that the custom fields support the 'maxLength' keyword
         type : integer
       properties:
-        description:  stores the fields and uses a recursive definition - some fields like $schema should be used only at top level and not at field level     
+        description:  Used to define the custom fields. It has a recursive definition. Note that some fields like $schema should only be used at the top level and not at field level     
         type: object
         additionalProperties:
-          $ref: '#/definitions/customSchema'
+          $ref: '#/definitions/customSchema
 ```
 
 ### Supporting Multiple Schemas
