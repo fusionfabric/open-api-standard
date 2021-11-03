@@ -1,3 +1,6 @@
+![example workflow](https://github.com/fusionfabric/openapi-standard/actions/workflows/superlinter.yml/badge.svg) [![FOSSA Status](https://app.fossa.com/api/projects/custom%2B24247%2Fgithub.com%2Ffusionfabric%2Fopenapi-standard.svg?type=shield)](https://app.fossa.com/projects/custom%2B24247%2Fgithub.com%2Ffusionfabric%2Fopenapi-standard?ref=badge_shield) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+
 ![Finastra Open API Design Guide](images/design-guide-logo.png)
 
 # Welcome
