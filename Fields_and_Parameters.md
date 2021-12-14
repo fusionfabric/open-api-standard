@@ -219,3 +219,14 @@ MonetaryAmount:
       example: EUR
 ```
 
+## Null Field Values
+
+The use of `null` as a field value in an API request or response must be avoided in most scenarios because `null` represents an unknown or undefined value and implies ambiguity.
+
+For example:
+(1) the client should not need to send a request or receive a response using `null` unless using PATCH to remove a field value 
+(2) the client or server can infer that a field value is `null`, i.e. undefined, if the payload does not contain the field key
+
+>   **MUST NOT** define API fields as `nullable` 
+
+>   **MUST NOT** send responses to clients with `null` as a field's value e.g. return {"a":"value"} rather than {"a":"value","b":"null"} 

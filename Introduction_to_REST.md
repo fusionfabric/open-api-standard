@@ -245,29 +245,62 @@ with the new state provided in the request. It is a *full replacement*.
 
 ### PATCH
 
-The `PATCH` method is used to partially update an existing resource.
-When using `PATCH` only the information provided in the request is used to update the
-resource.
+PATCH is used to apply partial updates to a resource.
 
-For further details see: 
-- [RFC5789 - PATCH Method for HTTP](https://tools.ietf.org/html/rfc5789).
-- [RFC6902 - JavaScript Object Notation (JSON) Patch](https://tools.ietf.org/html/rfc6902)
+PATCH is different to PUT in that PUT is used to entirely replace a resource whereas PATCH is used to perform a partial update to a resource.
 
-`PATCH` and `PUT` are both related because they both update a resource, however, `PATCH` 
-uses specific semantics to define how an update is made, For example, 
-the `PATCH` method requests that a **set of changes**,
-described in the request entity, must be applied to the resource
-identified by the request. This set of changes contains instructions
-describing how a resource should be modified to produce a new version.
-
-**Example**
-
-`PATCH /customers/123` - only a partial view of the resource is required => return the patched resource
-
-`[  { "op": "replace", "path": "/email", "value": "new.email@example.org" }   ]`
-
+In many scenarios PATCH may look to be a good option e.g. to update a single field in a large payload, however, be aware that:
+- PATCH is not idempotent, unlike PUT
+- PATCH requires a description in the requested payload of how an update should take place
 
 > `PATCH` **SHOULD** be avoided as far as possible
+
+The payload of a PATCH request describes the updates in a declarative manner and the following RFC documents describe different PATCH request formats:
+- RFC 7396 (JSON Merge Patch)[https://datatracker.ietf.org/doc/html/rfc7386]
+- RFC 6902 (JSON Patch)[https://tools.ietf.org/html/rfc6902] 
+
+#### JSON Merge Patch - RFC 7396
+
+The example in the RFC document states that given the following resource document:
+
+{
+	"a": "b",
+	"c": {
+		"d": "e",
+		"f": "g"
+	}
+}
+
+Then if the following PATCH request is received:
+
+{
+	"a":"z",
+	"c": {
+		"f": null
+	}
+}
+
+Then this will change the value of "a" to "z" and will delete the "f" key.
+
+JSON Merge Patch is intuitive since the payloads of the resource and the PATCH requests are similar, however, there are drawbacks to the simplicity of this approach:
+- array elements cannot be modified individually, rather, the entire array is replaced
+- the PATCH request payload does not have a corresponding schema that can be validated against, so malformed requests will not be rejected
+
+> SHOULD use JSON Merge Patch for PATCH requests
+
+#### JSON Patch - RFC 6902
+
+The JSON Patch request payload format is more complex than the JSON Merge Patch format and contains a set of instructions describing how to update a resource payload. The following example taken from the RFC document shows a set of operations ("op") requested for application against a specific path ("path") in the JSON respource payload:
+
+   [
+     { "op": "remove", "path": "/a/b/c" },
+     { "op": "add", "path": "/a/b/c", "value": [ "foo", "bar" ] },
+     { "op": "replace", "path": "/a/b/c", "value": 42 },
+     { "op": "move", "from": "/a/b/c", "path": "/a/b/d" },
+     { "op": "copy", "from": "/a/b/d", "path": "/a/b/e" }
+   ]
+
+> MAY use JSON Merge Patch for PATCH requests
 
 **Characteristics**
 
