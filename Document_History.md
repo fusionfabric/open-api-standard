@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Document History
-nav_order: 18
+nav_order: 19
 ---
 
 # Document History
@@ -14,6 +14,7 @@ nav_order: 18
 <col style="width: 17%" />
 <col style="width: 71%" />
 </colgroup>
+  
 <thead>
 <tr class="header">
 <th style="text-align: left;">Version</th>
@@ -22,9 +23,20 @@ nav_order: 18
 </tr>
 </thead>
 
-
 <tbody>
-<tr class="odd">
+
+<tr>
+<td style="text-align: left;">2.4</td>
+<td style="text-align: left;">December 2021</td>
+<td style="text-align: left;"><p>Included the following modifications:</p>
+<ul>
+<li>Added detail on: PATCH method, null field</li>
+<li>Added CRUD API section</li>
+</ul>
+</td>
+</tr>
+ 
+<tr>
 <td style="text-align: left;">2.3</td>
 <td style="text-align: left;">June 2021</td>
 <td style="text-align: left;"><p>Included the following modifications:</p>
@@ -38,7 +50,7 @@ nav_order: 18
 </td>
 </tr>
 
-<tr class="odd">
+<tr>
 <td style="text-align: left;">2.2</td>
 <td style="text-align: left;">January 2020</td>
 <td style="text-align: left;"><p>Revised pagination section to remove page concept.</p>
@@ -53,7 +65,8 @@ nav_order: 18
 <td style="text-align: left;">August 2019</td>
 <td style="text-align: left;">Removed the following sections: API Checklist Open API Patterns</td>
 </tr>
-<tr class="odd">
+
+<tr>
 <td style="text-align: left;">2.0</td>
 <td style="text-align: left;">May 2019</td>
 <td style="text-align: left;"><p>Renamed as Finastra Open API Design Guide to reflect strategy.</p>
@@ -82,5 +95,7 @@ nav_order: 18
 <td style="text-align: left;">June 2018</td>
 <td style="text-align: left;">First published.</td>
 </tr>
+
 </tbody>
+
 </table>

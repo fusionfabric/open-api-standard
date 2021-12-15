@@ -253,7 +253,7 @@ In many scenarios PATCH may look to be a good option e.g. to update a single fie
 - PATCH is not idempotent, unlike PUT
 - PATCH requires a description in the requested payload of how an update should take place
 
-> `PATCH` **SHOULD** be avoided as far as possible
+> PATCH **SHOULD** be avoided as far as possible
 
 The payload of a PATCH request describes the updates in a declarative manner and the following RFC documents describe different PATCH request formats:
 - RFC 7396 (JSON Merge Patch)[https://datatracker.ietf.org/doc/html/rfc7386]
@@ -262,7 +262,7 @@ The payload of a PATCH request describes the updates in a declarative manner and
 #### JSON Merge Patch - RFC 7396
 
 The example in the RFC document states that given the following resource document:
-
+```
 {
 	"a": "b",
 	"c": {
@@ -270,16 +270,16 @@ The example in the RFC document states that given the following resource documen
 		"f": "g"
 	}
 }
-
+```
 Then if the following PATCH request is received:
-
+```
 {
 	"a":"z",
 	"c": {
 		"f": null
 	}
 }
-
+```
 Then this will change the value of "a" to "z" and will delete the "f" key.
 
 JSON Merge Patch is intuitive since the payloads of the resource and the PATCH requests are similar, however, there are drawbacks to the simplicity of this approach:
@@ -291,7 +291,7 @@ JSON Merge Patch is intuitive since the payloads of the resource and the PATCH r
 #### JSON Patch - RFC 6902
 
 The JSON Patch request payload format is more complex than the JSON Merge Patch format and contains a set of instructions describing how to update a resource payload. The following example taken from the RFC document shows a set of operations ("op") requested for application against a specific path ("path") in the JSON respource payload:
-
+```
    [
      { "op": "remove", "path": "/a/b/c" },
      { "op": "add", "path": "/a/b/c", "value": [ "foo", "bar" ] },
@@ -299,7 +299,7 @@ The JSON Patch request payload format is more complex than the JSON Merge Patch 
      { "op": "move", "from": "/a/b/c", "path": "/a/b/d" },
      { "op": "copy", "from": "/a/b/d", "path": "/a/b/e" }
    ]
-
+```
 > MAY use JSON Merge Patch for PATCH requests
 
 **Characteristics**
