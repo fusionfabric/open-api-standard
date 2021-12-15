@@ -28,5 +28,5 @@ details the associated Finastra Open API development standards.
 
 -----
 **Fusion**Fabric.cloud Documentation Team
-30 June 2021
+
 

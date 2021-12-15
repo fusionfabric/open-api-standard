@@ -286,7 +286,7 @@ JSON Merge Patch is intuitive since the payloads of the resource and the PATCH r
 - array elements cannot be modified individually, rather, the entire array is replaced
 - the PATCH request payload does not have a corresponding schema that can be validated against, so malformed requests will not be rejected
 
-> SHOULD use JSON Merge Patch for PATCH requests
+> **SHOULD** use JSON Merge Patch for PATCH requests
 
 #### JSON Patch - RFC 6902
 
@@ -300,7 +300,7 @@ The JSON Patch request payload format is more complex than the JSON Merge Patch 
      { "op": "copy", "from": "/a/b/d", "path": "/a/b/e" }
    ]
 ```
-> MAY use JSON Merge Patch for PATCH requests
+> **MAY** use JSON Merge Patch for PATCH requests
 
 **Characteristics**
 

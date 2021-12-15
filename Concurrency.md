@@ -43,7 +43,7 @@ The following shows how `ETag` and `If-Match` headers can be used to avoid concu
 * the first user then modifies the payload and requests an update to the amount with a new payload e.g. `PUT /loans/123 {amount = 1500 EUR , status= pending}` with `ETag` value = 1 
 * once the update from the first user has been committed the value of the `Etag` value will be moved to 2
 * the second user also modifies the payload and requests an update to the status with a new payload e.g. `PUT /loans/123 {amount = 1000 EUR , status= approved}` with `ETag` value = 1 
-* because the first user has already committed its changes the `ETag` value would not match that held against the resource and so the approval would be declined 
+* because the first user has already committed their changes the `ETag` value would not match that held against the resource and so the approval would be declined 
 * to fix it, second user would need to perform another `GET` against the modified version of the loan e.g. `GET /loans/123` to retrieve the `ETag` value = 2 and then request the update again
 
 **Finastra API Standards:**
