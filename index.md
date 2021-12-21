@@ -16,12 +16,12 @@ details the associated Finastra Open API development standards.
 
 ## Document Conventions
 
--   The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
-    “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in
-    Finastra standards are to be interpreted as described in [RFC
-    2119](https://www.ietf.org/rfc/rfc2119.txt)
+(1) The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
+“SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in
+Finastra standards are to be interpreted as described in [RFC
+2119](https://www.ietf.org/rfc/rfc2119.txt)
 
--   Finastra Open API standards are shown as a table similar to the following:
+(2) Finastra Open API standards are shown as a table similar to the following:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
