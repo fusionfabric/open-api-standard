@@ -68,29 +68,30 @@ The following lists the Finastra standards for field and parameter names:
 |:-------:|:------------ |
 | FPB-001 | **MUST** align with the accepted business domain terminology |
 | FPB-002 | **MUST** be named in a clear, concise and unambiguous manner |
-| FPB-003 | **MUST** be meaningful by obviously declaring the field's purpose; a simple guideline is to ensure that Google shows relevant links on the first returned page|
-| FPB-004 | **MUST** define query and path parameter names and field names in lower `camelCase` using only the characters: `a-z` and `0-9`,<br> for example: - valid: `inputDate` -   invalid: `InputDate`, `Input_Date`|
-| DEF-024<br>DEF-025<br>DEF-026<br>PPM-009 | **MUST** adhere to the Finastra Open API data dictionary where possible e.g. `country`; where further clarity is required a prefix can be used e.g. `taxCountry`|
-| FPB-005 | **SHOULD NOT** use word abbreviations e.g. use `transaction` rather than `txn` unless the abbreviation is commonly used|
-| FPB-006 | **MAY** use commonly used abbreviations or acronyms e.g. `memo`, `email`, `uri`, `IBAN`, `SEPA`, etc.|
-| FPB-007 | **MUST** only use commonly accepted abbreviations|
-| FPB-008 | **MUST NOT** introduce new terminology where existing equivalents are available|
-| FPB-009 | **MUST NOT** use terms that relate to a specific product / implementation. |
-| FPB-010 | **MUST NOT** be technical in nature because Open APIs target business rather than technical domains|
-| FPB-011 | **MUST NOT** use terms that relate to a specific product e.g. use the agnostic term `region` rather than `processingArea`|
-| FPB-012 | **SHOULD NOT** use terms that relate to a specific geography e.g. consider using the agnostic term `alternateAccountId` rather than `micr`|
-| FPB-013 | **SHOULD** define the resource's unique identifier with a UUID `{id}`|
-| FPB-014 | **MUST** list parameters in a specific order: required, followed by optional|
+| FPB-003 | **MUST** be meaningful by obviously declaring the field's purpose; a simple guideline is to ensure that Google shows relevant links on the first returned page |
+| FPB-004 | **MUST** define query and path parameter names and field names in lower `camelCase` using only the characters: `a-z` and `0-9`,<br> for example: - valid: `inputDate` -   invalid: `InputDate`, `Input_Date` |
+| DEF-024<br>DEF-025<br>DEF-026<br>PPM-009 | **MUST** adhere to the Finastra Open API data dictionary where possible e.g. `country`; where further clarity is required a prefix can be used e.g. `taxCountry` |
+| FPB-005 | **SHOULD NOT** use word abbreviations e.g. use `transaction` rather than `txn` unless the abbreviation is commonly used |
+| FPB-006 | **MAY** use commonly used abbreviations or acronyms e.g. `memo`, `email`, `uri`, `IBAN`, `SEPA`, etc. |
+| FPB-007 | **MUST** only use commonly accepted abbreviations |
+| FPB-008 | **MUST NOT** introduce new terminology where existing equivalents are available |
+| FPB-009 | **MUST NOT** use terms that relate to a specific product / implementation |
+| FPB-010 | **MUST NOT** be technical in nature because Open APIs target business rather than technical domains |
+| FPB-011 | **MUST NOT** use terms that relate to a specific product e.g. use the agnostic term `region` rather than `processingArea` 
+| FPB-012 | **SHOULD NOT** use terms that relate to a specific geography e.g. consider using the agnostic term `alternateAccountId` rather than `micr` |
+| FPB-013 | **SHOULD** define the resource's unique identifier with a UUID `{id}` |
+| FPB-014 | **MUST** list parameters in a specific order: required, followed by optional |
 | FPB-015 | **MUST** ensure that array names are plural |
-| FPB-016 | **SHOULD** specify relevant defaults where applicable|
-| FPB-017 | **SHOULD** be as precise as possible with field and parameter definitions|
-| DEF-035<br>DEF-012<br>PEF-012 | **SHOULD** have `maxLength` for `string` data types|
-| FPB-018 | **SHOULD** have `minLength` and `pattern` for `string` data types|
-| FPB-019 | **MUST NOT** specify a default for a required parameter|
-| FPB-020 | **SHOULD** use empty string to remove a field's value|
-| FPB-021 | **SHOULD NOT** use `allowEmptyValue: true`|
-| PEF-0009<br>DEF-016 | **MUST NOT** define fields or parameters that are not used|
-| DEF-011<br>DEF-031<br>INF-006<br>PEF-003<br>PEF-015<br>PTH-002 | **MUST** only use characters in the ASCII  character set for all descriptions within an API definition|
+| FPB-016 | **SHOULD** specify relevant defaults where applicable |
+| FPB-017 | **SHOULD** be as precise as possible with field and parameter definitions |
+| DEF-012<br>PEF-012 | **SHOULD** have `maxLength` for `string` data types |
+| DEF-035 | **SHOULD NOT** have a maxLength value of 1 for string fields - consider using a boolean type instead of string |
+| FPB-018 | **SHOULD** have `minLength` and `pattern` for `string` data types |
+| FPB-019 | **MUST NOT** specify a default for a required parameter |
+| FPB-020 | **SHOULD** use empty string to remove a field's value |
+| FPB-021 | **SHOULD NOT** use `allowEmptyValue: true` |
+| PEF-0009<br>DEF-016 | **MUST NOT** define fields or parameters that are not used |
+| DEF-011<br>DEF-031<br>INF-006<br>PEF-003<br>PEF-015<br>PTH-002 | **MUST** only use characters in the ASCII  character set for all descriptions within an API definition |
 
 ## Finastra Field and Parameter Type and Format Standards
 
