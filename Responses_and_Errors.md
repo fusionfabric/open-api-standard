@@ -39,33 +39,23 @@ The following table summarizes the response codes used in Finastra Open APIs:
 
 ## Finastra Responses
 
-The following lists Finastra rules for response codes: 
+The following table lists Finastra rules for response codes: 
 
-
-
-> Endpoints **MUST** support the following return codes: 400, 401, 404, 500
-
-> APIs **MUST NOT** return 200 (OK) when there is a technical or functional error, rather a 4XX code must be returned
-
-> `POST` operations used to create a resource **MUST** return 201 or 202 for a successful response
-
-> `POST` operations **MUST** return either 200 , 201 or 202 for a successful response
-
-> `POST` operations used to get data with complex queries MAY return 200 or 204 for a successful response
-
-> `PUT` or `PATCH` operations **MUST** return 200 or 204 for a successful response 
-
-> `PUT` or `PATCH` operations **SHOULD** support 412 and 428 responses for concurrency purposes
-
-> `GET` and `HEAD` operations **MUST** return 200 or 204 for a successful response
-
-> `DELETE` operations **MUST** return 200 or 202 or 204 for a successful response
-
-> APIs **MAY** use other error codes such as: 403, 409, 501, 503
-
-> APIs **MUST NOT** contain response fields when a 204 (No Content) is returned
-
-> `GET` operations using a filter **MUST NOT** return 404 if there are no resources, rather a 200 must be returned
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| RSP-003<br>RSP-004<br>RSP-005<br>RSP-006 | Endpoints **MUST** support the following return codes: 400, 401, 404, 500 |
+| REB-001 | APIs **MUST NOT** return 200 (OK) when there is a technical or functional error, rather a 4XX code must be returned |
+| RSP-001 | `POST` operations used to create a resource **MUST** return 201 or 202 for a successful response |
+| RSP-001 | `POST` operations **MUST** return either 200 , 201 or 202 or 204 for a successful response |
+| RSP-001 | `POST` operations used to get data with complex queries MAY return 200 or 204 for a successful response |
+| RSP-002 | `PUT` or `PATCH` operations **MUST** return 200 or 204 for a successful response |
+| RSP-009 | `PUT` or `PATCH` operations **SHOULD** support 412 and 428 responses for concurrency purposes |
+| RSP-010 | `GET` and `HEAD` operations **MUST** return 200 or 204 for a successful response |
+| RSP-011 | `DELETE` operations **MUST** return 200 or 202 or 204 for a successful response |
+| REB-002 | APIs **MAY** use other error codes such as: 403, 409, 501, 503 |
+| RSP-007<br>RSP-008 | APIs **MUST NOT** contain response fields when a 204 (No Content) is returned |
+| REB-003 | `GET` operations using a filter **MUST NOT** return 404 if there are no resources, rather a 200 must be returned |
+| RSP-013 | `PUT` operations SHOULD contain an identifier e.g. PUT /resource/{id} or PUT /resource/{id}/status |
 
 ## Error Message Structure
 
@@ -80,8 +70,6 @@ This section includes the following:
 
 RFC 7807 provides a standard format for returning problem details from
 HTTP APIs.
-
-> Finastra APIs **MUST** align with RFC7807
 
 RFC7807 proposes a structure for common pattern of errors whilst also
 allowing for extensions. The following text is taken from RFC7807 and
@@ -108,22 +96,16 @@ describes the principal fields of the error message structure that
 
 The following are the Finastra Open API error message standards:
 
--   the main error message **MUST** follow RFC7807 structure and names  
--   the use of the RFC7807 `instance` keyword is **NOT** mandated but
-    **MAY** be used
--   error messages **MUST NOT** expose details of the technical
-    implementation  
--   `title` and `status` **MUST** be defined in the API; all other fields
-    are optional  
--   if a field is not used then it **SHOULD NOT** be included in the API
-    e.g. `causes` is only required if additional business reasons are
-    added  
--   `causes` can be used to provide additional detail on an error
-    message or to provide a list and sequence of a chain of error
-    messages from an end to end system
--   the structure of `causes` is not mandated, however, when `causes` is
-    provided it should contain an indication of the field in error  
--   text capable fields **MAY** support multi-language
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| REB-011 | The main error message **MUST** follow RFC7807 structure and names |
+| REB-012 | The use of the RFC7807 `instance` keyword is **NOT** mandated but **MAY** be used |
+| REB-013 | Error messages **MUST NOT** expose details of the technical implementation |
+| REB-014 | `title` and `status` **MUST** be defined in the API; all other fields are optional |
+| REB-015 | If a field is not used then it **SHOULD NOT** be included in the API e.g. `causes` is only required if additional business reasons are added |
+| REB-016 | `causes` can be used to provide additional detail on an error message or to provide a list and sequence of a chain of error messages from an end to end system |
+| REB-017 | The structure of `causes` is not mandated, however, when `causes` is provided it should contain an indication of the field in error |
+| REB-018 | Text capable fields **MAY** support multi-language |
 
 The standard Finastra error message structure is as follows:
 
