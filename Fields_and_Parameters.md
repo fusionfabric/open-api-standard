@@ -85,7 +85,7 @@ The following lists the Finastra standards for field and parameter names:
 | FPB-016 | **SHOULD** specify relevant defaults where applicable |
 | FPB-017 | **SHOULD** be as precise as possible with field and parameter definitions |
 | DEF-012<br>PEF-012 | **SHOULD** have `maxLength` for `string` data types |
-| DEF-035 | **SHOULD NOT** have a maxLength value of 1 for string fields - consider using a boolean type instead of string |
+| DEF-035 | **SHOULD NOT** have a `maxLength` value of 1 for `string` fields - consider using a `boolea`n type instead of `string` |
 | FPB-018 | **SHOULD** have `minLength` and `pattern` for `string` data types |
 | FPB-019 | **MUST NOT** specify a default for a required parameter |
 | FPB-020 | **SHOULD** use empty string to remove a field's value |
