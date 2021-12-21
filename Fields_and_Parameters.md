@@ -64,91 +64,47 @@ Note that whilst Finastra APIs support multiple nested fields, the use of `$ref`
 
 The following lists the Finastra standards for field and parameter names:
 
->   **MUST** align with the accepted business domain terminology
-
->   **MUST** be named in a clear, concise and unambiguous manner.
-
->   **MUST** be meaningful by obviously declaring the field's purpose; a
-    simple guideline is to ensure that Google shows relevant links on
-    the first returned page
-
->  **MUST** define query parameter names and field names in lower `camelCase` using only the characters: 
-    `a-z` and `0-9`, for example:
-> -   valid: `inputDate`
-> -   invalid: `InputDate`, `Input_Date`
-
->   **MUST** adhere to the Finastra Open API data dictionary where
-    possible e.g. `country`; where further clarity is required a prefix
-    can be used e.g. `taxCountry`
-
->   **SHOULD NOT** use word abbreviations e.g. use `transaction` rather than `txn` unless
-the abbreviation is commonly used
-
->   **MAY** use commonly used abbreviations or acronyms e.g. `memo`, `email`, `uri`, `IBAN`, `SEPA`, etc.
-
->   **MUST** only use commonly accepted abbreviations
-
->   **MUST NOT** introduce new terminology where existing equivalents
-    are available
-
->   **MUST NOT** use terms that relate to a specific product / implementation. 
-
->   **MUST NOT** be technical in nature because Open APIs target
-    business rather than technical domains
-
->   **MUST NOT** use terms that relate to a specific product e.g. use
-    the agnostic term `region` rather than `processingArea`
-
->   **SHOULD NOT** use terms that relate to a specific geography e.g. consider using 
-the agnostic term `alternateAccountId` rather than `micr`
-    
->   **SHOULD** define the resource's unique identifier with a UUID `{id}`
-
->   **MUST** list parameters in a specific order: required, followed by
-    optional
-        
->   **MUST** ensure that array names are plural 
-    
->   **SHOULD** specify relevant defaults where applicable
-
-> **SHOULD** be as precise as possible with field and parameter definitions
-
->  **MUST** have `maxLength` for `string` data types
-
->  **SHOULD** have `minLength` and `pattern` for `string` data types
-
->   **MUST NOT** specify a default for a required parameter
- 
->   **SHOULD** use empty string to remove a field's value
-
->   **SHOULD NOT** use `allowEmptyValue`
-
->   **MUST NOT** define fields are parameters that are not used
-
->   **MUST** only use characters in the ASCII  character set for all descriptions within an API definition
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| BUS-001 | **MUST** align with the accepted business domain terminology |
+| BUS-002 | **MUST** be named in a clear, concise and unambiguous manner |
+| BUS-003 | **MUST** be meaningful by obviously declaring the field's purpose; a simple guideline is to ensure that Google shows relevant links on the first returned page|
+| BUS-004 | **MUST** define query and path parameter names and field names in lower `camelCase` using only the characters: `a-z` and `0-9`,<br> for example: - valid: `inputDate` -   invalid: `InputDate`, `Input_Date`|
+| DEF-999 | **MUST** adhere to the Finastra Open API data dictionary where possible e.g. `country`; where further clarity is required a prefix can be used e.g. `taxCountry`|
+| DEF-999 | **SHOULD NOT** use word abbreviations e.g. use `transaction` rather than `txn` unless the abbreviation is commonly used|
+| DEF-999 | **MAY** use commonly used abbreviations or acronyms e.g. `memo`, `email`, `uri`, `IBAN`, `SEPA`, etc.|
+| DEF-999 | **MUST** only use commonly accepted abbreviations|
+| DEF-999 | **MUST NOT** introduce new terminology where existing equivalents are available|
+| DEF-999 | **MUST NOT** use terms that relate to a specific product / implementation. |
+| DEF-999 | **MUST NOT** be technical in nature because Open APIs target business rather than technical domains|
+| DEF-999 | **MUST NOT** use terms that relate to a specific product e.g. use the agnostic term `region` rather than `processingArea`|
+| DEF-999 | **SHOULD NOT** use terms that relate to a specific geography e.g. consider using the agnostic term `alternateAccountId` rather than `micr`|
+| DEF-999 | **SHOULD** define the resource's unique identifier with a UUID `{id}`|
+| DEF-999 | **MUST** list parameters in a specific order: required, followed by optional|
+| DEF-999 | **MUST** ensure that array names are plural |
+| DEF-999 | **SHOULD** specify relevant defaults where applicable|
+| DEF-999 | **SHOULD** be as precise as possible with field and parameter definitions|
+| DEF-999 | **MUST** have `maxLength` for `string` data types|
+| DEF-999 | **SHOULD** have `minLength` and `pattern` for `string` data types|
+| DEF-999 | **MUST NOT** specify a default for a required parameter|
+| DEF-999 | **SHOULD** use empty string to remove a field's value|
+| DEF-999 | **SHOULD NOT** use `allowEmptyValue`|
+| DEF-999 | **MUST NOT** define fields are parameters that are not used|
+| DEF-999 | **MUST** only use characters in the ASCII  character set for all descriptions within an API definition|
 
 ## Finastra Field and Parameter Type and Format Standards
 
 The following lists the Finastra standards for field types and formats:
 
->   **MUST** ensure that `number` and `integer types` have an associated
-    `format`
-
->   **MUST NOT** define binary content as string
-
->  **SHOULD** use a `string` data type and a `date` or `date-time` format for date and/or time fields
-
->  **SHOULD** define enumerations as a **closed** set of allowed field values
-e.g. the following shows a set of possible values for an item's status:
-`PENDING`, `APPROVED`, `COMPLETE`.
-
->  **SHOULD** ensure that enumerations are lowercase a-z and/or upper
-    case A-Z with hyphens, for example: `SPOT-RATE` or `spot-rate` or `Spot-Rate`
-
->  Enumerations **MUST NOT** include spaces or special characters e.g. underscores
-
->  Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyorCountry`.
-
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| DEF-999 | **MUST** ensure that `number` and `integer types` have an associated `format`|
+| DEF-999 | **MUST NOT** define binary content as string |
+| DEF-999 | **SHOULD** use a `string` data type and a `date` or `date-time` format for date and/or time fields |
+| DEF-999 | **SHOULD** define enumerations as a **closed** set of allowed field values<br> e.g. the following shows a set of possible values for an item's status: `PENDING`, `APPROVED`, `COMPLETE`|
+| DEF-999 | **SHOULD** ensure that enumerations are lowercase a-z and/or upper case A-Z with hyphens, for example: `SPOT-RATE` or `spot-rate` or `Spot-Rate`|
+| DEF-999 | Enumerations **MUST NOT** include spaces or special characters e.g. underscore |
+| DEF-999 | Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyorCountry`|
 
 ## Date & Time Fields
 
@@ -163,16 +119,15 @@ The following table shows the mapping between the RFC and the JSON schema format
 |  time                       | full-time| `23:20:50.52Z` or `1996-12-19T16:39:57-08:00`        |
 |  partial-time               | partial-time| `23:20:50`  i.e. with no time zone information| 
 
+The following table shows the associated Finastra rules:
 
-
->  **SHOULD** use a `string` data type and a `date` or `date-time` format for date and/or time fields
-
->  **MAY** use the the format `time` with UTC format (23:20:50.52Z) not the time zone specification
-
-> **SHOULD** avoid the format `partial-time`
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| DEF-999 | **SHOULD** use a `string` data type and a `date` or `date-time` format for date and/or time fields|
+| DEF-999 | **MAY** use the the format `time` with UTC format (23:20:50.52Z) not the time zone specification|
+| DEF-999 | **SHOULD** avoid the format `partial-time`|
 
 Example : 
-
 ```
    fromDate:
     name: fromDate
@@ -188,11 +143,11 @@ Example :
 
 ISO standards must be used for the following common business objects:
 
->   **MUST** use ISO 8601/RFC 3339 for dates and times
-
->   **MUST** use ISO 3166 for countries
-
->   **MUST** use ISO 4217 for currencies
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| DEF-999 |  **MUST** use ISO 8601/RFC 3339 for dates and times|
+| DEF-999 |  **MUST** use ISO 3166 for countries|
+| DEF-999 |  **MUST** use ISO 4217 for currencies|
 
 
 ## Amount Fields
@@ -227,6 +182,9 @@ For example:
 (1) the client should not need to send a request or receive a response using `null` unless using PATCH to remove a field value 
 (2) the client or server can infer that a field value is `null`, i.e. undefined, if the payload does not contain the field key
 
->   **MUST NOT** define API fields as `nullable` 
+The following table shows the associated Finastra rules:
 
->   **MUST NOT** send responses to clients with `null` as a field's value e.g. return {"a":"value"} rather than {"a":"value","b":"null"} 
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| DEF-999 |    **MUST NOT** define API fields as `nullable` |
+| DEF-999 |    **MUST NOT** send responses to clients with `null` as a field's value e.g. return {"a":"value"} rather than {"a":"value","b":"null"} |
