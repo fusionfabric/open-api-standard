@@ -91,7 +91,7 @@ The following lists the Finastra standards for field and parameter names:
 | FPB-020 | **SHOULD** use empty string to remove a field's value |
 | FPB-021 | **SHOULD NOT** use `allowEmptyValue: true` |
 | PEF-0009<br>DEF-016 | **MUST NOT** define fields or parameters that are not used |
-| DEF-011<br>DEF-031<br>INF-006<br>PEF-003<br>PEF-015<br>PTH-002 | **MUST** only use characters in the ASCII  character set for all descriptions within an API definition |
+| DEF-011<br>DEF-031<br>INF-006<br>PEF-003<br>PEF-015<br>PTH-002<br>DEF-003<br>DEF-030<br>PEF-001<br>PEF-014 | **MUST** only use characters in the ASCII  character set for all descriptions within an API definition |
 
 ## Finastra Field and Parameter Type and Format Standards
 
