@@ -69,7 +69,8 @@ The following lists the Finastra standards for field and parameter names:
 | FPB-001 | **MUST** align with the accepted business domain terminology |
 | FPB-002 | **MUST** be named in a clear, concise and unambiguous manner |
 | FPB-003 | **MUST** be meaningful by obviously declaring the field's purpose; a simple guideline is to ensure that Google shows relevant links on the first returned page |
-| FPB-004 | **MUST** define query and path parameter names and field names in lower `camelCase` using only the characters: `a-z` and `0-9`,<br> for example: - valid: `inputDate` -   invalid: `InputDate`, `Input_Date` |
+| DEF-002<br>DEF-010<br>DEF-013 | **MUST** define field names in lower `camelCase` using only the characters: `a-z` and `0-9` and hyphen
+| IDS-002<br>IDS-003<br>PEF-002 | **MUST** define query and path parameter names in lower `camelCase` using only the characters: `a-z` and `0-9`,<br> for example: - valid: `inputDate` -   invalid: `InputDate`, `Input_Date` |
 | DEF-024<br>DEF-025<br>DEF-026<br>PPM-009 | **MUST** adhere to the Finastra Open API data dictionary where possible e.g. `country`; where further clarity is required a prefix can be used e.g. `taxCountry` |
 | FPB-005 | **SHOULD NOT** use word abbreviations e.g. use `transaction` rather than `txn` unless the abbreviation is commonly used |
 | FPB-006 | **MAY** use commonly used abbreviations or acronyms e.g. `memo`, `email`, `uri`, `IBAN`, `SEPA`, etc. |
@@ -80,6 +81,7 @@ The following lists the Finastra standards for field and parameter names:
 | FPB-011 | **MUST NOT** use terms that relate to a specific product e.g. use the agnostic term `region` rather than `processingArea` 
 | FPB-012 | **SHOULD NOT** use terms that relate to a specific geography e.g. consider using the agnostic term `alternateAccountId` rather than `micr` |
 | FPB-013 | **SHOULD** define the resource's unique identifier with a UUID `{id}` |
+| DEF-027<br>  IDS-001 | **MUST NOT** define field or parameter names that end in case sensitive 'ID' |
 | FPB-014 | **MUST** list parameters in a specific order: required, followed by optional |
 | FPB-015 | **MUST** ensure that array names are plural |
 | FPB-016 | **SHOULD** specify relevant defaults where applicable |
@@ -90,8 +92,17 @@ The following lists the Finastra standards for field and parameter names:
 | FPB-019 | **MUST NOT** specify a default for a required parameter |
 | FPB-020 | **SHOULD** use empty string to remove a field's value |
 | FPB-021 | **SHOULD NOT** use `allowEmptyValue: true` |
-| PEF-0009<br>DEF-016 | **MUST NOT** define fields or parameters that are not used |
-| DEF-011<br>DEF-031<br>INF-006<br>PEF-003<br>PEF-015<br>PTH-002<br>DEF-003<br>DEF-030<br>PEF-001<br>PEF-014 | **MUST** only use characters in the ASCII  character set for all descriptions within an API definition |
+| PEF-009<br>DEF-016 | **MUST NOT** define fields or parameters that are not used |
+| DEF-004 | **MUST** define the keyword `type` against all fields and parameters unless using $ref |
+| DEF-021<br>DEF-022 | **MUST NOT** define the keyword `type` against all fields using $ref |
+| DEF-007 | **MUST** define a `description` against each field or parameter |
+| INF-003 | **MUST** define a `description` in the `info` section |
+| DEF-008 | **MUST** define a `title` against each field or parameter |
+| INF-004<br>INF-015 | **MUST** define a `title` that is 200 characters or less in the `info` section |
+| DEF-006<br>INF-002<br>PEF-004<br>PEF-013 | **MUST** not have the text 'todo' or 'tbd' in descriptions |
+| DEF-029 | **MUST** not have the text 'todo' or 'tbd' in examples |
+| DEF-011<br>DEF-031<br>INF-005<br>INF-006<br>PEF-003<br>PEF-015<br>PTH-002<br>DEF-003<br>DEF-030<br>PEF-001<br>PEF-014 | **MUST** only use characters in the ASCII  character set for all descriptions |
+
 
 ## Finastra Field and Parameter Type and Format Standards
 
