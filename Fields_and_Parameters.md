@@ -66,31 +66,31 @@ The following lists the Finastra standards for field and parameter names:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| BUS-001 | **MUST** align with the accepted business domain terminology |
-| BUS-002 | **MUST** be named in a clear, concise and unambiguous manner |
-| BUS-003 | **MUST** be meaningful by obviously declaring the field's purpose; a simple guideline is to ensure that Google shows relevant links on the first returned page|
-| BUS-004 | **MUST** define query and path parameter names and field names in lower `camelCase` using only the characters: `a-z` and `0-9`,<br> for example: - valid: `inputDate` -   invalid: `InputDate`, `Input_Date`|
-| DEF-999 | **MUST** adhere to the Finastra Open API data dictionary where possible e.g. `country`; where further clarity is required a prefix can be used e.g. `taxCountry`|
-| DEF-999 | **SHOULD NOT** use word abbreviations e.g. use `transaction` rather than `txn` unless the abbreviation is commonly used|
-| DEF-999 | **MAY** use commonly used abbreviations or acronyms e.g. `memo`, `email`, `uri`, `IBAN`, `SEPA`, etc.|
-| DEF-999 | **MUST** only use commonly accepted abbreviations|
-| DEF-999 | **MUST NOT** introduce new terminology where existing equivalents are available|
-| DEF-999 | **MUST NOT** use terms that relate to a specific product / implementation. |
-| DEF-999 | **MUST NOT** be technical in nature because Open APIs target business rather than technical domains|
-| DEF-999 | **MUST NOT** use terms that relate to a specific product e.g. use the agnostic term `region` rather than `processingArea`|
-| DEF-999 | **SHOULD NOT** use terms that relate to a specific geography e.g. consider using the agnostic term `alternateAccountId` rather than `micr`|
-| DEF-999 | **SHOULD** define the resource's unique identifier with a UUID `{id}`|
-| DEF-999 | **MUST** list parameters in a specific order: required, followed by optional|
-| DEF-999 | **MUST** ensure that array names are plural |
-| DEF-999 | **SHOULD** specify relevant defaults where applicable|
-| DEF-999 | **SHOULD** be as precise as possible with field and parameter definitions|
-| DEF-999 | **MUST** have `maxLength` for `string` data types|
-| DEF-999 | **SHOULD** have `minLength` and `pattern` for `string` data types|
-| DEF-999 | **MUST NOT** specify a default for a required parameter|
-| DEF-999 | **SHOULD** use empty string to remove a field's value|
-| DEF-999 | **SHOULD NOT** use `allowEmptyValue`|
-| DEF-999 | **MUST NOT** define fields are parameters that are not used|
-| DEF-999 | **MUST** only use characters in the ASCII  character set for all descriptions within an API definition|
+| FPB-001 | **MUST** align with the accepted business domain terminology |
+| FPB-002 | **MUST** be named in a clear, concise and unambiguous manner |
+| FPB-003 | **MUST** be meaningful by obviously declaring the field's purpose; a simple guideline is to ensure that Google shows relevant links on the first returned page|
+| FPB-004 | **MUST** define query and path parameter names and field names in lower `camelCase` using only the characters: `a-z` and `0-9`,<br> for example: - valid: `inputDate` -   invalid: `InputDate`, `Input_Date`|
+| DEF-024<br>DEF-025<br>DEF-026<br>PPM-009 | **MUST** adhere to the Finastra Open API data dictionary where possible e.g. `country`; where further clarity is required a prefix can be used e.g. `taxCountry`|
+| FPB-005 | **SHOULD NOT** use word abbreviations e.g. use `transaction` rather than `txn` unless the abbreviation is commonly used|
+| FPB-006 | **MAY** use commonly used abbreviations or acronyms e.g. `memo`, `email`, `uri`, `IBAN`, `SEPA`, etc.|
+| FPB-007 | **MUST** only use commonly accepted abbreviations|
+| FPB-008 | **MUST NOT** introduce new terminology where existing equivalents are available|
+| FPB-009 | **MUST NOT** use terms that relate to a specific product / implementation. |
+| FPB-010 | **MUST NOT** be technical in nature because Open APIs target business rather than technical domains|
+| FPB-011 | **MUST NOT** use terms that relate to a specific product e.g. use the agnostic term `region` rather than `processingArea`|
+| FPB-012 | **SHOULD NOT** use terms that relate to a specific geography e.g. consider using the agnostic term `alternateAccountId` rather than `micr`|
+| FPB-013 | **SHOULD** define the resource's unique identifier with a UUID `{id}`|
+| FPB-014 | **MUST** list parameters in a specific order: required, followed by optional|
+| FPB-015 | **MUST** ensure that array names are plural |
+| FPB-016 | **SHOULD** specify relevant defaults where applicable|
+| FPB-017 | **SHOULD** be as precise as possible with field and parameter definitions|
+| DEF-035<br>DEF-012<br>PEF-012 | **SHOULD** have `maxLength` for `string` data types|
+| FPB-018 | **SHOULD** have `minLength` and `pattern` for `string` data types|
+| FPB-019 | **MUST NOT** specify a default for a required parameter|
+| FPB-020 | **SHOULD** use empty string to remove a field's value|
+| FPB-021 | **SHOULD NOT** use `allowEmptyValue: true`|
+| PEF-0009<br>DEF-016 | **MUST NOT** define fields or parameters that are not used|
+| DEF-011<br>DEF-031<br>INF-006<br>PEF-003<br>PEF-015<br>PTH-002 | **MUST** only use characters in the ASCII  character set for all descriptions within an API definition|
 
 ## Finastra Field and Parameter Type and Format Standards
 
@@ -98,13 +98,13 @@ The following lists the Finastra standards for field types and formats:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| DEF-999 | **MUST** ensure that `number` and `integer types` have an associated `format`|
-| DEF-999 | **MUST NOT** define binary content as string |
-| DEF-999 | **SHOULD** use a `string` data type and a `date` or `date-time` format for date and/or time fields |
-| DEF-999 | **SHOULD** define enumerations as a **closed** set of allowed field values<br> e.g. the following shows a set of possible values for an item's status: `PENDING`, `APPROVED`, `COMPLETE`|
-| DEF-999 | **SHOULD** ensure that enumerations are lowercase a-z and/or upper case A-Z with hyphens, for example: `SPOT-RATE` or `spot-rate` or `Spot-Rate`|
-| DEF-999 | Enumerations **MUST NOT** include spaces or special characters e.g. underscore |
-| DEF-999 | Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyorCountry`|
+| DEF-014<br>PEF-007 | **MUST** ensure that `number` and `integer types` have an associated `format`|
+| FPB-022 | **MUST NOT** define binary content as string |
+| DEF-028<br>PEF-010 | **SHOULD** use a `string` data type and a `date` or `date-time` format for date and/or time fields |
+| FPB-023 | **SHOULD** define enumerations as a **closed** set of allowed field values<br> e.g. the following shows a set of possible values for an item's status: `PENDING`, `APPROVED`, `COMPLETE`|
+| ENM-001 | **SHOULD** ensure that enumerations are lowercase a-z and/or upper case A-Z with hyphens, for example: `SPOT-RATE` or `spot-rate` or `Spot-Rate`|
+| ENM-001 | Enumerations **MUST NOT** include spaces or special characters e.g. underscore |
+| FPB-024 | Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyorCountry`|
 
 ## Date & Time Fields
 
@@ -123,9 +123,9 @@ The following table shows the associated Finastra rules:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| DEF-999 | **SHOULD** use a `string` data type and a `date` or `date-time` format for date and/or time fields|
-| DEF-999 | **MAY** use the the format `time` with UTC format (23:20:50.52Z) not the time zone specification|
-| DEF-999 | **SHOULD** avoid the format `partial-time`|
+| DEF-028<br>PEF-010 | **SHOULD** use a `string` data type and a `date` or `date-time` format for date and/or time fields|
+| FPB-025 | **MAY** use the the format `time` with UTC format (23:20:50.52Z) not the time zone specification|
+| FPB-026 | **SHOULD** avoid the format `partial-time`|
 
 Example : 
 ```
@@ -145,9 +145,9 @@ ISO standards must be used for the following common business objects:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| DEF-999 |  **MUST** use ISO 8601/RFC 3339 for dates and times|
-| DEF-999 |  **MUST** use ISO 3166 for countries|
-| DEF-999 |  **MUST** use ISO 4217 for currencies|
+| FPB-027 |  **MUST** use ISO 8601/RFC 3339 for dates and times|
+| FPB-028 |  **MUST** use ISO 3166 for countries|
+| FPB-029 |  **MUST** use ISO 4217 for currencies|
 
 
 ## Amount Fields
@@ -186,5 +186,5 @@ The following table shows the associated Finastra rules:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| DEF-999 |    **MUST NOT** define API fields as `nullable` |
-| DEF-999 |    **MUST NOT** send responses to clients with `null` as a field's value e.g. return {"a":"value"} rather than {"a":"value","b":"null"} |
+| FPB-030 |    **MUST NOT** define API fields as `nullable` |
+| FPB-031 |    **MUST NOT** send responses to clients with `null` as a field's value e.g. return {"a":"value"} rather than {"a":"value","b":"null"} |
