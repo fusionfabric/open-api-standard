@@ -25,9 +25,14 @@ The following are examples of media types used in Finastra APIs:
 - `application/pdf` - for PDF documents
 - `multipart/form-data` - for payloads combining fields and files
 
-> APIs **SHOULD** use `application/json` as default `content-type`
 
-> The default encoding of the payload is `charset=utf-8` by convention. The encoding **MAY** be specified in the section `consumes`/`produces` (OAS2) or `content` (in OAS3) as `application/json; charset=utf-8`
+The following table shows the associated Finastra rules:
+
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PFB-001 | APIs **SHOULD** use `application/json` as default `content-type` |
+| PFB-002 | The default encoding of the payload is `charset=utf-8` by convention. The encoding **MAY** be specified in the section `consumes`/`produces` (OAS2) or `content` (in OAS3) as `application/json; charset=utf-8` |
+| MIM-001<br>MIM-002<br>MIM-003<br>MIM-004 | **SHOULD** limit the contentt ypes to the following: `application/json`, `application/xml`, `application/pdf`, `multipart/form-data`, `image/jpeg`, `image/tiff`, `image/png` |
 
 ### JSON
 
@@ -53,12 +58,10 @@ integration.
 
 The following Finastra rules apply to xml formats:
 
-> APIs **MAY** use XML **if and ONLY if** it follows industry data
-> format standards.
-
-> Non-JSON standards such as FpML **SHOULD NOT** be converted to JSON,
-> rather use the content-type associated with the standard e.g. use XML 
-> to define FpML content.
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PFB-003 | APIs **MAY** use XML **if and ONLY if** it follows industry data format standards
+| PFB-004 | Non-JSON standards such as FpML **SHOULD NOT** be converted to JSON, rather use the content-type associated with the standard e.g. use XML to define FpML content
 
 ## Files
 
