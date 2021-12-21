@@ -38,27 +38,59 @@ parameters:
 ```
 ## Objects and Arrays
 
-Fields can be nested within objects (or arrays) as per the following OAS2 example.
+Fields can be nested within objects (or arrays) as per the following OAS2 example:
+```
+  object1:
+    type: object
+    properties:
+      object2:
+        $ref: '#/definitions/object2'
+  object2:
+    type: object
+    properties:
+      string1:
+        type: string
+      string2:
+        type: string
+```
+Whilst Finastra APIs support multiple nested fields, as per the above example, the use of `$ref` is mandated so that any individual structure does not contain more than two levels, hence, the following example would be deemed INVALID and should be refactored as per the above example:
+```
+  object1:
+    type: object
+    properties:
+      object2:
+        type: object
+        properties:
+          string1:
+            type: string
+          string2:
+            type: string
+```
+Similarly, when using `allOf`, `anyOf` or `oneOf`, $ref must be used to reference allowed fields, for example, the following code shows both a valid and invalid definition: 
 
-Note that whilst Finastra APIs support multiple nested fields, the use of `$ref` is mandated so that any individual structure does not contain more than two levels.
 ```
-  nestedObject1:
-    description: Nested object
-    type: object
-    properties:
-      nestedlevel2:
-        $ref: '#/definitions/nestedObject2'
-  nestedObject2:
-    type: object
-    description: Nested object level 2
-    properties:
-      nestedlevel3a:
-        type: string
-        description: Nested field level 3
-      nestedlevel3b:
-        type: string
-        description: Nested field level 3
+# Valid structure       
+FieldBlock:
+  allOf:
+    - $ref: '#/definitions/CommonFields'
+    - $ref: '#/definitions/SpecificFields'
+    
+# Invalid structure - it should use a $ref instead of properties:
+FieldBlock:
+ allOf:
+ - $ref: '#/definitions/CommonFields'
+ - properties:
+     field1:
+       type: number
+     field2:
+       type: string 
 ```
+The following lists the Finastra standards for defining structures:
+
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| DEF-017<br>DEF-018<br>DEF-019 | **MUST** not define nested fields - use a reference field, `$ref`, to define the nested fields  |
+| DEF-020 | **MUST** use a reference field, `$ref`, with allOf anyOf or oneOf  |
 
 ## Finastra Field and Parameter Standards
 
@@ -93,8 +125,8 @@ The following lists the Finastra standards for field and parameter names:
 | FPB-020 | **SHOULD** use empty string to remove a field's value |
 | FPB-021 | **SHOULD NOT** use `allowEmptyValue: true` |
 | PEF-009<br>DEF-016 | **MUST NOT** define fields or parameters that are not used |
-| DEF-004 | **MUST** define the keyword `type` against all fields and parameters unless using $ref |
-| DEF-021<br>DEF-022 | **MUST NOT** define the keyword `type` against all fields using $ref |
+| DEF-004<br>DEF-009 | **MUST** define the keyword `type` against all fields and parameters unless using $ref, allOf, oneOf or anyOf |
+| DEF-021<br>DEF-022 | **MUST NOT** define the keyword `type` against all fields when using $ref, allOf, oneOf or anyOf |
 | DEF-007 | **MUST** define a `description` against each field or parameter |
 | INF-003 | **MUST** define a `description` in the `info` section |
 | DEF-008 | **MUST** define a `title` against each field or parameter |
