@@ -89,7 +89,8 @@ The following lists the Finastra standards for defining structures:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| DEF-017<br>DEF-018<br>DEF-019 | **MUST** not define nested fields - use a reference field, `$ref`, to define the nested fields  |
+| DEF-017<br>DEF-018<br>DEF-019 | **MUST** not define nested fields - use a reference field with `$ref` to define the nested fields  |
+| PPM-003 | **MUST** not define nested fields for parameter schemas - use a reference field with `$ref` to define the nested fields  |
 | DEF-020 | **MUST** use a reference field, `$ref`, with allOf anyOf or oneOf  |
 
 ## Finastra Field and Parameter Standards
@@ -116,25 +117,27 @@ The following lists the Finastra standards for field and parameter names:
 | DEF-027<br>  IDS-001 | **MUST NOT** define field or parameter names that end in case sensitive 'ID' |
 | FPB-014 | **MUST** list parameters in a specific order: required, followed by optional |
 | FPB-015 | **MUST** ensure that array names are plural |
-| FPB-016 | **SHOULD** specify relevant defaults where applicable |
-| FPB-017 | **SHOULD** be as precise as possible with field and parameter definitions |
+| FPB-016 | **SHOULD** ensure that a `GET` request for a collection defines the array name as `items` |
+| FPB-017 | **SHOULD** specify relevant defaults where applicable |
+| FPB-018 | **SHOULD** be as precise as possible with field and parameter definitions |
 | DEF-012<br>PEF-012 | **SHOULD** have `maxLength` for `string` data types |
 | DEF-035 | **SHOULD NOT** have a `maxLength` value of 1 for `string` fields - consider using a `boolea`n type instead of `string` |
-| FPB-018 | **SHOULD** have `minLength` and `pattern` for `string` data types |
-| FPB-019 | **MUST NOT** specify a default for a required parameter |
-| FPB-020 | **SHOULD** use empty string to remove a field's value |
-| FPB-021 | **SHOULD NOT** use `allowEmptyValue: true` |
+| FPB-019 | **SHOULD** have `minLength` and `pattern` for `string` data types |
+| FPB-020 | **MUST NOT** specify a default for a required parameter |
+| FPB-021 | **SHOULD** use empty string to remove a field's value |
+| FPB-022 | **SHOULD NOT** use `allowEmptyValue: true` |
 | PEF-009<br>DEF-016 | **MUST NOT** define fields or parameters that are not used |
 | DEF-004<br>DEF-009 | **MUST** define the keyword `type` against all fields and parameters unless using $ref, allOf, oneOf or anyOf |
 | DEF-021<br>DEF-022 | **MUST NOT** define the keyword `type` against all fields when using $ref, allOf, oneOf or anyOf |
-| DEF-007 | **MUST** define a `description` against each field or parameter |
+| DEF-007<br>PPM-004 | **MUST** define a `description` against each field or parameter |
 | INF-003 | **MUST** define a `description` in the `info` section |
 | DEF-008 | **MUST** define a `title` against each field or parameter |
 | INF-004<br>INF-015 | **MUST** define a `title` that is 200 characters or less in the `info` section |
 | DEF-006<br>INF-002<br>PEF-004<br>PEF-013 | **MUST** not have the text 'todo' or 'tbd' in descriptions |
-| DEF-029 | **MUST** not have the text 'todo' or 'tbd' in examples |
+| DEF-029 | **SHOULD** not have the text 'todo' or 'tbd' in *examples* |
 | DEF-011<br>DEF-031<br>INF-005<br>INF-006<br>PEF-003<br>PEF-015<br>PTH-002<br>DEF-003<br>DEF-030<br>PEF-001<br>PEF-014 | **MUST** only use characters in the ASCII  character set for all descriptions |
-
+| DEF-015 | **MUST** ensure that fields in the `required` section are defined  |
+| PEF-006 | **SHOULD** ensure that the parameter reference matches the parameter name - this is for readability, for example: <br>X-Request-ID:<br>&nbsp;&nbsp;in: header<br>&nbsp;&nbsp;name: X-Request-ID<br>&nbsp;&nbsp;type: string  |
 
 ## Finastra Field and Parameter Type and Format Standards
 
