@@ -71,13 +71,12 @@ Finastra APIs are Open APIs (public) as far as possible and a Finastra API shoul
 
 Within Finastra the following rules apply:
 
-> Finastra Open APIs **MUST** be defined using the OpenAPI Specification (OAS)
-
-> Finastra Open APIs **MUST** be well documented
-
-> Finastra Open APIs **SHOULD** adopt API First and API as a Product strategies
-
-> Finastra Open APIs **MAY** be be defined using OpenAPI v2 or v3
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+|EXT-001<br>EXT-002<br>EXT-003|<br>EXT-004 Finastra Open APIs **MUST** be defined using the OpenAPI Specification (OAS) |
+| PRI-001 | Finastra Open APIs **MUST** be well documented |
+| PRI-002 | Finastra Open APIs **SHOULD** adopt API First and API as a Product strategies |
+| PRI-003 | Finastra Open APIs **MAY** be be defined using OpenAPI v2 or v3 |
 
 ## Finastra Open API Principles
 
@@ -101,7 +100,9 @@ It is assumed that an **API First** approach is adopted to deliver **APIs as Pro
 
 ### Useful
 
-> Finastra Open APIs must be useful.
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PRI-010 | Finastra Open APIs must be useful |
 
 *Rationale*
 
@@ -122,7 +123,9 @@ quality.
 
 ### Keep it Simple
 
-> Finastra Open APIs must be designed to be as simple as possible.
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PRI-020 | Finastra Open APIs must be designed to be as simple as possible |
 
 *Rationale*
 
@@ -144,8 +147,9 @@ Finastra Open API designers MUST assume that the API audience are:
 
 ### Easy to Use
 
-> Finastra Open APIs must be designed to be (1) easy to use and (2) hard
-> to misuse.
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PRI-030 | Finastra Open APIs must be designed to be (1) easy to use and (2) hard to misuse |
 
 *Rationale*
 
@@ -165,7 +169,9 @@ Finastra Open API designers MUST ensure that the API is:
 
 ### Consistent
 
-> All Finastra Open APIs must be consistent in vocabulary and behavior.
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PRI-040 | All Finastra Open APIs must be consistent in vocabulary and behavior |
 
 *Rationale*
 
@@ -189,7 +195,9 @@ Finastra Open API designers and developers MUST ensure that:
 
 ### Backward Compatible
 
-> All Finastra Open APIs must be backward compatible between releases.
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PRI-050 |All Finastra Open APIs must be backward compatible between releases |
 
 *Rationale*
 
@@ -222,7 +230,10 @@ The following table describes the Richardson Maturity Model:
 | 1     | Resources           | An endpoint per resource type                                                                                                                                                                        |
 | 2     | HTTP Verbs          | Use HTTP properties to deal with scalability and faults e.g. HTTP methods, HTTP response codes                                                                                                       |
 | 3     | Hypermedia controls | Use link elements in the response to address what may be done with further requests. <BR> This level of compliance is more commonly known as Hypermedia As The Engine Of Application State (HATEOAS) |
+    
+The following Finastra rules apply:
 
-> Finastra Open APIs **SHOULD** target level 2: HTTP Verbs
-
-> Finastra Open APIs **MAY** target level 3: Hypermedia Controls
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PRI-060 | Finastra Open APIs **SHOULD** target level 2: HTTP Verbs |
+| PRI-061 | Finastra Open APIs **MAY** target level 3: Hypermedia Controls |
