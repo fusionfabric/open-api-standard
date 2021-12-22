@@ -46,17 +46,14 @@ The following example show how the versions might be used:
 
 The following standards apply within Finastra:
 
-> APIs **MUST** have a semantic version defined in their specification
+The following lists the Finastra standards for defining structures:
 
-> The major version of the API **MUST** be set in the path parameter as an `integer` prefixed with the letter `v` e.g. `https://{host}/v1/{resource}`
-
-> API client versions against API endpoints **MUST** be incremented for breaking changes
-
-> REST APIs in the industry use client versions that can be
-defined as query parameters, custom headers or accept headers with
-custom types. These different formats **MUST NOT** be used in Finastra
-APIs
-
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| INF-011 | APIs **MUST** have a semantic version defined in their specification
+| VER-001 | The major version of the API **MUST** be set in the path parameter as an `integer` prefixed with the letter `v` e.g. `https://{host}/v1/{resource}`
+| VER-002 | API client versions against API endpoints **MUST** be incremented for breaking changes
+| VER-003 | REST APIs in the industry use client versions that can be defined as query parameters, custom headers or accept headers with custom types. These different formats **MUST NOT** be used in Finastra
 
 ## API Backward Compatibility
 
@@ -152,21 +149,15 @@ Finastra will communicate lifecycle events to ensure that clients are aware of c
 
 Deprecation and removal notice periods are determined by the API owner.
 
-> Finastra APIs **MUST** increment the minor and/or patch versions of the API
-whenever a change is made regardless of whether the change is breaking or non-breaking
+The following lists the Finastra standards that apply to the API lifecycle:
 
-> Finastra APIs **MUST** be designed to be backwards compatible as far
- as possible
-
-> Finastra APIs **MUST** change the major version when breaking changes are
- introduced to the API
-
-> APIs **SHOULD** differentiate finished API definitions from work in
- progress - the maturity level of **DRAFT**, **BETA** and **GA** are used for this purpose
-
-> Finastra APIs **MUST NOT** be obsoleted when in use by customers; a
- published deprecation and obsoletion with appropriate notice periods
- must be provided
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| VER-010 | Finastra APIs **MUST** increment the minor and/or patch versions of the API whenever a change is made regardless of whether the change is breaking or non-breaking |
+| VER-011 | Finastra APIs **MUST** be designed to be backwards compatible as far as possible |
+| VER-012 | Finastra APIs **MUST** change the major version when breaking changes are introduced to the API |
+| VER-013 | Finastra APIs **MUST NOT** be obsoleted when in use by customers; a published deprecation and obsoletion with appropriate notice periods must be provided |
+| VER-014 | APIs **SHOULD** differentiate finished API definitions from work in progress - the maturity level of **DRAFT**, **BETA** and **GA** are used for this purpose |
 
 ## API Changes
 
