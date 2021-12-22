@@ -66,13 +66,11 @@ containing an array of items e.g.:
 
 ### Finastra API Collections Standards ###
 
-> Finastra APIs supporting `GET` collections **SHOULD** support extensibility by returning the
-collection as an object containing an array of `items` because this approach can be extended
-to support additional data without imposing breaking changes on the API
-
-> `GET` collections **SHOULD** name the array as `items`
-
-> Finastra APIs supporting `GET` collections **MUST** return a `200` (not a '404') response code when a `GET` query returns an empty collection. Note that a `200` response is preferred to a `204` response for an empty collection
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| RSP-013 | Finastra APIs supporting `GET` collections **SHOULD** support extensibility by returning the collection as an object containing an array of `items` because this approach can be extended to support additional data without imposing breaking changes on the API |
+| PAG-001 | `GET` collections **SHOULD** name the array as `items` |
+| PAG-002 | Finastra APIs supporting `GET` collections **MUST** return a `200` (not a '404') response code when a `GET` query returns an empty collection. Note that a `200` response is preferred to a `204` response for an empty collection |
 
 
 ## Searching and Filtering
@@ -107,16 +105,13 @@ Examples:
 
 ### Finastra API Search and Filter Standards ###
 
-> Support for searching and filtering **SHOULD** be provided using `GET`
-> and query parameters to allow searches to be bookmarked - this is the recommended approach
-
-> when a query parameter is considered as classified data (personally identifiable information - PII), `POST` **SHOULD** be used instead of `GET` so that the query parameters are contained in the `POST` body rather than the url path
-
-> RSQL, FIQL syntax **MAY** be used for the `GET` on the search resource
-
-> The choice of technology **MUST** be based on functional requirements
-
-> GraphQL, and OData **SHOULD NOT** be the default choice for API style
+| Rule Identifier  | Description  |
+|:-------:|:------------ 
+| PAG-010 | Support for searching and filtering **SHOULD** be provided using `GET` and query parameters to allow searches to be bookmarked - this is the recommended approach |
+| PAG-011 | When a query parameter is considered as classified data (personally identifiable information - PII), `POST` **SHOULD** be used instead of `GET` so that the query parameters are contained in the `POST` body rather than the url path |
+| PAG-012 | RSQL, FIQL syntax **MAY** be used for the `GET` on the search resource |
+| PAG-013 | The choice of technology **MUST** be based on functional requirements |
+| PAG-014 | GraphQL, and OData **SHOULD NOT** be the default choice for API style |
 
 
 ## Sorting
@@ -139,18 +134,12 @@ e.g.: `($propertyname,)+[asc|desc]`
 
 ### Finastra API Sorting Standards ###
 
-> Finastra APIs containing resource collections **SHOULD** support sort
-> capability.
-
-> Finastra APIs supporting sort **MUST** use the **sort** path keyword
-> with `asc` and `desc` parameters where `desc` means reverse order and
-> `asc` means ascending order, for example: `($propertyname,)+[asc|desc]`
-
-> Finastra APIs supporting sort **MUST** specify the default sort
-> sequence in API documentation
-
-> Finastra APIs supporting sort **MUST** specify the maximum number of
-> sort terms
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PAG-020 | Finastra APIs containing resource collections **SHOULD** support sort capability |
+| PAG-021 | Finastra APIs supporting sort **MUST** use the **sort** path keyword with `asc` and `desc` parameters where `desc` means reverse order and `asc` means ascending order, for example: `($propertyname,)+[asc|desc]` |
+| PAG-022 | Finastra APIs supporting sort **MUST** specify the default sort sequence in API documentation |
+| PAG-023 | Finastra APIs supporting sort **MUST** specify the maximum number of sort terms |
 
 
 ## Pagination
@@ -200,15 +189,14 @@ Examples:
 
 ### Finastra API Pagination Request Standards ###
 
-> Finastra APIs with resource collections **SHOULD** support pagination
-> in mos circumstances
+The following lists the Finastra standards for defining structures:
 
-> Finastra APIs **SHOULD** implement pagination using offset-limit based pagination
-
-> Finastra APIs supporting pagination **SHOULD** be implemented using
-> the `limit` and `offset` request keywords
-
-> Finastra APIs implementing pagination **MUST** specify a `default` value for the `limit` parameter
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PAG-030 | Finastra APIs with resource collections **SHOULD** support pagination in most circumstances | 
+| PAG-031 | Finastra APIs **SHOULD** implement pagination using offset-limit based pagination |
+| PAG-032 | Finastra APIs supporting pagination **SHOULD** be implemented using the `limit` and `offset` request keywords |
+| PAG-033 | Finastra APIs implementing pagination **MUST** specify a `default` value for the `limit` parameter |
 
 ## Pagination Response
 
@@ -408,13 +396,12 @@ The following link shows an OAS2 API that contains an example of collection and 
 
 ### Finastra API Pagination Response Standards ###
 
-> Finastra APIs supporting `GET` collections **SHOULD** support the
-> provision of metadata using the `_meta` keyword
 
-> `_meta` object **MAY** be used in others context than pagination. 
-
-> `_meta` object **MAY** be extended with additional meta data 
-
-
-> Finastra APIs supporting `GET` collections **SHOULD** support navigation
-> using the `_links` keyword
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| DEF-033 | Finastra APIs supporting `GET` collections **SHOULD** support the provision of metadata using the `_meta` keyword |
+| DEF-034 | Finastra APIs supporting `GET` collections **SHOULD** use the fields `limit` and `offset` with `_meta` |
+| PEF-016 | Finastra APIs supporting `GET` collections **SHOULD** define a default value for the `limit` field |
+| PAG-040 | `_meta` object **MAY** be used in contexts other than pagination |
+| PAG-041 | `_meta` object **MAY** be extended with additional meta data |
+| PAG-042 | Finastra APIs supporting `GET` collections **SHOULD** support navigation using the `_links` keyword |
