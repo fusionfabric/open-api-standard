@@ -88,9 +88,9 @@ The following Finastra rules apply:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| RST-001 |  Finastra Open APIs use HTTP 1.1 ([RFC7231](https://tools.ietf.org/html/rfc7231)) as a reference implementation |
+| RST-001 | Finastra Open APIs use HTTP 1.1 ([RFC7231](https://tools.ietf.org/html/rfc7231)) as a reference implementation |
 | RST-002 | Finastra Open APIs may use HTTP 2 ([RFC7540](https://tools.ietf.org/html/rfc7540)) |
-| RST-003 |  Finastra Open APIs **MUST** use HTTPS and TLS i.e. [RFC2660](https://tools.ietf.org/html/rfc2660) and [RFC2818](https://tools.ietf.org/html/rfc2818) are enforced |
+| SCM-002 | Finastra Open APIs **MUST** use HTTPS and TLS i.e. [RFC2660](https://tools.ietf.org/html/rfc2660) and [RFC2818](https://tools.ietf.org/html/rfc2818) are enforced |
 
 ## HTTP Methods
 
@@ -411,16 +411,17 @@ The following Finastra API standards apply to HTTP methods:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| RST-070 | **MUST** use the standard GET, POST, PUT, DELETE methods against a resource |
-| RST-071 |  **MUST** fully consider relevant and necessary resources when using HTTP methods |
+| PTH-010 | **MUST** use one of the standard GET, POST, PUT, PATCH, DELETE, OPTIONS methods against a resource |
+| PTH-010 | **MAY** use HEAD method against an API |
+| RST-071 | **MUST** fully consider relevant and necessary resources when using HTTP methods |
 | RST-072 | **MUST NOT** use POST if GET can be used |
 | RST-073 | **MUST** handle a single resource {id} in the path |
 | RST-074 | **SHOULD NOT** use verbs within paths<br>e.g. `POST /resources/{resourceId} {"status" : "active"}`<br>rather than `POST /resources/{resourceId}/activate` |
 | RST-075 | **SHOULD** avoid resource-based actions where possible by using a relevant resource e.g. use `POST accounts/{id}` with a payload of `{ status : closed }` |
 | RST-076 | **SHOULD NOT** use constructs such as `GET /accounts?id=12` except for filtering - prefer `GET /accounts/12` for retrieval of a single resource |
-| RST-077 |  **SHOULD** ensure API operations on resources are complete in their CRUD scope |
-| RST-078 |  **SHOULD** ensure that non RESTful actions are avoided |
-| RST-079 |  **MAY** use HEAD and OPTIONS methods |
+| RST-077 | **SHOULD** ensure API operations on resources are complete in their CRUD scope |
+| RST-078 | **SHOULD** ensure that non RESTful actions are avoided |
+| RST-079 | **MAY** use HEAD and OPTIONS methods |
 
 ## HTTP Headers
 
@@ -454,12 +455,17 @@ The prefix `X-finastra` should not be used.
 
 
 ### Finastra Rules for HTTP Headers
-	
+
 The following Finastra standards apply to HTTP headers:
+
+The following HTTP headers may be used:<br>`Accept-Language`<br>`Content-Language`<br>`ETag`<br>`Idempotency-Key`<br>`If-Match`<br>`X-External-Context-ID`<br>`X-Request-ID`
+	
+
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
 | RST-080 | **MAY** use standard HTTP headers or custom HTTP headers |
+| PEF-008 | **MAY** use the following HTTP headers:<br>`Accept-Language`<br>`Content-Language`<br>`ETag`<br>`Idempotency-Key`<br>`If-Match`<br>`X-External-Context-ID`<br>`X-Request-ID` |
 | RST-081 | **SHOULD** use Train-Case for HTTP custom header fields |
 | RST-082 | **SHOULD**: use `ETag` with `If-Match` Header for concurrency validation |
 | RST-083 | **SHOULD** use `Idempotency-Key` for POST requests |
