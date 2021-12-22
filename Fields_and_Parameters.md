@@ -138,6 +138,8 @@ The following lists the Finastra standards for field and parameter names:
 | DEF-011<br>DEF-031<br>INF-005<br>INF-006<br>PEF-003<br>PEF-015<br>PTH-002<br>DEF-003<br>DEF-030<br>PEF-001<br>PEF-014 | **MUST** only use characters in the ASCII  character set for all descriptions |
 | DEF-015 | **MUST** ensure that fields in the `required` section are defined  |
 | PEF-006 | **SHOULD** ensure that the parameter reference matches the parameter name - this is for readability, for example: <br>X-Request-ID:<br>&nbsp;&nbsp;in: header<br>&nbsp;&nbsp;name: X-Request-ID<br>&nbsp;&nbsp;type: string  |
+| PPM-010 | **MUST NOT** use a body parameter with a `GET` operation  |
+
 
 ## Finastra Field and Parameter Type and Format Standards
 
