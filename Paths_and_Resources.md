@@ -147,3 +147,11 @@ The following lists the Finastra standards for paths and resources:
 | RES-001<br>RES-002 | **MUST NOT** use characters that require URL encoding e.g. spaces |
 | RES-001<br>RES-002 | **MUST NOT** use an underscore character |
 | RES-005 | **MUST** ensure the path has a maximum of 6 segments e.g.: `/resource1/{resource1Id}/resource2/{resource2Id}/resource3/{resource3Id}` |
+| PTH-005 | **MUST** enter a description against paths |
+| PTH-001 | **MUST** only use characters in the ASCII character set for all descriptions |
+| PTH-004 | **SHOULD** not have the text ‘todo’ or ‘tbd’ in descriptions |
+| PTH-006 | **MUST** enter an operationId - the recommended format is `<method>-<resource>-<subresource>` e.g. get-accounts-statements`  |
+| PTH-007 | **MUST** ensure the operationId is 100 characters or less in length |
+| PTH-011 | **MUST** only use the following characters for the operationId: a-z A-Z 0-9 or hyphen or underscore |
+| PTH-009 | **SHOULD** enter a summary for each path  |
+| PTH-012 | **MUST** ensure the path summary is 200 characters or less in length |
