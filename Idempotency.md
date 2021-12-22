@@ -100,14 +100,15 @@ details:
 The implementation of idempotency using `Idempotency-Key` is not
 mandatory for all APIs since it imposes strict rules on the client and
 server, however, full consideration of the implications of NOT
-implementing idempotency must be considered, hence:
+implementing idempotency must be considered.
 
-> Idempotency **MUST** be considered for all API requests
+The following lists the Finastra standards for idempotency:
 
-> Finastra APIs **SHOULD** support idempotency for `POST` methods
-
-> Finastra APIs supporting idempotency **MUST** define an
-> \`Idempotency-Key header on associated `POST` operations
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| IDM-001 | Idempotency **MUST** be considered for all API requests
+| IDM-002 | Finastra APIs **SHOULD** support idempotency for `POST` methods
+| PPM-006 | Finastra APIs supporting idempotency **MUST** define an `Idempotency-Key` header on associated `POST` operations
 
 **Sample API Code**
 
