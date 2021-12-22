@@ -19,12 +19,15 @@ Additional details of specific data types can be found in the *Naming Convention
 
 The Open API specification supports multiple media types as defined by [RFC6838](https://datatracker.ietf.org/doc/html/rfc6838).
 
-The following are examples of media types used in Finastra APIs:
+The following are examples of media types that may be used in Finastra APIs:
 - `application/json` - for Json payloads - this is used by most APIs
 - `application/xml` - for XML payloads
 - `application/pdf` - for PDF documents
 - `multipart/form-data` - for payloads combining fields and files
-
+- `image/jpeg`
+- `image/tiff`
+- `image/png`
+- `image/gif`
 
 The following table shows the associated Finastra rules:
 
