@@ -251,27 +251,18 @@ in this case the endpoints would be :
 
 The following is a list of Finastra standards associated with custom fields:
 
-> Support for custom fields in Finastra APIs is NOT provided by default and is NOT recommended but custom field support **MAY** be provided. The reason for not recommending custom fields within APIs is because of the increased complexity to the developer and the support overheads, however, there may be use cases for specific products where custom fields are a necessary requirement
-
-> Bank specific APIs supporting specific bank specific data extension customization **MUST NOT** be provided, rather, follow the technique described in this section
-
-> Custom field data extension **MAY** be supported in Finastra APIs by ensuring that clients using the API can obtain details of the expected custom fields for a specific Bank
-
-> When implemented, custom fields schemas **MUST** adhere to [JSON Schema](https://json-schema.org/understanding-json-schema/basics.html)
-
-> When implemented, custom fields **SHOULD** be included in the payload of the associated business object i.e avoid providing a separate endpoint solely for custom-fields
-
-> When implemented, custom fields **SHOULD** be grouped under the name or prefix `custom-fields`
-
-> When implemented, custom fields **SHOULD** use the `additionalProperties` keyword against the `custom-fields` field
-
-> When implemented, custom field schemas **SHOULD** be provided as an endpoint in the associated business object API using the path name `/custom-fields-schemas` e.g. `GET /parties/custom-fields-schemas`
-
-> When implemented, custom field names *SHOULD NOT** collide with other field names defined in the API
-
-> When implemented, custom field schema maintenance **SHOULD** be considered by providing a resource meta data API 
-supporting `POST`, `PUT`, `GET`, `DELETE`, e.g.`POST /parties/custom-fields-schemas`, to allow a Bank to define 
-the custom field schema for a business object. It is anticipated that this endpoint would be included in a separate API and would not typically be required
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| CUS-001 | Support for custom fields in Finastra APIs is NOT provided by default and is NOT recommended but custom field support **MAY** be provided. The reason for not recommending custom fields within APIs is because of the increased complexity to the developer and the support overheads, however, there may be use cases for specific products where custom fields are a necessary requirement |
+| CUS-002 | Bank specific APIs supporting specific bank specific data extension customization **MUST NOT** be provided, rather, follow the technique described in this section |
+| CUS-003 | Custom field data extension **MAY** be supported in Finastra APIs by ensuring that clients using the API can obtain details of the expected custom fields for a specific Bank |
+| CUS-004 | When implemented, custom fields schemas **MUST** adhere to [JSON Schema](https://json-schema.org/understanding-json-schema/basics.html) |
+| CUS-005 | When implemented, custom fields **SHOULD** be included in the payload of the associated business object i.e avoid providing a separate endpoint solely for custom-fields |
+| CUS-006 | When implemented, custom fields **SHOULD** be grouped under the name or prefix `custom-fields` |
+| CUS-007 | When implemented, custom fields **SHOULD** use the `additionalProperties` keyword against the `custom-fields` field |
+| CUS-008 | When implemented, custom field schemas **SHOULD** be provided as an endpoint in the associated business object API using the path name `/custom-fields-schemas` e.g. `GET /parties/custom-fields-schemas` |
+| CUS-009 | When implemented, custom field names **SHOULD NOT** collide with other field names defined in the API |
+| CUS-010 | When implemented, custom field schema maintenance **SHOULD** be considered by providing a resource meta data API supporting `POST`, `PUT`, `GET`, `DELETE`, e.g.`POST /parties/custom-fields-schemas`, to allow a Bank to define the custom field schema for a business object. It is anticipated that this endpoint would be included in a separate API and would not typically be required |
 
 
 ## Localization
@@ -308,7 +299,6 @@ For details on the relationship between localization and internationalization se
 
 ### Finastra API Localization Standards ###
 
-> APIs that support localization **MUST** use the `Accept-Language` header to facilitate content
-> negotiation with the client and **MUST** inform the client of the selection in the `Content-Language` header
-
-
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| LOC-001 | APIs that support localization **MUST** use the `Accept-Language` header to facilitate content negotiation with the client and **MUST** inform the client of the selection in the `Content-Language` header |
