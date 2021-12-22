@@ -137,7 +137,7 @@ paths:
           schema:
             $ref: '#/definitions/Party'
           headers:
-            ETags:
+            ETag:
               description: 'According to RFC7232 section-2.3 specification , it represents current version.'
               type: string
               maxLength: 256
@@ -675,8 +675,6 @@ definitions:
     title: Party Identifiers
     description: Contains the identifiers of the Party.
     type: object
-    required:
-      - partyId
     properties:
       address:
         $ref: '#/definitions/Address'
