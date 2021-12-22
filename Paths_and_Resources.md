@@ -142,7 +142,8 @@ The following lists the Finastra standards for paths and resources:
 | PAR-043 | **SHOULD** name resources as plural - this applies to `GET` requests against both an individual resource and the associated resource collection e.g. `GET /accounts/{accountId}` and `GET /accounts` |
 | PTH-003 | **SHOULD NOT** use verbs or actions in the path, rather use resources where possible |
 | PAR-044 | Where a verb or action is used in the path it **SHOULD** use a present tense verb e.g. `/accounts/{id}/activate` |
+| PAR-045 | **MUST** not use Personally Identifiable Information (PII) in the path |
 | RES-001<br>RES-002 | **MUST** name resources in *kebab case* using the characters a-z, 0-9 and hyphens e.g. a **deposit products** resource should be mapped to `/deposit-products` rather than  `/deposit_products` or `/depositProducts` or `/DepositProducts` |
 | RES-001<br>RES-002 | **MUST NOT** use characters that require URL encoding e.g. spaces |
 | RES-001<br>RES-002 | **MUST NOT** use an underscore character |
-| PAR-045 | **MUST** not use Personally Identifiable Information (PII) in the path |
+| RES-005 | **MUST** ensure the path has a maximum of 6 segments e.g.: `/resource1/{resource1Id}/resource2/{resource2Id}/resource3/{resource3Id}` |
