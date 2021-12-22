@@ -30,7 +30,8 @@ nav_order: 19
 <td style="text-align: left;">December 2021</td>
 <td style="text-align: left;"><p>Included the following modifications:</p>
 <ul>
-<li>Added detail on: PATCH method, null field</li>
+<li>Added rule identifiers corresponding to Finastra's linter messages where applicable</li>
+ <li>Added detail on: PATCH method, null field</li>
 <li>Added CRUD API section</li>
 </ul>
 </td>
