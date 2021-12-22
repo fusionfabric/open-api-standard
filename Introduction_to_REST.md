@@ -79,23 +79,18 @@ and security.
 One of the goals of RESTful architecture is to support the gradual deployment of changes within an already deployed architecture
 which is why REST and HTTP fit well together.
 
-> Finastra Open APIs use HTTP 1.1
-([RFC7231](https://tools.ietf.org/html/rfc7231)) as a reference
-implementation.
-
-> Finastra Open APIs may use HTTP 2
-([RFC7540](https://tools.ietf.org/html/rfc7540)).
-
 Transport Layer Security (TLS), formerly Secure Socket Layer (SSL),
 secures message communication over a computer network by encrypting the
 message contents. An HTTPS transfer or API call is an HTTP call over a
 connection secured by TLS.
 
-> Finastra Open APIs **MUST** use HTTPS and TLS
-> i.e. [RFC2660](https://tools.ietf.org/html/rfc2660) and
-> [RFC2818](https://tools.ietf.org/html/rfc2818) are enforced
+The following Finastra rules apply:
 
-<!-- ## HTTP Methods -->
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| RST-001 |  Finastra Open APIs use HTTP 1.1 ([RFC7231](https://tools.ietf.org/html/rfc7231)) as a reference implementation |
+| RST-002 | Finastra Open APIs may use HTTP 2 ([RFC7540](https://tools.ietf.org/html/rfc7540)) |
+| RST-003 |  Finastra Open APIs **MUST** use HTTPS and TLS i.e. [RFC2660](https://tools.ietf.org/html/rfc2660) and [RFC2818](https://tools.ietf.org/html/rfc2818) are enforced |
 
 ## HTTP Methods
 
@@ -151,11 +146,12 @@ RESTful APIs use the `GET` method to obtain data from a resource. `GET` is typic
 -   `GET /customers/{id}` returns the customer identified with `{id}`.
 -   `GET /customers` returns a list of all customers.
 
-> As per the examples, Finastra APIs **SHOULD** implement `GET` methods
-> against both an individual resource and its collection
+The following Finastra rules apply:
 
-> `GET` methods against a collection **SHOULD** implement pagination and
-> search capabilities
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| RST-010 | As per the examples, Finastra APIs **SHOULD** implement `GET` methods against both an individual resource and its collection
+| RST-011 | `GET` methods against a collection **SHOULD** implement pagination and search capabilities
 
 **Characteristics**
 
@@ -186,7 +182,9 @@ specific API context this can mean many things e.g. creating a
 resource, executing an action, submitting long running operations,
 adding an item to a list.
 
-> **MUST** respond to POST requests with the identifier of new resources
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| RST-020 | **MUST** respond to POST requests with the identifier of new resources |
 
 **Example**
 
@@ -224,8 +222,9 @@ with the new state provided in the request. It is a *full replacement*.
 * `PUT /customers/` + `{payload}` - this requests a bulk update
 
 
-> Bulk requests **SHOULD** be avoided unless absolutely necessary;
-> consider alternative designs
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| RST-030 | Bulk requests **SHOULD** be avoided unless absolutely necessary; consider alternative designs |
 
 **Characteristics**
 
@@ -253,7 +252,9 @@ In many scenarios PATCH may look to be a good option e.g. to update a single fie
 - PATCH is not idempotent, unlike PUT
 - PATCH requires a description in the requested payload of how an update should take place
 
-> PATCH **SHOULD** be avoided as far as possible
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| RST-040 | PATCH **SHOULD** be avoided as far as possible |
 
 The payload of a PATCH request describes the updates in a declarative manner and the following RFC documents describe different PATCH request formats:
 - RFC 7396 (JSON Merge Patch)[https://datatracker.ietf.org/doc/html/rfc7386]
@@ -286,7 +287,9 @@ JSON Merge Patch is intuitive since the payloads of the resource and the PATCH r
 - array elements cannot be modified individually, rather, the entire array is replaced
 - the PATCH request payload does not have a corresponding schema that can be validated against, so malformed requests will not be rejected
 
-> **SHOULD** use JSON Merge Patch for PATCH requests
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| RST-050 | **SHOULD** use JSON Merge Patch for PATCH requests |
 
 #### JSON Patch - RFC 6902
 
@@ -300,7 +303,9 @@ The JSON Patch request payload format is more complex than the JSON Merge Patch 
      { "op": "copy", "from": "/a/b/d", "path": "/a/b/e" }
    ]
 ```
-> **MAY** use JSON Merge Patch for PATCH requests
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| RST-060 | **MAY** use JSON Merge Patch for PATCH requests |
 
 **Characteristics**
 
@@ -404,32 +409,18 @@ interact with multiple resources, for example: `POST /accounts/{id}/activate`.
 
 The following Finastra API standards apply to HTTP methods: 
 
->   **MUST** use the standard GET, POST, PUT, DELETE methods against a resource
-    
->   **MUST** fully consider relevant and necessary resources when using
-    HTTP methods
-    
->   **MUST NOT** use POST if GET can be used
-
->   **MUST** handle a single resource {id} in the path
-
->   **SHOULD NOT** use verbs within paths
-    e.g. `POST /resources/{resourceId} {"status" : "active"}` rather
-    than `POST /resources/{resourceId}/activate`
-
-> **SHOULD** avoid resource-based actions where possible by using a relevant
- resource e.g. use `POST accounts/{id}` with a payload of `{ status : closed }`    
-
->   **SHOULD NOT** use constructs such as `GET /accounts?id=12` except
-    for filtering - prefer `GET /accounts/12` for retrieval of a single
-    resource
-    
->   **SHOULD** ensure API operations on resources are complete in their
-    CRUD scope
-    
->   **SHOULD** ensure that non RESTful actions are avoided
-
->   **MAY** use HEAD and OPTIONS methods
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| RST-070 | **MUST** use the standard GET, POST, PUT, DELETE methods against a resource |
+| RST-071 |  **MUST** fully consider relevant and necessary resources when using HTTP methods |
+| RST-072 | **MUST NOT** use POST if GET can be used |
+| RST-073 | **MUST** handle a single resource {id} in the path |
+| RST-074 | **SHOULD NOT** use verbs within paths<br>e.g. `POST /resources/{resourceId} {"status" : "active"}`<br>rather than `POST /resources/{resourceId}/activate` |
+| RST-075 | **SHOULD** avoid resource-based actions where possible by using a relevant resource e.g. use `POST accounts/{id}` with a payload of `{ status : closed }` |
+| RST-076 | **SHOULD NOT** use constructs such as `GET /accounts?id=12` except for filtering - prefer `GET /accounts/12` for retrieval of a single resource |
+| RST-077 |  **SHOULD** ensure API operations on resources are complete in their CRUD scope |
+| RST-078 |  **SHOULD** ensure that non RESTful actions are avoided |
+| RST-079 |  **MAY** use HEAD and OPTIONS methods |
 
 ## HTTP Headers
 
@@ -454,8 +445,7 @@ Finastra APIs do not explicitly define `Content-Type`, `Accept` or `Authorizatio
 
 ### Custom HTTP Headers
 
-Custom headers **MAY** be used to add extra functionality which is
-exposed via HTTP. 
+Custom headers **MAY** be used to add extra functionality which is exposed via HTTP. 
 
 All custom header usage should be confirmed with the Finastra API team who will determine
 the name of the custom header based on [RFC6648](https://datatracker.ietf.org/doc/html/rfc6648) recommendations 
@@ -464,23 +454,16 @@ The prefix `X-finastra` should not be used.
 
 
 ### Finastra Rules for HTTP Headers
-
+	
 The following Finastra standards apply to HTTP headers:
 
->   **MAY** use standard HTTP headers
-
->   **SHOULD** use Train-Case for HTTP custom header fields
-
->   **SHOULD**: use `ETag` with `If-Match` Header for concurrency validation
-
->   **SHOULD** use `Idempotency-Key` for POST requests
-
->   **MAY** use `X-Request-ID` for tracking requests
-
->   **MAY** use `X-External-Context-ID` to specify context associated with an API
-
->   **MAY** define a content-type for `GET` requests even though the content type is not used ​- this is for compatibility with tooling
-
->   **MUST** not prefix custom headers with `X-Finastra`
-
-
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| RST-080 | **MAY** use standard HTTP headers or custom HTTP headers |
+| RST-081 | **SHOULD** use Train-Case for HTTP custom header fields |
+| RST-082 | **SHOULD**: use `ETag` with `If-Match` Header for concurrency validation |
+| RST-083 | **SHOULD** use `Idempotency-Key` for POST requests |
+| RST-084 | **MAY** use `X-Request-ID` for tracking requests |
+| RST-085 | **MAY** use `X-External-Context-ID` to specify context associated with an API |
+| RST-086 | **MAY** define a content-type for `GET` requests even though the content type is not used ​- this is for compatibility with tooling |
+| RST-087 | **MUST** not prefix custom headers with `X-Finastra` |
