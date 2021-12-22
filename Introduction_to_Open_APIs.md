@@ -73,7 +73,7 @@ Within Finastra the following rules apply:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-|EXT-001<br>EXT-002<br>EXT-003|<br>EXT-004 Finastra Open APIs **MUST** be defined using the OpenAPI Specification (OAS) |
+|EXT-001<br>EXT-002<br>EXT-003<br>EXT-004 | Finastra Open APIs **MUST** be defined using the OpenAPI Specification (OAS) |
 | PRI-001 | Finastra Open APIs **MUST** be well documented |
 | PRI-002 | Finastra Open APIs **SHOULD** adopt API First and API as a Product strategies |
 | PRI-003 | Finastra Open APIs **MAY** be be defined using OpenAPI v2 or v3 |
