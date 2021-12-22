@@ -28,7 +28,9 @@ The channel type determines the **OAuth2 flow** that will be used by the API:
 
 These flows are detailed in [RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749), section 4 .
 
-> Finastra Open APIs **MUST** secure endpoints with oAuth2 
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| SEC-001 | Finastra Open APIs **MUST** secure endpoints with oAuth2 |
 
 
 ## API Channel Types
@@ -57,9 +59,6 @@ This section provides extra details on Finastra channel types:
   - With B2E APIs, authentication is targeted at an employee held in a financial institution's identity provide
 
 
-> APIs **MUST** specify the channel use define in the OAS  `info` section `x-finastra-channel-type` with the various channel defined
-
-
 ## API Security Definitions
 
 Authentication for a specific channel types is described by using combinations of the Open API specification (OAS2 or OAS3) security keywords.
@@ -68,8 +67,9 @@ At OAS2 the `securityDefinitions` keyword is used to define the authentication t
 
 At OAS3 the `securitySchemes` keyword is used to define the authentication types supported by the API, and the `security` keyword then applies specific authentication types to the whole API (global setting) or to individual operations.
 
-> For Finastra APIs the following security definitions are mandatory:
-
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| SEC-002 | For Finastra APIs the following security definitions are mandatory |
 
 - OAS2 security definition used for Finastra B2C and B2E APIs
 
@@ -134,20 +134,18 @@ components:
 
 Finastra has a wide range of requirements to protect the confidentiality, integrity and availability of data under its custody. Finastra protects data by applying safeguards and controls which are appropriate given the sensitivity and criticality of the data.
 
-To classify the data there are two levels:
+Data within APIs is classified as one of the following:
 
 1. Public data - for example Market data.
 2. Restricted data - this is information that is protected under General Data Protection Regulation (GDPR) compliance or California Consumer Privacy ACT (CCPA).
 
 For more information about GDPR/CCPA compliance please check [General Data Protection Regulation guide](https://gdpr-info.eu/)  and [California Consumer Privacy Act](https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CIV&division=3.&title=1.81.5.&part=4.&chapter=&article=)
 
-The data classification informs users about appropriate policies to protect the privacy, compliant to GDPR or CCPA.
-
-Information provided to Finastra from the Banks for business intelligence purposes that is classified as `Restricted` must comply with regulations such as GDPR or CCPA when using the data in your apps.
+Where an API contains Restricted data the end user of the the API must apply appropriate privacy policies to protect the data, compliant with GDPR or CCPA. For example, data provided to Finastra from Banks for business intelligence purposes that is classified as `Restricted` must comply with regulations such as GDPR or CCPA when using the restricted data in apps.
 
 Fields that are `Restricted` are shown in APIs with a custom Finastra tag named `x-finastra-data-classification`. 
 
-The data classification tag is applied to the API, its endpoints and at parameter level.
+The `Restricted` data classification tag is applied to the API, its endpoints and at parameter level.
 
 If an endpoint uses a definition that is defined as `Restricted`, the endpoint is declared as `Restricted`, and similarly the API is declared as `Restricted`.
 
@@ -166,3 +164,6 @@ For example, in the following excerpt from the Account Information API, the `x-f
     }
   }
 ```
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| DCC-001 | Finastra APIs **MUST** undergo data classification before they can be published |
