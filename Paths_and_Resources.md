@@ -36,13 +36,13 @@ The remainder of this section describes paths, resources, resource identifiers a
 ## Paths
 
 REST APIs use paths to access resources. The following shows a typical path with the OAS2 and OAS3 keywords used to define the path:
-```
+`
 GET        https://apisandbox.finastra.com/finastraapis/v1/currencies
 operation-\scheme/\----------host---------/\---basepath---/\--path--/     # at OAS2
 
 GET        https://apisandbox.finastra.com/finastraapis/v1/currencies
 operation-\------------------servers url------------------/\--path--/     # at OAS3
-```
+`
 
 The following standards apply to paths:
 
