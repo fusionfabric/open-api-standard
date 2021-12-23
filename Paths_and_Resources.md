@@ -26,11 +26,12 @@ compatible with [RFC1035](https://tools.ietf.org/html/rfc1035).
 
 The following is an example of a set of CRUD endpoints against an `accounts` resource with an identifier of `{accountId}`:
 
-``` POST     /accounts                  < - - create a single account
-    GET      /accounts                  < - - return a list of accounts
-    GET      /accounts/{accountId}      < - - return a single account
-    PUT      /accounts/{accountId}      < - - update a single account
-    DELETE   /accounts/{accountId}      < - - delete a single account
+``` 
+POST     /accounts                  < - - create a single account
+GET      /accounts                  < - - return a list of accounts
+GET      /accounts/{accountId}      < - - return a single account
+PUT      /accounts/{accountId}      < - - update a single account
+DELETE   /accounts/{accountId}      < - - delete a single account
 ```
 The remainder of this section describes paths, resources, resource identifiers and the rules associated with a resource's Create, Update, Read, Delete (CRUD) lifecycle model.
 
