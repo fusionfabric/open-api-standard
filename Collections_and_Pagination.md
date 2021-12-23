@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Collections and Pagination
-nav_order: 10
+nav_order: 11
 ---
 # Collections and Pagination
 {: .no_toc}
