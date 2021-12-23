@@ -164,6 +164,7 @@ For example, in the following excerpt from the Account Information API, the `x-f
     }
   }
 ```
+
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
 | DCC-001 | Finastra APIs **MUST** undergo data classification before they can be published |
