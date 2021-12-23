@@ -150,8 +150,8 @@ The following Finastra rules apply:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| RST-010 | As per the examples, Finastra APIs **SHOULD** implement `GET` methods against both an individual resource and its collection
-| RST-011 | `GET` methods against a collection **SHOULD** implement pagination and search capabilities
+| RST-010 | As per the examples, Finastra APIs **SHOULD** implement `GET` methods against both an individual resource and its collection |
+| RST-011 | `GET` methods against a collection **SHOULD** implement pagination and search capabilities |
 
 **Characteristics**
 
