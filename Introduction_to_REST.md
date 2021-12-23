@@ -456,11 +456,17 @@ The prefix `X-finastra` should not be used.
 
 ### Finastra Rules for HTTP Headers
 
-The following Finastra standards apply to HTTP headers:
-
-The following HTTP headers may be used:<br>`Accept-Language`<br>`Content-Language`<br>`ETag`<br>`Idempotency-Key`<br>`If-Match`<br>`X-External-Context-ID`<br>`X-Request-ID`
+The following HTTP headers may be used:
 	
+- `Accept-Language`
+- `Content-Language`
+- `ETag`<
+- `Idempotency-Key`
+- `If-Match`
+- `X-External-Context-ID`
+- `X-Request-ID`
 
+The following Finastra standards apply to HTTP headers:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
