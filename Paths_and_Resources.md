@@ -12,13 +12,13 @@ This section provides details on resources and fields and provides the associate
 - TOC
 {:toc}
 
-## Paths
+## Introduction
 
 A REST API's path consists of an HTTP method, a base path and one or more resources and identifiers.
 
 A resource is a concrete concept related to the business domain e.g. `accounts`.
 
-An identifier is the unique value or key that is used to identify a resource.
+A resource identifier is the unique value or key that is used to identify a resource.
 
 Business domain resources are manipulated using HTTP methods as
 required by the business and resources should be addressable via a URI that is 
@@ -34,8 +34,26 @@ The following is an example of a set of CRUD endpoints against an `accounts` res
 ```
 The remainder of this section describes resource, identifiers and describes the rules associated with a resource's Create, Update, Read, Delete (CRUD) model.
 
+## Paths
 
-## Defining Resources and Identifiers
+REST APIs use paths to access resources. The following shows a typical path with the OAS2 and OAS3 keywords used to define the path:
+```
+GET        https://apisandbox.finastra.com/finastraapis/v1/currencies
+operation-\scheme/\----------host---------/\---basepath---/\--path--/     # at OAS2
+
+GET        https://apisandbox.finastra.com/finastraapis/v1/currencies
+operation-\------------------servers url------------------/\--path--/     # at OAS3
+```
+
+The following standards apply to paths:
+
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| SCM-002 | Finastra Open APIs **MUST** use HTTPS and TLS i.e. RFC2660 and RFC2818 are enforced |
+| SCM-003 | Finastra Open APIs **SHOULD NOT** define `host` or `basepath`  or `servers` and `url` values because these values are defined in external configuration files |
+
+
+## Defining Resources
 
 This section provides guidelines on defining resources and identifiers.
 
@@ -130,6 +148,26 @@ Similarly, an action should not be used when the action itself creates a new res
 
 - 1 - `POST /pricing-sessions  { dealId="deal1" , scenario="123"}` returns `{"pricingSessionId"="abc"}` - this resource oriented approach is recommended
 - 2 - `POST /deals/{deal1}/price  {"scenarioId" = "123"}` returns `{"pricingSessionId"="abc"}` - this approach should be avoided
+
+### Defining Resource Identifiers 
+
+An identifier is the unique value or key that is used to identify a resource, for example: 
+```
+GET /accounts/{accountId}
+{ 
+    accountId = "2c76539b-c793-41aa-8082-87621b4e574b"
+}
+```
+The following rules apply to rsource identifiers:
+
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PAR-035 | Resource identifiers **MUST** be a unique technical identifier of a resource and should be a string|
+| PAR-036 | Resource identifiers **SHOULD** be named as `<resource-name>Id` where `<resource-name>` is the name of the resource e.g. the resource identifier for a resource named `accounts` will be `accountId` |
+| DEF-027<br>IDS-001 | Resource identifiers **SHOULD NOT** be named `{id}` or `{Identifier}` |
+| PAR-037 | Resource identifiers **MUST NOT** use personally identifiable information (PII) for the resource identifier |
+| PAR-038 | Resource identifiers **SHOULD NOT** be suffixed with `Number` because the suffix `Number` is typically associated with fields containing personally identifiable information (PII) e.g. `accountNumber`, `customerNumber`, `taxIdentificationNumber` |
+| PAR-039 | The resource payload **SHOULD** contain a *read only* field named `<resource-name>Id` |
 
 
 ### Finastra Standards for Paths and Resources
