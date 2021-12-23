@@ -25,6 +25,7 @@ required by the business and resources should be addressable via a URI that is
 compatible with [RFC1035](https://tools.ietf.org/html/rfc1035).
 
 The following is an example of a set of CRUD endpoints against an `accounts` resource with an identifier of `{accountId}`:
+
 ``` POST     /accounts                  < - - create a single account
     GET      /accounts                  < - - return a list of accounts
     GET      /accounts/{accountId}      < - - return a single account
@@ -36,6 +37,7 @@ The remainder of this section describes paths, resources, resource identifiers a
 ## Paths
 
 REST APIs use paths to access resources. The following shows a typical path with the OAS2 and OAS3 keywords used to define the path:
+
 ```
 GET        https://apisandbox.finastra.com/finastraapis/v1/currencies
 operation-\scheme/\----------host---------/\---basepath---/\--path--/     # at OAS2
@@ -150,6 +152,7 @@ Similarly, an action should not be used when the action itself creates a new res
 ### Defining Resource Identifiers 
 
 An identifier is the unique value or key that is used to identify a resource, for example: 
+
 ```
 GET /accounts/{accountId}
 { 
