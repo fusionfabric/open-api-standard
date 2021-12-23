@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Responses and Errors
-nav_order: 9
+nav_order: 10
 ---
 
 # Responses and Errors
