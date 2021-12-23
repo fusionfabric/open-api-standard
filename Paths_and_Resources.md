@@ -150,7 +150,7 @@ Similarly, an action should not be used when the action itself creates a new res
 - 1 - `POST /pricing-sessions  { dealId="deal1" , scenario="123"}` returns `{"pricingSessionId"="abc"}` - this resource oriented approach is recommended
 - 2 - `POST /deals/{deal1}/price  {"scenarioId" = "123"}` returns `{"pricingSessionId"="abc"}` - this approach should be avoided
 
-### Defining Resource Identifiers 
+## Resource Identifiers 
 
 An identifier is the unique value or key that is used to identify a resource, for example: 
 
@@ -172,7 +172,7 @@ The following rules apply to rsource identifiers:
 | PAR-039 | The resource payload **SHOULD** contain a *read only* field named `<resource-name>Id` |
 
 
-### Finastra Standards for Paths and Resources
+## Finastra Standards for Paths and Resources
 
 The following lists the Finastra standards for paths and resources:
 
