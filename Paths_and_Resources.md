@@ -25,7 +25,7 @@ required by the business and resources should be addressable via a URI that is
 compatible with [RFC1035](https://tools.ietf.org/html/rfc1035).
 
 The following is an example of a set of CRUD endpoints against an `accounts` resource with an identifier of `{accountId}`:
-```source    POST     /accounts                  < - - create a single account
+``` POST     /accounts                  < - - create a single account
     GET      /accounts                  < - - return a list of accounts
     GET      /accounts/{accountId}      < - - return a single account
     PUT      /accounts/{accountId}      < - - update a single account
@@ -36,13 +36,13 @@ The remainder of this section describes paths, resources, resource identifiers a
 ## Paths
 
 REST APIs use paths to access resources. The following shows a typical path with the OAS2 and OAS3 keywords used to define the path:
-`
+```
 GET        https://apisandbox.finastra.com/finastraapis/v1/currencies
 operation-\scheme/\----------host---------/\---basepath---/\--path--/     # at OAS2
 
 GET        https://apisandbox.finastra.com/finastraapis/v1/currencies
 operation-\------------------servers url------------------/\--path--/     # at OAS3
-`
+```
 
 The following standards apply to paths:
 
@@ -58,8 +58,7 @@ This section provides guidelines on defining resources and identifiers.
 
 ### Be Consistent
 
-Resource names **MUST** be defined consistently both within an API for each `GET`, `POST`, `PUT`, `DELETE` method
- and across APIs.
+Resource names **MUST** be defined consistently both within an API for each `GET`, `POST`, `PUT`, `DELETE` method and across APIs.
 
 When defining Finastra APIs and paths, it is recommended that the name of the API is the same as the principal resource within the API, for example, an account API should be named Accounts and have at least one endpoint using a `/accounts` resource. 
 
