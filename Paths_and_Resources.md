@@ -26,7 +26,7 @@ compatible with [RFC1035](https://tools.ietf.org/html/rfc1035).
 
 The following is an example of a set of CRUD endpoints against an `accounts` resource with an identifier of `{accountId}`:
 
-``` 
+```
 POST     /accounts                  < - - create a single account
 GET      /accounts                  < - - return a list of accounts
 GET      /accounts/{accountId}      < - - return a single account
