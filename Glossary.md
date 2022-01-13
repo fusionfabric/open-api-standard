@@ -62,7 +62,7 @@ hypermedia links with the responses.
 JSON refers to [JavaScript Object Notation](https://www.json.org/) which
 is a lightweight syntax that can be used to define business objects. It
 is seen as a more lightweight version of XML. JSON (or YAML) can be used
-to define Finastra Open APIs aligned with the OpenAPI specification.
+to define Open APIs aligned with the OpenAPI specification.
 
 **Open API** (with space)
 
@@ -156,5 +156,4 @@ where OAS is an abbreviation for ‘OpenAPI Specification’.
 
 [YAML](https://yaml.org/) [](https://yaml.org/spec/1.2/spec.html)refers
 to “YAML Ain’t Markup Language”. YAML is a human-readable,
-space-sensitive syntax. YAML (or JSON) can be used to define Finastra
-Open APIs aligned with the OpenAPI specification.
+space-sensitive syntax. YAML (or JSON) can be used to define Open APIs aligned with the OpenAPI specification.

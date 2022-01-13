@@ -7,7 +7,7 @@ nav_order: 9
 # Fields and Parameters
 {: .no_toc}
 
-This section provides details on fields and parameters and the associated Finastra naming conventions and standards.
+This section provides details on fields and parameters and the associated naming conventions and standards.
 
 - TOC
 {:toc}
@@ -53,7 +53,7 @@ Fields can be nested within objects (or arrays) as per the following OAS2 exampl
       string2:
         type: string
 ```
-Whilst Finastra APIs support multiple nested fields, as per the above example, the use of `$ref` is mandated so that any individual structure does not contain more than two levels, hence, the following example would be deemed INVALID and should be refactored as per the above example:
+Whilst APIs support multiple nested fields, as per the above example, the use of `$ref` is mandated so that any individual structure does not contain more than two levels, hence, the following example would be deemed INVALID and should be refactored as per the above example:
 ```
   object1:
     type: object
@@ -85,7 +85,7 @@ FieldBlock:
      field2:
        type: string 
 ```
-The following lists the Finastra standards for defining structures:
+The following lists the standards for defining structures:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -93,9 +93,9 @@ The following lists the Finastra standards for defining structures:
 | PPM-003 | **MUST** not define nested fields for parameter schemas - use a reference field with `$ref` to define the nested fields  |
 | DEF-020 | **MUST** use a reference field, `$ref`, with allOf anyOf or oneOf  |
 
-## Finastra Field and Parameter Standards
+## Field and Parameter Standards
 
-The following lists the Finastra standards for field and parameter names:
+The following lists the standards for field and parameter names:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -104,7 +104,7 @@ The following lists the Finastra standards for field and parameter names:
 | FPB-003 | **MUST** be meaningful by obviously declaring the field's purpose; a simple guideline is to ensure that Google shows relevant links on the first returned page |
 | DEF-002<br>DEF-010<br>DEF-013 | **MUST** define field names in lower `camelCase` using only the characters: `a-z` and `0-9` and hyphen
 | IDS-002<br>IDS-003<br>PEF-002 | **MUST** define query and path parameter names in lower `camelCase` using only the characters: `a-z` and `0-9`,<br> for example: - valid: `inputDate` -   invalid: `InputDate`, `Input_Date` |
-| DEF-024<br>DEF-025<br>DEF-026<br>PPM-009 | **MUST** adhere to the Finastra Open API data dictionary where possible e.g. `country`; where further clarity is required a prefix can be used e.g. `taxCountry` |
+| DEF-024<br>DEF-025<br>DEF-026<br>PPM-009 | **MUST** adhere to an API data dictionary where possible e.g. `country`; where further clarity is required a prefix can be used e.g. `taxCountry` |
 | FPB-005 | **SHOULD NOT** use word abbreviations e.g. use `transaction` rather than `txn` unless the abbreviation is commonly used |
 | FPB-006 | **MAY** use commonly used abbreviations or acronyms e.g. `memo`, `email`, `uri`, `IBAN`, `SEPA`, etc. |
 | FPB-007 | **MUST** only use commonly accepted abbreviations |
@@ -141,9 +141,9 @@ The following lists the Finastra standards for field and parameter names:
 | PPM-010 | **MUST NOT** use a body parameter with a `GET` operation  |
 
 
-## Finastra Field and Parameter Type and Format Standards
+## Field and Parameter Type and Format Standards
 
-The following lists the Finastra standards for field types and formats:
+The following lists the standards for field types and formats:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -168,7 +168,7 @@ The following table shows the mapping between the RFC and the JSON schema format
 |  time                       | full-time| `23:20:50.52Z` or `1996-12-19T16:39:57-08:00`        |
 |  partial-time               | partial-time| `23:20:50`  i.e. with no time zone information| 
 
-The following table shows the associated Finastra rules:
+The following table shows the associated rules:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -231,7 +231,7 @@ For example:
 (1) the client should not need to send a request or receive a response using `null` unless using PATCH to remove a field value 
 (2) the client or server can infer that a field value is `null`, i.e. undefined, if the payload does not contain the field key
 
-The following table shows the associated Finastra rules:
+The following table shows the associated rules:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |

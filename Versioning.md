@@ -7,7 +7,7 @@ nav_order: 13
 # Versioning
 {: .no_toc}
 
-Clients using Finastra APIs need to be aware of the impact of API changes in case they require client code changes, hence, this section provides details on the following topics:
+Clients using APIs need to be aware of the impact of API changes in case they require client code changes, hence, this section provides details on the following topics:
 - TOC
 {:toc}
 
@@ -15,16 +15,16 @@ Clients using Finastra APIs need to be aware of the impact of API changes in cas
 
 An API represents a contract between the provider of a service and the consumer of a service. This contract can evolve over the time and each publication of an API by a provider has an associated version.
 
-Finastra APIs use the semver.org semantic version specification whereby the version of an API is represented by a major number, a minor number and a patch number.
+APIs use the semver.org semantic version specification whereby the version of an API is represented by a major number, a minor number and a patch number.
 
 The API semantic version is held in the `info: version` section of an OAS2 or OAS3 API contract.
 
-For example, when a Finastra API has a version number of 1.2.7 the values 1, 2 and 7 have the following meanings:
+For example, when a API has a version number of 1.2.7 the values 1, 2 and 7 have the following meanings:
 -  ‘1’ represents a major version number
 -  ‘2’ represents a minor version number
 -  ‘7’ represents a patch version number
 
-Finastra APIs increment the version numbers according to the following rules:
+APIs increment the version numbers according to the following rules:
 -  **Major** version – this version number changes when a new API version imposes a major contract change that requires action from the consumer to be compatible with the new API version. A major version number change typically involves breaking changes to the API contract
 -  **Minor** version - this version number changes when a new API version imposes a contract change that does not require action from the consumer to be compatible with the new version
 -  **Patch** version – this version number changes when an API change does not alter the API contract
@@ -44,26 +44,24 @@ The following example show how the versions might be used:
 |`/v1/accounts`     |  v1.1.0       | is a minor change to add new functionality such as an optional field or new endpoints                                     |
 |`**/v2/**accounts` |  v2.0.0       | is a major change such as the introduction of a breaking change - this modifies the url so must be published to the client|
 
-The following standards apply within Finastra:
-
-The following lists the Finastra standards for defining structures:
+The following standards apply 
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
 | INF-011 | APIs **MUST** have a semantic version defined in their specification
 | VER-001 | The major version of the API **MUST** be set in the path parameter as an `integer` prefixed with the letter `v` e.g. `https://{host}/v1/{resource}`
 | VER-002 | API client versions against API endpoints **MUST** be incremented for breaking changes
-| VER-003 | REST APIs in the industry use client versions that can be defined as query parameters, custom headers or accept headers with custom types. These different formats **MUST NOT** be used in Finastra
+| VER-003 | REST APIs in the industry use client versions that can be defined as query parameters, custom headers or accept headers with custom types. These different formats **MUST NOT** be used.
 
 ## API Backward Compatibility
 
-Finastra's Open API compatibility policy is to ensure backward compatibility for client API calls.
+Open API compatibility policy is to ensure backward compatibility for client API calls.
 
-Backward compatibility means that a Finastra API and its underlying server implementation will provide the same capabilities as previous versions of a Finastra API within the same major API version. 
+Backward compatibility means that an API and its underlying server implementation will provide the same capabilities as previous versions of an API within the same major API version. 
 
-For example, a client can be assured that when they adopt a Finastra Open API at a version that API’s capabilities will remain available without the need for the client to upgrade as subsequent versions of the API and/or server are released. 
+For example, a client can be assured that when they adopt an Open API at a version that API’s capabilities will remain available without the need for the client to upgrade as subsequent versions of the API and/or server are released. 
 
-The implication of this policy is that a Finastra APIs cannot be assumed to be compatible with all server versions. This is shown in the following diagram in which a Finastra server 1.0 has released an API at version 1.0 and then evolved to release API version 1.1 at server version 1.1.
+The implication of this policy is that an APIs cannot be assumed to be compatible with all server versions. This is shown in the following diagram in which a server 1.0 has released an API at version 1.0 and then evolved to release API version 1.1 at server version 1.1.
 
 The diagram shows:
 - that a client which successfully adopted API version 1.0 against server version 1.0 will be supported as the server evolves i.e. the server continues to support the backward compatible API
@@ -74,11 +72,11 @@ The diagram shows:
 Note that backward compatibility does not apply to breaking changes to an API, for example, if the major version changes from 1 to 2 then version 2 of the API will not be compatible with version 1.
 
 
-The remainder of this section details implications of the Finastra backward compatibility policy from the perspective of both servers and clients. 
+The remainder of this section details implications of the backward compatibility policy from the perspective of both servers and clients. 
 
 ### Policy Implications for Servers
 
-The Finastra backward compatibility policy has the following implications for API providers in Finastra’s Lines of Business:
+The backward compatibility policy has the following implications for API providers :
 
 - servers providing APIs **MUST** be backward compatible so that client APIs implemented against earlier server versions are supported in later server versions 
 
@@ -92,7 +90,7 @@ For example a server may support a payload of field A and optional field B but a
 
 ### Policy Implications for Clients
 
-The Finastra backward compatibility policy has the following implications for API consumers such as client Apps:
+The backward compatibility policy has the following implications for API consumers such as client Apps:
 
 - clients **MUST** be fault tolerant when receiving responses. 
 
@@ -153,10 +151,10 @@ The following lists the Finastra standards that apply to the API lifecycle:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| VER-010 | Finastra APIs **MUST** increment the minor and/or patch versions of the API whenever a change is made regardless of whether the change is breaking or non-breaking |
-| VER-011 | Finastra APIs **MUST** be designed to be backwards compatible as far as possible |
-| VER-012 | Finastra APIs **MUST** change the major version when breaking changes are introduced to the API |
-| VER-013 | Finastra APIs **MUST NOT** be obsoleted when in use by customers; a published deprecation and obsoletion with appropriate notice periods must be provided |
+| VER-010 | APIs **MUST** increment the minor and/or patch versions of the API whenever a change is made regardless of whether the change is breaking or non-breaking |
+| VER-011 | APIs **MUST** be designed to be backwards compatible as far as possible |
+| VER-012 | APIs **MUST** change the major version when breaking changes are introduced to the API |
+| VER-013 | APIs **MUST NOT** be obsoleted when in use by customers; a published deprecation and obsoletion with appropriate notice periods must be provided |
 | VER-014 | APIs **SHOULD** differentiate finished API definitions from work in progress - the maturity level of **DRAFT**, **BETA** and **GA** are used for this purpose |
 
 ## API Changes

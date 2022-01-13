@@ -30,7 +30,7 @@ These flows are detailed in [RFC 6749](https://datatracker.ietf.org/doc/html/rfc
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| SEC-001 | Finastra Open APIs **MUST** secure endpoints with oAuth2 |
+| SEC-001 | Open APIs **MUST** secure endpoints with oAuth2 |
 
 
 ## API Channel Types
@@ -71,7 +71,7 @@ At OAS3 the `securitySchemes` keyword is used to define the authentication types
 |:-------:|:------------ |
 | SEC-002 | For Finastra APIs the following security definitions are mandatory |
 
-- OAS2 security definition used for Finastra B2C and B2E APIs
+- OAS2 security definition used for B2C and B2E APIs
 
 ```yaml
 security:
@@ -84,7 +84,7 @@ securityDefinitions:
     flow: application
 ```
 
-- OAS2 security definition used for Finastra B2B APIs
+- OAS2 security definition used for B2B APIs
 
 ```yaml
 security:
@@ -98,7 +98,7 @@ securityDefinitions:
     flow: accessCode
 ```
 
-- OAS3 security definition used for Finastra B2C and B2E APIs
+- OAS3 security definition used for B2C and B2E APIs
 
 ```yaml
 security:
@@ -115,7 +115,7 @@ components:
           scopes: {}
 ```
 
-- OAS3 security definition used for Finastra B2B APIs
+- OAS3 security definition used for B2B APIs
 
 ```yaml
 security:

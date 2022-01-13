@@ -7,7 +7,7 @@ nav_order: 7
 # Paths and Resources
 {: .no_toc}
 
-This section provides details on resources and fields and provides the associated Finastra naming conventions and standards.
+This section provides details on resources and fields and provides the associated naming conventions and standards.
 
 - TOC
 {:toc}
@@ -51,8 +51,8 @@ The following standards apply to paths:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| SCM-002 | Finastra Open APIs **MUST** use HTTPS and TLS i.e. RFC2660 and RFC2818 are enforced |
-| SCM-003 | Finastra Open APIs **SHOULD NOT** define `host` or `basepath`  or `servers` and `url` values because these values are defined in external configuration files |
+| SCM-002 | Open APIs **MUST** use HTTPS and TLS i.e. RFC2660 and RFC2818 are enforced |
+| SCM-003 | Open APIs **SHOULD NOT** define `host` or `basepath`  or `servers` and `url` values because these values are defined in external configuration files |
 
 
 ## Resources
@@ -63,7 +63,7 @@ This section provides guidelines on defining resources and identifiers.
 
 Resource names **MUST** be defined consistently both within an API for each `GET`, `POST`, `PUT`, `DELETE` method and across APIs.
 
-When defining Finastra APIs and paths, it is recommended that the name of the API is the same as the principal resource within the API, for example, an account API should be named Accounts and have at least one endpoint using a `/accounts` resource. 
+When defining APIs and paths, it is recommended that the name of the API is the same as the principal resource within the API, for example, an account API should be named Accounts and have at least one endpoint using a `/accounts` resource. 
 
 API designers SHOULD avoid prefixing the `/accounts` resource in the Accounts API with parent resources e.g. **avoid** `/customer/{customerId}/accounts` unless necessary
 
@@ -76,7 +76,7 @@ In most scenarios the following paths which use a resource at root level can be 
 - `PUT /resources/{resourceId}`
 - `DELETE /resources/{resourceId}`
 
-The following Finastra rule applies:
+The following rule applies:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -93,7 +93,7 @@ is used rather than `GET /ratings/{ratingId}` when a `rating` cannot be created 
 
 If the `rating` resource is not dependant on the `client` resource then `GET /ratings/{ratingId}` should be used.
 
-The following Finastra rule apply:
+The following rule apply:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -172,14 +172,14 @@ The following rules apply to rsource identifiers:
 | PAR-039 | The resource payload **SHOULD** contain a *read only* field named `<resource-name>Id` |
 
 
-## Finastra Standards for Paths and Resources
+## Standards for Paths and Resources
 
-The following lists the Finastra standards for paths and resources:
+The following lists the standards for paths and resources:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
 | PAR-040 | **MUST** define *useful* resources - see the *Finastra Open API Principles* section |
-| PAR-041 | **MUST** use Finastra common business object names where available |
+| PAR-041 | **MUST** use common business object names where available |
 | PAR-042 | **MUST** name resources with nouns |
 | PAR-043 | **SHOULD** name resources as plural - this applies to `GET` requests against both an individual resource and the associated resource collection e.g. `GET /accounts/{accountId}` and `GET /accounts` |
 | PTH-003 | **SHOULD NOT** use verbs or actions in the path, rather use resources where possible |

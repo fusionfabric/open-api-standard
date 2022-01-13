@@ -4,16 +4,6 @@ info:
   title : Parties schema with custom fields model
   description : This sample showcases a single level custom fields model
   version: 1.0.0
-  x-finastra-category: Corporate Banking
-  x-finastra-subcategory: Common Services
-  x-finastra-short-description: 'Sample Party Customization API'
-  x-finastra-tags:
-    - Fusion Essence
-  x-finastra-channel-type: B2B
-  x-finastra-maturity-level: BETA
-  x-finastra-audience: PUBLIC
-  x-finastra-implementability: INTERNAL
-  x-finastra-icon: Icons_2e.svg
 
 schemes:
   - https

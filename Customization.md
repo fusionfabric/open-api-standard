@@ -8,7 +8,7 @@ nav_order: 14
 - Custom Fields
 {: .no_toc}
 
-This section describes customization capabilities that may be provided with Finastra Open APIs
+This section describes customization capabilities that may be provided with Open APIs
 and includes the following sections:
 - TOC
 {:toc}
@@ -97,7 +97,7 @@ Bank B
 The following guidelines show how the custom fields are defined in the APIs:
 - The `custom-fields` field defines the `additionalProperties` keyword as an object which supports both simple and complex additional properties
 - The custom field names, e.g. `rating`, `contact`, `email`, `phone_number`, are NOT defined in the API because they are dynamic fields which vary by Bank
-- The custom field names, e.g. `phone_number`, do NOT need to adhere to Finastra API field naming standards because they are not explicitly defined in the API, rather they are defined externally e.g. in the Core backend
+- The custom field names, e.g. `phone_number`, do NOT need to adhere to API field naming standards because they are not explicitly defined in the API, rather they are defined externally e.g. in the Core backend
 - For further details of the `additionalProperties` keyword see [JSON schema](https://json-schema.org/understanding-json-schema/reference/object.html#id2)
 
 The following example shows a sample resource API definition for `custom-fields`:
@@ -122,7 +122,7 @@ The following example shows a sample resource API definition for `custom-fields`
 
       firstName:
         type: string
-        description: Frst name
+        description: First name
         example: Luke 
   
       custom-fields:
@@ -247,7 +247,7 @@ in this case the endpoints would be :
 | Resource API|`POST /loans/{bicycle}`|Create a resource following the custom-schema definition `schemaId`| 
 
 
-### Finastra APIs Custom Fields Standards ###
+### APIs Custom Fields Standards ###
 
 The following is a list of Finastra standards associated with custom fields:
 
@@ -270,7 +270,7 @@ The following is a list of Finastra standards associated with custom fields:
 Localization in the context of APIs typically refers to the ability to return text messages and descriptions 
 in the language requested by the caller of the API i.e. by specifying their locale in the request.
 
-Finastra APIs **MAY** implement localization, however, note that:
+APIs **MAY** implement localization, however, note that:
 - APIs should be concerned with providing a business capability
 to the customer and not with content negotiation. The UI and its
 supporting services should be responsible for these concerns
@@ -297,7 +297,7 @@ For more details, about `Accept-Language` see [HTTP 1.1 RFC:section-5.3.5](https
 
 For details on the relationship between localization and internationalization see [Localization vs Internationalization](https://www.w3.org/International/questions/qa-i18n).
 
-### Finastra API Localization Standards ###
+### API Localization Standards ###
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
