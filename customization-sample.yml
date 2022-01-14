@@ -149,7 +149,7 @@ definitions:
 
       firstName:
         type: string
-        description: Frst name
+        description: First name
         example: Luke 
   
       custom-fields:
