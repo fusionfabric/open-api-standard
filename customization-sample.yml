@@ -31,22 +31,15 @@ paths:
           schema:
             $ref: '#/definitions/party'
         '400':
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/Error'
+          $ref: '#/responses/400'
         '401':
-          description: 'Access forbidden, invalid Authorization was used.'
-          schema:
-            $ref: '#/definitions/Error'
+          $ref: '#/responses/401'
         '404':
           description: A party with the given partyId does not exist.
           schema:
             $ref: '#/definitions/Error'
         '500':
-          description: 'Access forbidden, invalid Authorization was used.'
-          schema:
-            $ref: '#/definitions/Error'
-
+          $ref: '#/responses/500'
   /parties:
     post:
       summary: Create party with Bank specific custom-fields.
@@ -58,17 +51,11 @@ paths:
         '200':
           description: Successful Response
         '400':
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/Error'
+          $ref: '#/responses/400'
         '401':
-          description: 'Access forbidden, invalid Authorization was used.'
-          schema:
-            $ref: '#/definitions/Error'
+          $ref: '#/responses/401'
         '500':
-          description: 'Access forbidden, invalid Authorization was used.'
-          schema:
-            $ref: '#/definitions/Error'
+          $ref: '#/responses/500'
   /parties/custom-fields-schemas:
     get:
       summary: Get party custom fields schema.
@@ -80,17 +67,11 @@ paths:
           schema:
             $ref: '#/definitions/customSchema'
         '400':
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/Error'
+          $ref: '#/responses/400'
         '401':
-          description: 'Access forbidden, invalid Authorization was used.'
-          schema:
-            $ref: '#/definitions/Error'
+          $ref: '#/responses/401'
         '500':
-          description: 'Access forbidden, invalid Authorization was used.'
-          schema:
-            $ref: '#/definitions/Error'
+          $ref: '#/responses/500'
 parameters:
   partyId:
     name: partyId
@@ -105,6 +86,23 @@ parameters:
     description: Party
     schema:
       $ref: '#/definitions/party'
+
+
+responses:
+  '400':
+    description: Bad Request
+    schema:
+      $ref: '#/definitions/Error'
+
+  '401':
+    description: 'Access forbidden, invalid Authorization was used.'
+    schema:
+      $ref: '#/definitions/Error'
+
+  '500':
+    description: 'Access forbidden, invalid Authorization was used.'
+    schema:
+      $ref: '#/definitions/Error'
 
 definitions:
   Error:
