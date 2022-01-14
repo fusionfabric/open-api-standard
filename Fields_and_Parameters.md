@@ -121,7 +121,7 @@ The following lists the standards for field and parameter names:
 | FPB-017 | **SHOULD** specify relevant defaults where applicable |
 | FPB-018 | **SHOULD** be as precise as possible with field and parameter definitions |
 | DEF-012<br>PEF-012 | **SHOULD** have `maxLength` for `string` data types |
-| DEF-035 | **SHOULD NOT** have a `maxLength` value of 1 for `string` fields - consider using a `boolea`n type instead of `string` |
+| DEF-035 | **SHOULD NOT** have a `maxLength` value of 1 for `string` fields - consider using a `boolean` type instead of `string` |
 | FPB-019 | **SHOULD** have `minLength` and `pattern` for `string` data types |
 | FPB-020 | **MUST NOT** specify a default for a required parameter |
 | FPB-021 | **SHOULD** use empty string to remove a field's value |
@@ -153,7 +153,7 @@ The following lists the standards for field types and formats:
 | FPB-023 | **SHOULD** define enumerations as a **closed** set of allowed field values<br> e.g. the following shows a set of possible values for an item's status: `PENDING`, `APPROVED`, `COMPLETE`|
 | ENM-001 | **SHOULD** ensure that enumerations are lowercase a-z and/or upper case A-Z with hyphens, for example: `SPOT-RATE` or `spot-rate` or `Spot-Rate`|
 | ENM-001 | Enumerations **MUST NOT** include spaces or special characters e.g. underscore |
-| FPB-024 | Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyorCountry`|
+| FPB-024 | Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyOrCountry`|
 
 ## Date & Time Fields
 
