@@ -7,7 +7,7 @@ nav_order: 16
 # Idempotency
 {: .no_toc}
 
-This section describes the concept of idempotency for REST APIs and the implications for Finastra APIs.
+This section describes the concept of idempotency for REST APIs and the implications for APIs.
 
 - TOC
 {:toc}
@@ -45,7 +45,7 @@ at a later time t2:
 
 ## Client Perspective
 
-Finastra APIs should be designed to ensure that `POST` requests are
+APIs should be designed to ensure that `POST` requests are
 idempotent - this is done by the client specifying the following HTTP
 header when making `POST` requests:
 
@@ -95,25 +95,25 @@ details:
 -   The server may use the message signature, along with the `Idempotency-Key` to ensure that the request body has not changed.
 
 
-## Finastra Idempotency Standards
+## Idempotency Standards
 
 The implementation of idempotency using `Idempotency-Key` is not
 mandatory for all APIs since it imposes strict rules on the client and
 server, however, full consideration of the implications of NOT
 implementing idempotency must be considered.
 
-The following lists the Finastra standards for idempotency:
+The following lists the standards for idempotency:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
 | IDM-001 | Idempotency **MUST** be considered for all API requests
-| IDM-002 | Finastra APIs **SHOULD** support idempotency for `POST` methods
-| PPM-006 | Finastra APIs supporting idempotency **MUST** define an `Idempotency-Key` header on associated `POST` operations
+| IDM-002 | APIs **SHOULD** support idempotency for `POST` methods
+| PPM-006 | APIs supporting idempotency **MUST** define an `Idempotency-Key` header on associated `POST` operations
 
 **Sample API Code**
 
 The following code snippet shows a sample OAS2 definition of a `POST` operation within a
-Finastra API that supports idempotency:
+API that supports idempotency:
 ```
  post:
 	parameters:

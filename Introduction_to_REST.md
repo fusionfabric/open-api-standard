@@ -55,7 +55,7 @@ Any information that can be named can be a resource, for example:
 REST resources should reflect the relevant business domain and should have
 unchanging identifiers (keys).
 
-Finastra APIs define resources aligned with the Banking business domain
+APIs define resources aligned with the Banking business domain
 e.g. currencies, accounts etc.
 
 
@@ -84,24 +84,24 @@ secures message communication over a computer network by encrypting the
 message contents. An HTTPS transfer or API call is an HTTP call over a
 connection secured by TLS.
 
-The following Finastra rules apply:
+The following rules apply:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| RST-001 | Finastra Open APIs use HTTP 1.1 ([RFC7231](https://tools.ietf.org/html/rfc7231)) as a reference implementation |
-| RST-002 | Finastra Open APIs may use HTTP 2 ([RFC7540](https://tools.ietf.org/html/rfc7540)) |
-| SCM-002 | Finastra Open APIs **MUST** use HTTPS and TLS i.e. [RFC2660](https://tools.ietf.org/html/rfc2660) and [RFC2818](https://tools.ietf.org/html/rfc2818) are enforced |
+| RST-001 | Open APIs use HTTP 1.1 ([RFC7231](https://tools.ietf.org/html/rfc7231)) as a reference implementation |
+| RST-002 | Open APIs may use HTTP 2 ([RFC7540](https://tools.ietf.org/html/rfc7540)) |
+| SCM-002 | Open APIs **MUST** use HTTPS and TLS i.e. [RFC2660](https://tools.ietf.org/html/rfc2660) and [RFC2818](https://tools.ietf.org/html/rfc2818) are enforced |
 
 ## HTTP Methods
 
-This section details the HTTP methods used by Finastra Open APIs.
+This section details the HTTP methods used.
 
 A key requirement for REST APIs is the use of a resource with
 appropriate HTTP verbs.
 
 The HTTP verbs are defined in section 4.3 of
 [RFC7231](https://tools.ietf.org/html/rfc7231#section-4.3). and those
-relevant to Finastra are shown in the table below.
+relevant to Open API definition are shown in the table below.
 
 ### Summary of HTTP Methods
 
@@ -118,12 +118,11 @@ resources:
 | **HEAD**     | Identical to **GET**, except that the server **must not** return a message body in the response |
 | **OPTIONS**  | Allows the client to determine the options and/or requirements associated with a resource       |
 
-Most Finastra APIs use the POST, GET, PUT and DELETE HTTP methods
-to maintain business domain resources.
+APIs use the POST, GET, PUT and DELETE HTTP methods to maintain business domain resources.
 
 The remainder of this section details each HTTP method with reference to
 the following associated characteristics which should be carefully
-considered when designing the Finastra API:
+considered when designing an API:
 
 -   Request Payload: specifies whether a request payload is required
 -   Successful response payload: specifies whether a response payload is
@@ -139,18 +138,18 @@ considered when designing the Finastra API:
 
 ### GET
 
-RESTful APIs use the `GET` method to obtain data from a resource. `GET` is typically included in most Finastra APIs to retrieve resource data.
+RESTful APIs use the `GET` method to obtain data from a resource. `GET` is typically included in most APIs to retrieve resource data.
 
 **Examples**
 
 -   `GET /customers/{id}` returns the customer identified with `{id}`.
 -   `GET /customers` returns a list of all customers.
 
-The following Finastra rules apply:
+The following rules apply:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| RST-010 | As per the examples, Finastra APIs **SHOULD** implement `GET` methods against both an individual resource and its collection |
+| RST-010 | As per the examples, APIs **SHOULD** implement `GET` methods against both an individual resource and its collection |
 | RST-011 | `GET` methods against a collection **SHOULD** implement pagination and search capabilities |
 
 **Characteristics**
@@ -405,9 +404,9 @@ function, without a resource representation, to complex workflows which
 interact with multiple resources, for example: `POST /accounts/{id}/activate`.
 
 
-### Finastra HTTP Methods Standards
+### HTTP Methods Standards
 
-The following Finastra API standards apply to HTTP methods: 
+The following API standards apply to HTTP methods: 
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -426,7 +425,7 @@ The following Finastra API standards apply to HTTP methods:
 ## HTTP Headers
 
 This section provides details on the standard and custom HTTP headers
-that may be used by clients using Finastra Open APIs.
+that may be used by clients using Open APIs.
 
 ### Standard HTTP Headers
 
@@ -441,7 +440,7 @@ that may be used by clients using Finastra Open APIs.
 | `If-Match`       | The value of this header is passed by clients on PUT methods to allow the server to perform Concurrency validation. Its value is typically an ETag value obtained from a GET method - see the *Concurrency* section for further details.                                                               |
 |`Idempotency-Key` |  The value of this header is passed by clients on POST methods to allow the server to perform Idempotency validation. Its value is typically an UUID - see the *Idempotency* section for further details.|
 
-Finastra APIs do not explicitly define `Content-Type`, `Accept` or `Authorization` as HTTP headers in the API contracts.
+APIs do not explicitly define `Content-Type`, `Accept` or `Authorization` as HTTP headers in the API contracts.
 
 
 ### Custom HTTP Headers
@@ -454,7 +453,7 @@ regarding the use of `X-` prefix. It is anticipated that most of the Finastra AP
 The prefix `X-finastra` should not be used.
 
 
-### Finastra Rules for HTTP Headers
+### Rules for HTTP Headers
 
 The following HTTP headers may be used:
 	
@@ -466,7 +465,7 @@ The following HTTP headers may be used:
 - `X-External-Context-ID`
 - `X-Request-ID`
 
-The following Finastra standards apply to HTTP headers:
+The following standards apply to HTTP headers:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |

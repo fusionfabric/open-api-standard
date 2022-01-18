@@ -25,7 +25,7 @@ Finastra standards are to be interpreted as described in [RFC
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| WEL-001 | Finastra API designers and developers **SHOULD** follow this document however be aware there is no guarantee that publicly available Finastra APIs will fully adhere to these standards|
+| WEL-001 |  API designers and developers **SHOULD** follow this document however be aware there is no guarantee that publicly available Finastra APIs will fully adhere to these standards|
 
 The rule identifier comprises a rule type and number - where appropriate the rule identifier corresponds to messages issued by the Finastra linter.
 

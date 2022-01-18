@@ -37,7 +37,7 @@ This section is focused on the first endpoint and covers the following topics:
 
 ###  Collection Response
 
-When a Finastra API provides a `GET` endpoint that returns a collection
+When an API provides a `GET` endpoint that returns a collection
 e.g. `GET /accounts`, the API should provide a response object that is
 extensible, hence, a collection should be returned as an object
 containing an array of items e.g.:
@@ -64,18 +64,18 @@ containing an array of items e.g.:
 }
 ```
 
-### Finastra API Collections Standards ###
+### API Collections Standards ###
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| RSP-013 | Finastra APIs supporting `GET` collections **SHOULD** support extensibility by returning the collection as an object containing an array of `items` because this approach can be extended to support additional data without imposing breaking changes on the API |
+| RSP-013 | APIs supporting `GET` collections **SHOULD** support extensibility by returning the collection as an object containing an array of `items` because this approach can be extended to support additional data without imposing breaking changes on the API |
 | PAG-001 | `GET` collections **SHOULD** name the array as `items` |
-| PAG-002 | Finastra APIs supporting `GET` collections **MUST** return a `200` (not a '404') response code when a `GET` query returns an empty collection. Note that a `200` response is preferred to a `204` response for an empty collection |
+| PAG-002 | APIs supporting `GET` collections **MUST** return a `200` (not a '404') response code when a `GET` query returns an empty collection. Note that a `200` response is preferred to a `204` response for an empty collection |
 
 
 ## Searching and Filtering
 
-When a Finastra API provides a `GET` endpoint that returns a collection
+When a API provides a `GET` endpoint that returns a collection
 the API should provide search and filter capabilities to avoid
 performance issues when a potentially large collection is returned.
 
@@ -103,7 +103,7 @@ Examples:
 | `GET /accounts/search/balance=lt=0 `    | Using FIQL|
 
 
-### Finastra API Search and Filter Standards ###
+### Search and Filter Standards ###
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ 
@@ -116,10 +116,10 @@ Examples:
 
 ## Sorting
 
-When a Finastra API provides a `GET` endpoint that returns a collection
+When a API provides a `GET` endpoint that returns a collection
 the API should provide sort capabilities as described in this section.
 
-Finastra APIs supporting sort use the `sort` path keyword with a property name specifiying one of the 
+APIs supporting sort use the `sort` path keyword with a property name specifying one of the 
 `asc` and `desc` parameters, where asc means ascending order and desc means reverse order 
 e.g.: `($propertyname,)+[asc|desc]`
 
@@ -132,19 +132,19 @@ e.g.: `($propertyname,)+[asc|desc]`
 -   Sort by `openDate`, in descending order, and then by `name`, in ascending order:
      - `GET /accounts?sort=openDate+desc,name+asc`
 
-### Finastra API Sorting Standards ###
+### Sorting Standards ###
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| PAG-020 | Finastra APIs containing resource collections **SHOULD** support sort capability |
-| PAG-021 | Finastra APIs supporting sort **MUST** use the **sort** path keyword with `asc` and `desc` parameters where `desc` means reverse order and `asc` means ascending order, for example: `($propertyname,)+[asc|desc]` |
-| PAG-022 | Finastra APIs supporting sort **MUST** specify the default sort sequence in API documentation |
-| PAG-023 | Finastra APIs supporting sort **MUST** specify the maximum number of sort terms |
+| PAG-020 | APIs containing resource collections **SHOULD** support sort capability |
+| PAG-021 | APIs supporting sort **MUST** use the **sort** path keyword with `asc` and `desc` parameters where `desc` means reverse order and `asc` means ascending order, for example: `($propertyname,)+[asc|desc]` |
+| PAG-022 | APIs supporting sort **MUST** specify the default sort sequence in API documentation |
+| PAG-023 | APIs supporting sort **MUST** specify the maximum number of sort terms |
 
 
 ## Pagination
 
-Finastra APIs should use pagination to reduce the volume of data returned from a collection request.
+APIs should use pagination to reduce the volume of data returned from a collection request.
 
 For example if 'GET /accounts' were to return millions of records then this would 
 most likely result in an SLA risk, a security risk, a resiliency
@@ -154,7 +154,7 @@ the server to return one page of data at a time based on the client's request
 Pagination should be introduced early in an API’s lifecycle because
 pagination typically introduces breaking changes. 
 
-When a Finastra API provides a `GET` endpoint that returns a collection
+When a API provides a `GET` endpoint that returns a collection
 the API should provide capabilities to allow the client to page through
 the collection.
 
@@ -163,7 +163,7 @@ There are two commonly used pagination techniques:
 -   Offset-Limit Based pagination - this uses a numeric offset to
     identify the first item in a set of results - this is the most
     widely used pagination mechanism and is the recommended pagination
-    technique for Finastra APIs
+    technique for APIs
 
 -   Cursor Based (Key-Based) pagination - this uses a unique key to
     identify the first item in a set of results - this is typically used
@@ -187,16 +187,16 @@ Examples:
 | `GET /accounts?limit=100` | return the 100 first accounts |
 | `GET /accounts?offset=100`     | return accounts from 101 |
 
-### Finastra API Pagination Request Standards ###
+### API Pagination Request Standards ###
 
-The following lists the Finastra standards for defining structures:
+The following lists the standards for defining structures:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| PAG-030 | Finastra APIs with resource collections **SHOULD** support pagination in most circumstances | 
-| PAG-031 | Finastra APIs **SHOULD** implement pagination using offset-limit based pagination |
-| PAG-032 | Finastra APIs supporting pagination **SHOULD** be implemented using the `limit` and `offset` request keywords |
-| PAG-033 | Finastra APIs implementing pagination **MUST** specify a `default` value for the `limit` parameter |
+| PAG-030 | APIs with resource collections **SHOULD** support pagination in most circumstances | 
+| PAG-031 | APIs **SHOULD** implement pagination using offset-limit based pagination |
+| PAG-032 | APIs supporting pagination **SHOULD** be implemented using the `limit` and `offset` request keywords |
+| PAG-033 | APIs implementing pagination **MUST** specify a `default` value for the `limit` parameter |
 
 ## Pagination Response
 
@@ -209,7 +209,7 @@ a collection of items and includes the following:
 
 ### Response Items
 
-When a Finastra API provides a `GET` endpoint that returns a collection
+When an API provides a `GET` endpoint that returns a collection
 the API should provide a response object that is
 extensible, hence, a collection should be returned as an object
 containing an array of items e.g.:
@@ -231,7 +231,7 @@ By returning a collection's `items` as an object, the response can be extended w
 breaking changes to the API, for example, an object named `_meta`
 containing metadata associated with the collection can be added to the response.
 
-The following example shows the standard Finastra pagination metadata
+The following example shows the standard pagination metadata
 response fields:
 
 ```json
@@ -289,7 +289,7 @@ object for the endpoint:
 
 ### Response Links ###
 
-When a Finastra API provides a `GET` endpoint that returns a collection
+When an API provides a `GET` endpoint that returns a collection
 the API should provide the client with the following links to navigate
 the collection:
 
@@ -394,14 +394,14 @@ The following link shows an OAS2 API that contains an example of collection and 
 
 - [Sample OAS2 Pagination API](https://github.com/fusionfabric/open-api-standard/blob/main/pagination-sample.yml) 
 
-### Finastra API Pagination Response Standards ###
+### Pagination Response Standards ###
 
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| DEF-033 | Finastra APIs supporting `GET` collections **SHOULD** support the provision of metadata using the `_meta` keyword |
-| DEF-034 | Finastra APIs supporting `GET` collections **SHOULD** use the fields `limit` and `offset` with `_meta` |
-| PEF-016 | Finastra APIs supporting `GET` collections **SHOULD** define a default value for the `limit` field |
+| DEF-033 | APIs supporting `GET` collections **SHOULD** support the provision of metadata using the `_meta` keyword |
+| DEF-034 | APIs supporting `GET` collections **SHOULD** use the fields `limit` and `offset` with `_meta` |
+| PEF-016 | APIs supporting `GET` collections **SHOULD** define a default value for the `limit` field |
 | PAG-040 | `_meta` object **MAY** be used in contexts other than pagination |
 | PAG-041 | `_meta` object **MAY** be extended with additional meta data |
-| PAG-042 | Finastra APIs supporting `GET` collections **SHOULD** support navigation using the `_links` keyword |
+| PAG-042 | APIs supporting `GET` collections **SHOULD** support navigation using the `_links` keyword |

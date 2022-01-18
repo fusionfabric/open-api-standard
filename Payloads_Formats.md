@@ -9,7 +9,7 @@ nav_order: 6
 
 Open APIs have request and response payloads (media types) that typically use industry standard data such as JSON or XML.
 
-This section provides details of common media types associated with Finastra API payloads:
+This section provides details of common media types associated with API payloads:
 - TOC
 {:toc}
 
@@ -19,7 +19,7 @@ Additional details of specific data types can be found in the *Naming Convention
 
 The Open API specification supports multiple media types as defined by [RFC6838](https://datatracker.ietf.org/doc/html/rfc6838).
 
-The following are examples of media types that may be used in Finastra APIs:
+The following are examples of media types that may be used in APIs:
 - `application/json` - for Json payloads - this is used by most APIs
 - `application/xml` - for XML payloads
 - `application/pdf` - for PDF documents
@@ -29,7 +29,7 @@ The following are examples of media types that may be used in Finastra APIs:
 - `image/png`
 - `image/gif`
 
-The following table shows the associated Finastra rules:
+The following table shows the associated rules:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -48,8 +48,7 @@ JSON format is described in [RFC
 description of the syntax and data types.
 
 JSON has replaced XML as the *de facto* standard for data format, and
-has broad support across all languages and technology stacks that
-Finastra support.
+has broad support across all languages and technology stacks.
 
 The JSON specification does not dictate the order in which
 properties are serialized, hence, the API and/or calling client must not
@@ -60,7 +59,7 @@ assume the order of properties within a JSON payload.
 XML is a common data format standard and may still be required for
 integration.
 
-The following Finastra rules apply to xml formats:
+The following rules apply to xml formats:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |

@@ -57,9 +57,9 @@ expected behaviors for the operations within the API.
 
 ------------------------------------------------------------------------
 
-## Finastra Open APIs
+## Open APIs
 
-Finastra APIs are Open APIs (public) as far as possible and a Finastra API should be designed so that:
+APIs are Open APIs (public) as far as possible and an API should be designed so that:
 
 -   it exposes functionality in a manner that is understood by
     developers with domain knowledge rather than knowledge of the
@@ -69,21 +69,18 @@ Finastra APIs are Open APIs (public) as far as possible and a Finastra API shoul
     significant future changes because once an API has been published it
     becomes difficult to change
 
-Within Finastra the following rules apply:
+The following rules apply:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-|EXT-001<br>EXT-002<br>EXT-003<br>EXT-004 | Finastra Open APIs **MUST** be defined using the OpenAPI Specification (OAS) |
-| PRI-001 | Finastra Open APIs **MUST** be well documented |
-| PRI-002 | Finastra Open APIs **SHOULD** adopt API First and API as a Product strategies |
-| PRI-003 | Finastra Open APIs **MAY** be be defined using OpenAPI v2 or v3 |
+|EXT-001<br>EXT-002<br>EXT-003<br>EXT-004 | Open APIs **MUST** be defined using the OpenAPI Specification (OAS) |
+| PRI-001 | Open APIs **MUST** be well documented |
+| PRI-002 | Open APIs **SHOULD** adopt API First and API as a Product strategies |
+| PRI-003 | Open APIs **MAY** be be defined using OpenAPI v2 or v3 |
 
-## Finastra Open API Principles
+## Open API Principles
 
-The following principles are specific to the Finastra Open API
-initiative and reflect the strategic goals when designing and developing
-Finastra Open APIs.
-
+The following principles are should apply when designing and developing an  Open APIs.
 These principles are aimed at API designers and developers so that they 
 focus on the quality attributes of the API definition and the underlying
 API implementation.
@@ -102,21 +99,21 @@ It is assumed that an **API First** approach is adopted to deliver **APIs as Pro
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| PRI-010 | Finastra Open APIs must be useful |
+| PRI-010 | Open APIs must be useful |
 
 *Rationale*
 
-Finastra Open APIs MUST be designed based on client requirements. They
+Open APIs MUST be designed based on client requirements. They
 should contain as much information as necessary but as little as
 possible. They can support multiple related use cases.
 
 *Implications*
 
-Finastra Open API designers must ensure that the API’s target audience
+Open API designers must ensure that the API’s target audience
 and use cases are well known so that they can fulfill product
 requirements.
 
-Finastra Open API designers should adopt an iterative approach to design
+Open API designers should adopt an iterative approach to design
 ensuring that design fails fast, feedback is obtained and the API is
 continually improved until the API is deemed useful and of production
 quality.
@@ -125,40 +122,37 @@ quality.
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| PRI-020 | Finastra Open APIs must be designed to be as simple as possible |
+| PRI-020 | Open APIs must be designed to be as simple as possible |
 
 *Rationale*
 
-Finastra Open APIs are publicly accessible and are used
-primarily by external API developers. The successful adoption of
-Finastra APIs is determined by API developers' experience.
+Open APIs are used by external API developers. The successful adoption of
+APIs is determined by API developers' experience. The more simple the more adoption. 
 
-API developers adopt and promote Finastra Open APIs that are
-simple.
 
 *Implications*
 
-Finastra Open API designers MUST assume that the API audience are:
+Open API designers MUST assume that the API audience are:
 
--   NOT Finastra product experts - do NOT use product specific
+-   NOT product experts - do NOT use product specific
     vocabulary.
--   NOT Banking experts - do use known Banking terminology.
+-   NOT Business experts - do use known Business terminology.
 -   NOT Technical experts - do NOT use technical jargon.
 
 ### Easy to Use
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| PRI-030 | Finastra Open APIs must be designed to be (1) easy to use and (2) hard to misuse |
+| PRI-030 | Open APIs must be designed to be (1) easy to use and (2) hard to misuse |
 
 *Rationale*
 
-Finastra Open APIs are not adopted if they pose any barriers to API
+Open APIs are not adopted if they pose any barriers to API
 developers.
 
 *Implications*
 
-Finastra Open API designers MUST ensure that the API is:
+Open API designers MUST ensure that the API is:
 
 -   Clear
 -   Concise
@@ -171,25 +165,24 @@ Finastra Open API designers MUST ensure that the API is:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| PRI-040 | All Finastra Open APIs must be consistent in vocabulary and behavior |
+| PRI-040 | All Open APIs MUST be consistent in vocabulary and behavior |
 
 *Rationale*
 
-Finastra Open APIs must be professional:
+Open APIs must be professional:
 
 -   They MUST be production-quality ready.
--   They MUST have a look and feel that is consistent across all
-    Finastra Open APIs.
+-   They MUST have a look and feel that is consistent across all  Open APIs.
 
 *Implications*
 
-Finastra Open API designers and developers MUST ensure that:
+Open API designers and developers MUST ensure that:
 
--   Finastra standards are followed.
+-   standards are followed.
 -   Common definitions are reused where appropriate.
--   Open APIs are created using linters that use Finastra Swagger rules
+-   Open APIs are created using linters that use Swagger rules
     to validate.
--   Open APIs are validated as part of CI/CD using Finastra Swagger
+-   Open APIs are validated as part of CI/CD using Swagger
     rules.
 -   Open APIs are approved for publication by the Open API team.
 
@@ -197,11 +190,11 @@ Finastra Open API designers and developers MUST ensure that:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| PRI-050 |All Finastra Open APIs must be backward compatible between releases |
+| PRI-050 |All Open APIs must be backward compatible between releases |
 
 *Rationale*
 
-Once a client has adopted a Finastra Open API the client expects that
+Once a client has adopted a Open API the client expects that
 API to function correctly on all future releases unless the client is
 explicitly told that the API is being deprecated and obsoleted
 
@@ -231,9 +224,9 @@ The following table describes the Richardson Maturity Model:
 | 2     | HTTP Verbs          | Use HTTP properties to deal with scalability and faults e.g. HTTP methods, HTTP response codes                                                                                                       |
 | 3     | Hypermedia controls | Use link elements in the response to address what may be done with further requests. <BR> This level of compliance is more commonly known as Hypermedia As The Engine Of Application State (HATEOAS) |
     
-The following Finastra rules apply:
+The following  rules apply:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| PRI-060 | Finastra Open APIs **SHOULD** target level 2: HTTP Verbs |
-| PRI-061 | Finastra Open APIs **MAY** target level 3: Hypermedia Controls |
+| PRI-060 | Open APIs **SHOULD** target level 2: HTTP Verbs |
+| PRI-061 | Open APIs **MAY** target level 3: Hypermedia Controls |

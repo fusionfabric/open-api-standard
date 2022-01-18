@@ -16,7 +16,7 @@ This page contains the following sections:
 HTTP response status code are defined according to section 6 of
 [RFC7231](https://tools.ietf.org/html/rfc7231#section-6).
 
-The following table summarizes the response codes used in Finastra Open APIs:
+The following table summarizes a simplified response codes list used in Open APIs:
 
 | status code | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 |---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -37,9 +37,9 @@ The following table summarizes the response codes used in Finastra Open APIs:
 
  
 
-## Finastra Responses
+## Responses
 
-The following table lists Finastra rules for response codes: 
+The following table lists rules for response codes: 
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -62,9 +62,8 @@ The following table lists Finastra rules for response codes:
 This section includes the following:
 
 -   details of [RFC 7807](https://tools.ietf.org/html/rfc7807) - this is
-    the basis of the Finastra error message structure
--   details of Finastra standards relating to error messages - these
-    standards must be adopted by Finastra APIs
+    the basis of error message structure
+-   details of standards relating to error messages
 
 ### RFC 7807
 
@@ -73,8 +72,7 @@ HTTP APIs.
 
 RFC7807 proposes a structure for common pattern of errors whilst also
 allowing for extensions. The following text is taken from RFC7807 and
-describes the principal fields of the error message structure that
- Finastra APIs adopt:
+describes the principal fields of the error message structure that APIs adopt:
 
 -   `type` (string) - A URI reference \[RFC3986\] that identifies the
     problem type. This specification encourages that, when dereferenced,
@@ -92,9 +90,9 @@ describes the principal fields of the error message structure that
 -   `details` (string) - A human-readable explanation specific to this
     occurrence of the problem.
 
-### Finastra Error Message Standards
+### Error Message Standards
 
-The following are the Finastra Open API error message standards:
+The following are the Open API error message standards:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -107,7 +105,7 @@ The following are the Finastra Open API error message standards:
 | REB-017 | The structure of `causes` is not mandated, however, when `causes` is provided it should contain an indication of the field in error |
 | REB-018 | Text capable fields **MAY** support multi-language |
 
-The standard Finastra error message structure is as follows:
+The standard error message structure is as follows:
 
 ```json
 {
