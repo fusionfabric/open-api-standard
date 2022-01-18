@@ -28,6 +28,8 @@ The following are examples of media types that may be used in APIs:
 - `image/tiff`
 - `image/png`
 - `image/gif`
+- `text/plain`
+- `application/json+problem`
 
 The following table shows the associated rules:
 
@@ -35,7 +37,7 @@ The following table shows the associated rules:
 |:-------:|:------------ |
 | FMB-001 | APIs **SHOULD** use `application/json` as default `content-type` |
 | FMB-002 | The default encoding of the payload is `charset=utf-8` by convention. The encoding **MAY** be specified in the section `consumes`/`produces` (OAS2) or `content` (in OAS3) as `application/json; charset=utf-8` |
-| MIM-001<br>MIM-002<br>MIM-003<br>MIM-004 | **SHOULD** limit the contentt ypes to the following: `application/json`, `application/xml`, `application/pdf`, `multipart/form-data`, `image/jpeg`, `image/tiff`, `image/png` |
+| MIM-001<br>MIM-002<br>MIM-003<br>MIM-004 | **SHOULD** limit the content types to the following: `application/json`, `application/xml`, `application/pdf`, `multipart/form-data`, `image/jpeg`, `image/tiff`, `image/png`, `image/gif`, `text/plain`, `application/json+problem` |
 | PPM-011 | OAS2 APIs **SHOULD NOT** use `consumes` against `GET` operations |
 
 ### JSON
