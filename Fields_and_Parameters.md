@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Fields and Parameters
-nav_order: 8
+nav_order: 9
 ---
 
 # Fields and Parameters
 {: .no_toc}
 
-This section provides details on fields and parameters and the associated Finastra naming conventions and standards.
+This section provides details on fields and parameters and the associated naming conventions and standards.
 
 - TOC
 {:toc}
@@ -38,63 +38,112 @@ parameters:
 ```
 ## Objects and Arrays
 
-Fields can be nested within objects (or arrays) as per the following OAS2 example.
-
-Note that whilst Finastra APIs support multiple nested fields, the use of `$ref` is mandated so that any individual structure does not contain more than two levels.
+Fields can be nested within objects (or arrays) as per the following OAS2 example:
 ```
-  nestedObject1:
-    description: Nested object
+  object1:
     type: object
     properties:
-      nestedlevel2:
-        $ref: '#/definitions/nestedObject2'
-  nestedObject2:
+      object2:
+        $ref: '#/definitions/object2'
+  object2:
     type: object
-    description: Nested object level 2
     properties:
-      nestedlevel3a:
+      string1:
         type: string
-        description: Nested field level 3
-      nestedlevel3b:
+      string2:
         type: string
-        description: Nested field level 3
 ```
+Whilst APIs support multiple nested fields, as per the above example, the use of `$ref` is mandated so that any individual structure does not contain more than two levels, hence, the following example would be deemed INVALID and should be refactored as per the above example:
+```
+  object1:
+    type: object
+    properties:
+      object2:
+        type: object
+        properties:
+          string1:
+            type: string
+          string2:
+            type: string
+```
+Similarly, when using `allOf`, `anyOf` or `oneOf`, $ref must be used to reference allowed fields, for example, the following code shows both a valid and invalid definition: 
 
-## Finastra Field and Parameter Standards
+```
+# Valid structure       
+FieldBlock:
+  allOf:
+    - $ref: '#/definitions/CommonFields'
+    - $ref: '#/definitions/SpecificFields'
+    
+# Invalid structure - it should use a $ref instead of properties:
+FieldBlock:
+ allOf:
+ - $ref: '#/definitions/CommonFields'
+ - properties:
+     field1:
+       type: number
+     field2:
+       type: string 
+```
+The following lists the standards for defining structures:
 
-The following lists the Finastra standards for field and parameter names:
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| DEF-017<br>DEF-018<br>DEF-019 | **MUST** not define nested fields - use a reference field with `$ref` to define the nested fields  |
+| PPM-003 | **MUST** not define nested fields for parameter schemas - use a reference field with `$ref` to define the nested fields  |
+| DEF-020 | **MUST** use a reference field, `$ref`, with allOf anyOf or oneOf  |
+
+## Field and Parameter Standards
+
+The following lists the standards for field and parameter names:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
 | FPB-001 | **MUST** align with the accepted business domain terminology |
 | FPB-002 | **MUST** be named in a clear, concise and unambiguous manner |
-| FPB-003 | **MUST** be meaningful by obviously declaring the field's purpose; a simple guideline is to ensure that Google shows relevant links on the first returned page|
-| FPB-004 | **MUST** define query and path parameter names and field names in lower `camelCase` using only the characters: `a-z` and `0-9`,<br> for example: - valid: `inputDate` -   invalid: `InputDate`, `Input_Date`|
-| DEF-024<br>DEF-025<br>DEF-026<br>PPM-009 | **MUST** adhere to the Finastra Open API data dictionary where possible e.g. `country`; where further clarity is required a prefix can be used e.g. `taxCountry`|
-| FPB-005 | **SHOULD NOT** use word abbreviations e.g. use `transaction` rather than `txn` unless the abbreviation is commonly used|
-| FPB-006 | **MAY** use commonly used abbreviations or acronyms e.g. `memo`, `email`, `uri`, `IBAN`, `SEPA`, etc.|
-| FPB-007 | **MUST** only use commonly accepted abbreviations|
-| FPB-008 | **MUST NOT** introduce new terminology where existing equivalents are available|
-| FPB-009 | **MUST NOT** use terms that relate to a specific product / implementation. |
-| FPB-010 | **MUST NOT** be technical in nature because Open APIs target business rather than technical domains|
-| FPB-011 | **MUST NOT** use terms that relate to a specific product e.g. use the agnostic term `region` rather than `processingArea`|
-| FPB-012 | **SHOULD NOT** use terms that relate to a specific geography e.g. consider using the agnostic term `alternateAccountId` rather than `micr`|
-| FPB-013 | **SHOULD** define the resource's unique identifier with a UUID `{id}`|
-| FPB-014 | **MUST** list parameters in a specific order: required, followed by optional|
+| FPB-003 | **MUST** be meaningful by obviously declaring the field's purpose; a simple guideline is to ensure that Google shows relevant links on the first returned page |
+| DEF-002<br>DEF-010<br>DEF-013 | **MUST** define field names in lower `camelCase` using only the characters: `a-z` and `0-9` and hyphen
+| IDS-002<br>IDS-003<br>PEF-002 | **MUST** define query and path parameter names in lower `camelCase` using only the characters: `a-z` and `0-9`,<br> for example: - valid: `inputDate` -   invalid: `InputDate`, `Input_Date` |
+| DEF-024<br>DEF-025<br>DEF-026<br>PPM-009 | **MUST** adhere to an API data dictionary where possible e.g. `country`; where further clarity is required a prefix can be used e.g. `taxCountry` |
+| FPB-005 | **SHOULD NOT** use word abbreviations e.g. use `transaction` rather than `txn` unless the abbreviation is commonly used |
+| FPB-006 | **MAY** use commonly used abbreviations or acronyms e.g. `memo`, `email`, `uri`, `IBAN`, `SEPA`, etc. |
+| FPB-007 | **MUST** only use commonly accepted abbreviations |
+| FPB-008 | **MUST NOT** introduce new terminology where existing equivalents are available |
+| FPB-009 | **MUST NOT** use terms that relate to a specific product / implementation |
+| FPB-010 | **MUST NOT** be technical in nature because Open APIs target business rather than technical domains |
+| FPB-011 | **MUST NOT** use terms that relate to a specific product e.g. use the agnostic term `region` rather than `processingArea` 
+| FPB-012 | **SHOULD NOT** use terms that relate to a specific geography e.g. consider using the agnostic term `alternateAccountId` rather than `micr` |
+| FPB-013 | **SHOULD** define the resource's unique identifier with a UUID `{id}` |
+| DEF-027<br>  IDS-001 | **MUST NOT** define field or parameter names that end in case sensitive 'ID' |
+| FPB-014 | **MUST** list parameters in a specific order: required, followed by optional |
 | FPB-015 | **MUST** ensure that array names are plural |
-| FPB-016 | **SHOULD** specify relevant defaults where applicable|
-| FPB-017 | **SHOULD** be as precise as possible with field and parameter definitions|
-| DEF-035<br>DEF-012<br>PEF-012 | **SHOULD** have `maxLength` for `string` data types|
-| FPB-018 | **SHOULD** have `minLength` and `pattern` for `string` data types|
-| FPB-019 | **MUST NOT** specify a default for a required parameter|
-| FPB-020 | **SHOULD** use empty string to remove a field's value|
-| FPB-021 | **SHOULD NOT** use `allowEmptyValue: true`|
-| PEF-0009<br>DEF-016 | **MUST NOT** define fields or parameters that are not used|
-| DEF-011<br>DEF-031<br>INF-006<br>PEF-003<br>PEF-015<br>PTH-002 | **MUST** only use characters in the ASCII  character set for all descriptions within an API definition|
+| FPB-016 | **SHOULD** ensure that a `GET` request for a collection defines the array name as `items` |
+| FPB-017 | **SHOULD** specify relevant defaults where applicable |
+| FPB-018 | **SHOULD** be as precise as possible with field and parameter definitions |
+| DEF-012<br>PEF-012 | **SHOULD** have `maxLength` for `string` data types |
+| DEF-035 | **SHOULD NOT** have a `maxLength` value of 1 for `string` fields - consider using a `boolean` type instead of `string` |
+| FPB-019 | **SHOULD** have `minLength` and `pattern` for `string` data types |
+| FPB-020 | **MUST NOT** specify a default for a required parameter |
+| FPB-021 | **SHOULD** use empty string to remove a field's value |
+| FPB-022 | **SHOULD NOT** use `allowEmptyValue: true` |
+| PEF-009<br>DEF-016 | **MUST NOT** define fields or parameters that are not used |
+| DEF-004<br>DEF-009 | **MUST** define the keyword `type` against all fields and parameters unless using $ref, allOf, oneOf or anyOf |
+| DEF-021<br>DEF-022 | **MUST NOT** define the keyword `type` against all fields when using $ref, allOf, oneOf or anyOf |
+| DEF-007<br>PPM-004 | **MUST** define a `description` against each field or parameter |
+| INF-003 | **MUST** define a `description` in the `info` section |
+| DEF-008 | **MUST** define a `title` against each field or parameter |
+| INF-004<br>INF-015 | **MUST** define a `title` that is 200 characters or less in the `info` section |
+| DEF-006<br>INF-002<br>PEF-004<br>PEF-013 | **MUST** not have the text 'todo' or 'tbd' in descriptions |
+| DEF-029 | **SHOULD** not have the text 'todo' or 'tbd' in *examples* |
+| DEF-011<br>DEF-031<br>INF-005<br>INF-006<br>PEF-003<br>PEF-015<br>PTH-002<br>DEF-003<br>DEF-030<br>PEF-001<br>PEF-014 | **MUST** only use characters in the ASCII  character set for all descriptions |
+| DEF-015 | **MUST** ensure that fields in the `required` section are defined  |
+| PEF-006 | **SHOULD** ensure that the parameter reference matches the parameter name - this is for readability, for example: <br>X-Request-ID:<br>&nbsp;&nbsp;in: header<br>&nbsp;&nbsp;name: X-Request-ID<br>&nbsp;&nbsp;type: string  |
+| PPM-010 | **MUST NOT** use a body parameter with a `GET` operation  |
 
-## Finastra Field and Parameter Type and Format Standards
 
-The following lists the Finastra standards for field types and formats:
+## Field and Parameter Type and Format Standards
+
+The following lists the standards for field types and formats:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -104,7 +153,7 @@ The following lists the Finastra standards for field types and formats:
 | FPB-023 | **SHOULD** define enumerations as a **closed** set of allowed field values<br> e.g. the following shows a set of possible values for an item's status: `PENDING`, `APPROVED`, `COMPLETE`|
 | ENM-001 | **SHOULD** ensure that enumerations are lowercase a-z and/or upper case A-Z with hyphens, for example: `SPOT-RATE` or `spot-rate` or `Spot-Rate`|
 | ENM-001 | Enumerations **MUST NOT** include spaces or special characters e.g. underscore |
-| FPB-024 | Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyorCountry`|
+| FPB-024 | Boolean fields **MUST** be unambiguous hence `isCurrency` is preferred to `isCurrencyOrCountry`|
 
 ## Date & Time Fields
 
@@ -119,7 +168,7 @@ The following table shows the mapping between the RFC and the JSON schema format
 |  time                       | full-time| `23:20:50.52Z` or `1996-12-19T16:39:57-08:00`        |
 |  partial-time               | partial-time| `23:20:50`  i.e. with no time zone information| 
 
-The following table shows the associated Finastra rules:
+The following table shows the associated rules:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
@@ -182,7 +231,7 @@ For example:
 (1) the client should not need to send a request or receive a response using `null` unless using PATCH to remove a field value 
 (2) the client or server can infer that a field value is `null`, i.e. undefined, if the payload does not contain the field key
 
-The following table shows the associated Finastra rules:
+The following table shows the associated rules:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |

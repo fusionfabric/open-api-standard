@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Concurrency
-nav_order: 14
+nav_order: 15
 ---
 
 # Concurrency
@@ -46,26 +46,27 @@ The following shows how `ETag` and `If-Match` headers can be used to avoid concu
 * because the first user has already committed their changes the `ETag` value would not match that held against the resource and so the approval would be declined 
 * to fix it, second user would need to perform another `GET` against the modified version of the loan e.g. `GET /loans/123` to retrieve the `ETag` value = 2 and then request the update again
 
-**Finastra API Standards:**
+**Concurrency API Standards:**
 
 The implementation of concurrency using `ETag` and `If-Match` is not mandatory for all APIs since it imposes strict rules on the client and server, however, the implications of NOT implementing concurrency must be fully considered especially when backend servers support updates through a variety of different channels in addition to REST APIs, hence:
 
->  Concurrency **MUST** be considered for all API requests
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| CON-001 | Concurrency **MUST** be considered for all API requests |
+| CON-002 | Concurrency **SHOULD** be supported for `PUT` and `PATCH` requests |
 
->  Concurrency **SHOULD** be supported for `PUT` and `PATCH` requests
+If concurrency is implemented then the following standards apply:
 
-If concurrency is implemented then the following Finastra standards apply:
-
->  Finastra APIs supporting concurrency with optimistic locking **MUST** define `ETag` and `If-Match` headers on associated `GET` and `PUT` operations 
-
->  Finastra APIs supporting concurrency with optimistic locking **MUST** return 412 status code if the `If-Match` header on a `PUT` request does not match the derived `ETag` of the current state of the resource
-
->  Finastra APIs supporting concurrency with optimistic locking **MUST** return 428 status code if the `If-Match` header is not included on a `PUT` request
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| PPM-005<br>RSP-016 | APIs supporting concurrency with optimistic locking **MUST** define `ETag` and `If-Match` headers on associated `GET` and `PUT` operations |
+| RSP-009 | APIs supporting concurrency with optimistic locking **MUST** return 412 status code if the `If-Match` header on a `PUT` request does not match the derived `ETag` of the current state of the resource |
+| RSP-009 | APIs supporting concurrency with optimistic locking **MUST** return 428 status code if the `If-Match` header is not included on a `PUT` request |
 
 
 **Sample API Code:**
 
-The following code snippets show sample OAS2 definitions of `GET` and `PUT` operations within a Finastra API that supports concurrency:
+The following code snippets show sample OAS2 definitions of `GET` and `PUT` operations within an API that supports concurrency:
 
 ```yaml
  get:

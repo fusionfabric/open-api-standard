@@ -16,17 +16,21 @@ details the associated Finastra Open API development standards.
 
 ## Document Conventions
 
--   The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
-    “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in
-    Finastra standards are to be interpreted as described in [RFC
-    2119](https://www.ietf.org/rfc/rfc2119.txt)
+(1) The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
+“SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in
+Finastra standards are to be interpreted as described in [RFC
+2119](https://www.ietf.org/rfc/rfc2119.txt)
 
--   Finastra Open API standards are highlighted in the following format:
+(2) Finastra Open API standards are shown as a table similar to the following:
 
-> Finastra API designers and developers **SHOULD** follow this document however be aware there is no guarantee that publicly available Finastra APIs will fully adhere to these standards
+| Rule Identifier  | Description  |
+|:-------:|:------------ |
+| WEL-001 |  API designers and developers **SHOULD** follow this document however be aware there is no guarantee that publicly available Finastra APIs will fully adhere to these standards|
+
+The rule identifier comprises a rule type and number - where appropriate the rule identifier corresponds to messages issued by the Finastra linter.
+
+
 
 
 -----
 **Fusion**Fabric.cloud Documentation Team
-
-
