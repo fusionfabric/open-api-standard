@@ -29,14 +29,53 @@ The following are examples of media types that may be used in APIs:
 - `image/png`
 - `image/gif`
 
+Most of the time an API produces and consumes the same media type ( application/json) so when using OAS2 specification , it is recommended to leverage it at the top part of the file. If an endpoint requires a dedicated media type it is then added at the endpoint level but it should apply for specific case only.  
+
+OAS2 , Not recommended way : 
+```
+/users:
+  post:
+    description: 'create user'
+    consumes: 
+       - application/json
+    produces:
+      - application/json
+```
+
+OAS2 recommended way : 
+```
+swagger: '2.0'
+info:
+  {...}
+basePath: /v1
+schemes:
+  - https
+consumes:
+  - application/json
+produces
+  - application/json
+path 
+  /users:
+    post:
+      description: 'create user'
+  /users/{userId}/picture:
+    get:
+      description: 'return user's picture '
+    produces
+      - image/gif
+```
+
 The following table shows the associated rules:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
 | FMB-001 | APIs **SHOULD** use `application/json` as default `content-type` |
 | FMB-002 | The default encoding of the payload is `charset=utf-8` by convention. The encoding **MAY** be specified in the section `consumes`/`produces` (OAS2) or `content` (in OAS3) as `application/json; charset=utf-8` |
-| MIM-001<br>MIM-002<br>MIM-003<br>MIM-004 | **SHOULD** limit the contentt ypes to the following: `application/json`, `application/xml`, `application/pdf`, `multipart/form-data`, `image/jpeg`, `image/tiff`, `image/png` |
+| MIM-001<br>MIM-002<br>MIM-003<br>MIM-004 | **SHOULD** limit the content types to the following: `application/json`, `application/xml`, `application/pdf`, `multipart/form-data`, `image/jpeg`, `image/tiff`, `image/png` |
 | PPM-011 | OAS2 APIs **SHOULD NOT** use `consumes` against `GET` operations |
+| PPM-012 | OAS2 APIs **SHOULD** defines produces and consumes at top level |
+ 
+
 
 ### JSON
 
@@ -78,8 +117,6 @@ The Open API specification allows for this using a mime type of `multipart/form-
 /import:
   post:
     description: 'To import files into the system '
-    produces:
-      - application/json
     consumes:
       - multipart/form-data
     parameters:
