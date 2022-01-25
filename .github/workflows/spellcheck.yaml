@@ -31,6 +31,7 @@ jobs:
           files: |
              **/*.md
              **/*.yaml
+             **.*.yml
 
           # The point in the directory tree to start spell checking.
           # Default: .
@@ -44,7 +45,7 @@ jobs:
           # Determines if the action should be failed if any spelling issues are found.
           # Allowed values are: true, false
           # Default: true
-          strict: false
+          strict: true
 
           # Limit the files checked to the ones in the pull request or push.
           incremental_files_only: false
