@@ -39,6 +39,56 @@ The following table summarizes a simplified response codes list used in Open API
 
 ## Responses
 
+Reponses can be expressed in various way in OpenAPI specification, adding the details at each end points, leveraging a data structure of the response body. The prefered way and the most re usable way it to leverage on the reponse dedicated section 
+
+
+Not recommanded way : 
+```
+path: 
+/customers/{customerId}':
+    get:
+      parameters:
+        type: 
+        - $ref: '#/parameters/customerId'
+      operationId: get-customers-customerId
+      responses:
+        '200':
+          description: This API retrieves the party details.
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                 
+         
+```
+
+rather doing the way below, especially for common error patern. This allows reusability , consistency and reduce maintenance.
+```
+path: 
+/customers/{customerId}':
+    get:
+      tags:
+        - Party
+      parameters:
+        - $ref: '#/parameters/partyId'
+        - $ref: '#/parameters/X-Request-ID'
+      summary: Read party.
+      description: Read party.
+      operationId: get-parties-partyId
+      responses:
+        '500':
+          $ref: '#/respoonses/500_INTERNAL_ERROR'
+
+responses 
+   '500_INTERNAL_ERROR':
+    description: Internal Server Error.
+    schema:
+      $ref: '#/definitions/Error'
+```
+
+
+
 The following table lists rules for response codes: 
 
 | Rule Identifier  | Description  |
@@ -56,6 +106,14 @@ The following table lists rules for response codes:
 | RSP-007<br>RSP-008 | APIs **MUST NOT** contain response fields when a 204 (No Content) is returned |
 | REB-003 | `GET` operations using a filter **MUST NOT** return 404 if there are no resources, rather a 200 must be returned |
 | RSP-013 | `PUT` operations SHOULD contain an identifier e.g. PUT /resource/{id} or PUT /resource/{id}/status |
+| RSP-014 | 
+
+
+
+
+
+
+
 
 ## Error Message Structure
 
