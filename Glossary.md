@@ -28,7 +28,7 @@ to RESTful concepts.
 
 **CRUD**
 
-CRUD refers to **C**reate, **R**ead, **U**pdate, **D**elete and is used
+CRUD refers to Create, Read, Update, Delete and is used
 in the context of operations that can be performed against a resource or
 business object.
 
@@ -70,7 +70,7 @@ An [Open API](https://en.wikipedia.org/wiki/Open_API) refers to an API
 that is exposed to developers by a platform such as
 [fusionfabric.cloud](https://www.fusionfabric.cloud/).
 
-When an organisation publishes a set of Open APIs they typically
+When an organization publishes a set of Open APIs they typically
 have the following attributes:
 [Useful](/open-api-standard/Introduction_to_Open_APIs), 
 [Keep it Simple](/open-api-standard/Introduction_to_Open_APIs), 
