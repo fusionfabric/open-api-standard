@@ -95,7 +95,7 @@ nav_order: 20
 <ul>
 <li>Glossary</li>
 <li>Open API Principles</li>
-<li>Customisation</li>
+<li>Customization</li>
 </ul>
 <p>Modified as follows:</p>
 <ul>
