@@ -87,11 +87,11 @@ API implementation.
 
 The Open API principles are:
 
--   [Useful](#openapi-principle-useful)
--   [Keep it Simple](#openapi-principle-keepitsimple)
--   [Easy to Use](#openapi-principle-easytouse)
--   [Consistent](#openapi-principle-consistent)
--   [Backward Compatible](#openapi-principle-backwardcompatible)
+-  Useful
+-  Keep it Simple
+-  Easy to Use
+-  Consistent
+-  Backward Compatible
 
 It is assumed that an **API First** approach is adopted to deliver **APIs as Products**.
 
