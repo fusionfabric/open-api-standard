@@ -28,7 +28,9 @@ jobs:
           # files: "**"
           #
           # Default: ALL files
-          files: ''
+          files: |
+             **/*.md
+             **/*.yaml
 
           # The point in the directory tree to start spell checking.
           # Default: .
