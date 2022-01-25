@@ -162,9 +162,10 @@ The following rules apply:
 
 **Typical response status codes**
 
--   `200` - OK - returned when the client call is successful
--   `400` - Bad Request
--   `404` - Not Found
+-   `200` - OK - this is returned when the client call is successful
+-   `400` - Bad Request - this is returned for both technical and
+    functional errors that did not result in a successful response
+-   `404` - Not Found - this is returned if the requested resource does not exist
 
 **Others characteristics of GET**
 
@@ -239,7 +240,7 @@ with the new state provided in the request. It is a *full replacement*.
     successful
 -   `400` - Bad Request - this is used for both technical and
     functional errors that did not result in a successful response
--   `404` - Not Found
+-   `404` - Not Found - this is returned if the requested resource does not exist
 
 ### PATCH
 
@@ -292,7 +293,7 @@ JSON Merge Patch is intuitive since the payloads of the resource and the PATCH r
 
 #### JSON Patch - RFC 6902
 
-The JSON Patch request payload format is more complex than the JSON Merge Patch format and contains a set of instructions describing how to update a resource payload. The following example taken from the RFC document shows a set of operations ("op") requested for application against a specific path ("path") in the JSON respource payload:
+The JSON Patch request payload format is more complex than the JSON Merge Patch format and contains a set of instructions describing how to update a resource payload. The following example taken from the RFC document shows a set of operations ("op") requested for application against a specific path ("path") in the JSON resource payload:
 ```
    [
      { "op": "remove", "path": "/a/b/c" },
@@ -320,7 +321,7 @@ The JSON Patch request payload format is more complex than the JSON Merge Patch 
     successful
 -   `400` - Bad Request - this is used for both technical and
     functional errors that did not result in a successful response
--   `404` - Not Found
+-   `404` - Not Found - this is returned if the requested resource does not exist
 
 ### DELETE
 
@@ -357,13 +358,12 @@ idempotent.
 
 **Typical response status code**
 
--   `200` - OK - this **MUST** be returned when the client call is
-    successful
--   `204` - No content - this **MAY** be used when there is no resource
-    to delete
--   `400` - Bad Request - this is used for both technical and
+-   `200` - OK - this **MUST** be returned when the client call is successful and content is returned.
+-   `202` - Accepted - this **MUST** be returned when the client is successful and the deletion request is queued.
+-   `204` - No content - this **MAY** be used when there is no resource to delete
+-   `400` - Bad Request - this is returned for both technical and
     functional errors that did not result in a successful response
--   `404` - Not Found
+-   `404` - Not Found - this is returned if the requested resource does not exist.
 
 ### HEAD
 
@@ -425,7 +425,47 @@ The following API standards apply to HTTP methods:
 ## HTTP Headers
 
 This section provides details on the standard and custom HTTP headers
-that may be used by clients using Open APIs.
+
+HTTP headers is a form of HTTP parameters, they should carry only technical information. They are not supposed to be logged.
+HTTP header can be found in the request or in the response. 
+
+HTTP headers can be declared as below  
+
+```
+/payments/
+   post:
+      summary: create a new payment 
+      parameters:
+        - 'Idempotency-Key' : 
+            name: Idempotency-Key
+            in: header
+            description: Idempotency key should be unique within a 24 hours sliding window. [...]
+            type: string
+            maxLength: 256
+            required: true
+        
+```
+The preferred way is to defines them into the dedicated section of the Open API specification. This brings a better consistency, reusability ,and reduce maintenance cost.
+This applies for OAS2 and OAS3. 
+  
+paths:
+    /payments/
+        post:
+            summary: create a new payment 
+            parameters:
+                - $ref: '#/components/parameters/Idempotency-Key'
+
+parameters:
+  Idempotency-Key:
+    name: Idempotency-Key
+    in: header
+    description: Idempotency key should be unique within a 24 hours sliding window. [...]
+    type: string
+    maxLength: 256
+    required: true
+
+The same rules apply as well for query parameters.  
+
 
 ### Standard HTTP Headers
 
@@ -440,7 +480,7 @@ that may be used by clients using Open APIs.
 | `If-Match`       | The value of this header is passed by clients on PUT methods to allow the server to perform Concurrency validation. Its value is typically an ETag value obtained from a GET method - see the *Concurrency* section for further details.                                                               |
 |`Idempotency-Key` |  The value of this header is passed by clients on POST methods to allow the server to perform Idempotency validation. Its value is typically an UUID - see the *Idempotency* section for further details.|
 
-APIs do not explicitly define `Content-Type`, `Accept` or `Authorization` as HTTP headers in the API contracts.
+APIs do not explicitly define `Content-Type`, `Accept` or `Authorization` as HTTP headers in the API contracts, as they are already defined by using the produce, consume, and security section of the Open API specification.
 
 
 ### Custom HTTP Headers
@@ -459,7 +499,7 @@ The following HTTP headers may be used:
 	
 - `Accept-Language`
 - `Content-Language`
-- `ETag`<
+- `ETag`
 - `Idempotency-Key`
 - `If-Match`
 - `X-External-Context-ID`
@@ -478,3 +518,7 @@ The following standards apply to HTTP headers:
 | RST-085 | **MAY** use `X-External-Context-ID` to specify context associated with an API |
 | RST-086 | **MAY** define a content-type for `GET` requests even though the content type is not used ​- this is for compatibility with tooling |
 | RST-087 | **MUST** not prefix custom headers with `X-Finastra` |
+
+
+
+

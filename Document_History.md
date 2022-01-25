@@ -26,6 +26,18 @@ nav_order: 20
 <tbody>
 
 <tr>
+<td style="text-align: left;">2.5</td>
+<td style="text-align: left;">January 2022</td>
+<td style="text-align: left;"><p>Included the following modifications:</p>
+<ul>
+<li>Include OAS guideline about responses and parameters</li>
+ <li>Aligned sample with guidelines</li>
+</ul>
+</td>
+</tr>
+
+
+<tr>
 <td style="text-align: left;">2.4</td>
 <td style="text-align: left;">December 2021</td>
 <td style="text-align: left;"><p>Included the following modifications:</p>
