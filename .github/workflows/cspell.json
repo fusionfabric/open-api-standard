@@ -1,29 +1,7 @@
-// cSpell Settings
-// This file is used for cspell
 {
-    // Version of the setting file.  Always 0.1
     "version": "0.1",
-
-    // language - current active spelling language
     "language": "en-US",
-
-    // words - list of words to be always considered correct
-    "words": ["Finastra", "FFDC"],
-
-    // flagWords - list of words to be always considered incorrect
-    // This is useful for offensive words and common spelling errors.
-    // For example "hte" should be "the"
-    //
-    // do not edit directly
-    // dictionary of flag words is stored in a separate file - CspellFlag.txt
+    "words": ["Finastra", "FFDC", "FIQL", "RSQL", "IBAN", "SEPA", Etag"],
     "flagWords": [],
-
-    // allowCompoundWords - allow all lowercase compound words, e.g.
-    // 'errornumber' instead of 'errorNumber'
-    //
-    // Regardless of this setting, compound words from 'Dictionary Details.csv'
-    // are validated as correct, even if they are built from incorrect words.
-    // For example 'wordoneWordtwo' will be correct, if 'wordoneWordtwo' is in
-    // the dictionary.  
     "allowCompoundWords": true
 }
