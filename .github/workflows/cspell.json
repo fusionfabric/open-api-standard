@@ -1,7 +1,7 @@
 {
     "version": "0.1",
     "language": "en-US",
-    "words": ["Finastra", "FFDC", "FIQL", "RSQL", "IBAN", "SEPA", "Etag", "micr", "OIDC", "CCPA"],
+    "words": ["Finastra", "FFDC", "FIQL", "RSQL", "IBAN", "SEPA", "Etag", "micr", "OIDC", "CCPA","Resequenced"],
     "flagWords": [],
     "allowCompoundWords": true
 }
