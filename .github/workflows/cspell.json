@@ -8,10 +8,7 @@
     "language": "en-US",
 
     // words - list of words to be always considered correct
-    //
-    // do not edit directly
-    // dictionary of words is stored in a separate file - CspellDictionary.txt
-    "words": [],
+    "words": ["Finastra", "FFDC"],
 
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.
