@@ -50,4 +50,4 @@ jobs:
           incremental_files_only: false
 
           # Path to `cspell.json`
-          config: '.'
+          config: .github/workflows/cspell.json
