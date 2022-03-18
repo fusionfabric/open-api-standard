@@ -303,6 +303,7 @@ The JSON Patch request payload format is more complex than the JSON Merge Patch 
      { "op": "copy", "from": "/a/b/d", "path": "/a/b/e" }
    ]
 ```
+
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
 | RST-060 | **MAY** use JSON Merge Patch for PATCH requests |
