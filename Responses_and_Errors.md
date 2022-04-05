@@ -39,10 +39,9 @@ The following table summarizes a simplified response codes list used in Open API
 
 ## Responses
 
-Reponses can be expressed in various way in OpenAPI specification, adding the details at each end points, leveraging a data structure of the response body. The prefered way and the most re usable way it to leverage on the reponse dedicated section 
+Responses can be expressed in various ways in the OpenAPI specification e.g. adding the details at each end point or leveraging the data structure of the response body. The preferred way and the most reusable way is to leverage the dedicated response section:
 
-
-Not recommanded way : 
+Not recommended: 
 ```
 path: 
 /customers/{customerId}':
@@ -59,11 +58,9 @@ path:
             properties:
               name:
                 type: string
-                 
-         
 ```
 
-rather doing the way below, especially for common error patern. This allows reusability , consistency and reduce maintenance.
+Recommended - to allow reusability, consistency and reduce maintenance - especially for a common error pattern:
 ```
 path: 
 /customers/{customerId}':
@@ -78,16 +75,14 @@ path:
       operationId: get-parties-partyId
       responses:
         '500':
-          $ref: '#/respoonses/500_INTERNAL_ERROR'
+          $ref: '#/responses/500_INTERNAL_ERROR'
 
-responses 
+responses:
    '500_INTERNAL_ERROR':
     description: Internal Server Error.
     schema:
       $ref: '#/definitions/Error'
 ```
-
-
 
 The following table lists rules for response codes: 
 

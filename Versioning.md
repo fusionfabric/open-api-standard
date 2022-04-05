@@ -154,7 +154,7 @@ The following lists the Finastra standards that apply to the API lifecycle:
 | VER-010 | APIs **MUST** increment the minor and/or patch versions of the API whenever a change is made regardless of whether the change is breaking or non-breaking |
 | VER-011 | APIs **MUST** be designed to be backwards compatible as far as possible |
 | VER-012 | APIs **MUST** change the major version when breaking changes are introduced to the API |
-| VER-013 | APIs **MUST NOT** be obsoleted when in use by customers; a published deprecation and obsoletion with appropriate notice periods must be provided |
+| VER-013 | APIs **MUST NOT** be obsoleted when in use by customers; published deprecation and obsoletion dates with appropriate notice periods must be provided |
 | VER-014 | APIs **SHOULD** differentiate finished API definitions from work in progress - the maturity level of **DRAFT**, **BETA** and **GA** are used for this purpose |
 
 ## API Changes

@@ -160,7 +160,7 @@ GET /accounts/{accountId}
     accountId = "2c76539b-c793-41aa-8082-87621b4e574b"
 }
 ```
-The following rules apply to rsource identifiers:
+The following rules apply to resource identifiers:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
