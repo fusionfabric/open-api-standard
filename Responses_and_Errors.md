@@ -88,7 +88,8 @@ The following table lists rules for response codes:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| RSP-003<br>RSP-004<br>RSP-005<br>RSP-006 | Endpoints **MUST** support the following return codes: 400, 401, 404, 500 |
+| RSP-003<br>RSP-004<br>RSP-005<br>RSP-006 | Endpoints **MUST** support the following return codes: 400, 401, 500 |
+| RSP-005 | Endpoints targetted at a specific resource E.G. `GET`, `PUT`, `PATCH` **MUST** support the following return code: 404 |
 | REB-001 | APIs **MUST NOT** return 200 (OK) when there is a functional error, rather a 4XX code must be returned |
 | RSP-001 | `POST` operations used to create a resource **MUST** return 201 or 202 for a successful response |
 | RSP-001 | `POST` operations **MUST** return either 200 , 201 or 202 or 204 for a successful response |
