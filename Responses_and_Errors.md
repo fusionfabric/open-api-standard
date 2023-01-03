@@ -102,7 +102,6 @@ The following table lists rules for response codes:
 | RSP-007<br>RSP-008 | APIs **MUST NOT** contain response fields when a 204 (No Content) is returned |
 | REB-003 | `GET` operations using a filter **MUST NOT** return 404 if there are no resources, rather a 200 must be returned |
 | RSP-013 | `PUT` operations SHOULD contain an identifier e.g. PUT /resource/{id} or PUT /resource/{id}/status |
-| RSP-014 | tbc |
 
 
 ## Error Message Structure
