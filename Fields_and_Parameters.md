@@ -213,7 +213,7 @@ MonetaryAmount:
   properties: 
     amount:
       type: string
-      description: tbc
+      description: Amount
       pattern: '-?[0-9]{1,18}(\.[0-9]{1,3})?'
       example: '-5877.78'
     currency:
