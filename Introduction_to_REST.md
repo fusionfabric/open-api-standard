@@ -505,13 +505,14 @@ The following HTTP headers may be used:
 - `If-Match`
 - `X-External-Context-ID`
 - `X-Request-ID`
+- `X-Finastra-Provider`	
 
 The following standards apply to HTTP headers:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
 | RST-080 | **MAY** use standard HTTP headers or custom HTTP headers |
-| PEF-008 | **MAY** use the following HTTP headers:<br>`Accept-Language`<br>`Content-Language`<br>`ETag`<br>`Idempotency-Key`<br>`If-Match`<br>`X-External-Context-ID`<br>`X-Request-ID` |
+| PEF-008 | **MAY** use the following HTTP headers:<br>`Accept-Language`<br>`Content-Language`<br>`ETag`<br>`Idempotency-Key`<br>`If-Match`<br>`X-External-Context-ID`<br>`X-Request-ID`<br>`X-Finastra-Provider` |
 | RST-081 | **SHOULD** use Train-Case for HTTP custom header fields |
 | RST-082 | **SHOULD**: use `ETag` with `If-Match` Header for concurrency validation |
 | RST-083 | **SHOULD** use `Idempotency-Key` for POST requests |
