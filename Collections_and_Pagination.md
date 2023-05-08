@@ -96,7 +96,8 @@ e.g. using query languages similar to:
 -   [OData](https://www.odata.org/)
 
 Examples:
-|  **Request**                          | **Description**                   |
+
+|  Request                                  | Description                       |
 |-------------------------------------------|-----------------------------------|
 | `GET /accounts?name=tom&lastname=smith` | Basic search using query parameter|
 | `GET /accounts/search/mostActive`       | Well known search|
