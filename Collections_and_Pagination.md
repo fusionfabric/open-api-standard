@@ -182,7 +182,7 @@ In Offset-Limit Based pagination:
     value: `offset=0`, `offset=5`, and `offset=10`
 
 Examples:
-|  **Request**                          | **Description**     |
+|  Request                      | Description       |
 |-------------------------------|-------------------|
 | `GET /accounts?limit=100` | return the 100 first accounts |
 | `GET /accounts?offset=100`     | return accounts from 101 |
