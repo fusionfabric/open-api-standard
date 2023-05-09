@@ -233,7 +233,7 @@ by a schema which is retrieved using a url similar to the following:
 `GET /parties/custom-fields-schemas`. This custom schema endpoint would be used alongside 
 another endpoint e.g: `POST /parties` which allows the client to add and update both common and custom party fields.
 
-There are scenarios where multiple schemas for a specific resource resource are required, for example if the resource is `loans` then there may be custom fields schemas for different loan types such as `bicycle` or `car` loans.
+There are scenarios where multiple schemas for a specific resource are required, for example if the resource is `loans` then there may be custom fields schemas for different loan types such as `bicycle` or `car` loans.
 
 If having the capability to create a custom schema is possible, it is strongly not recommended to have a `PUT` end point, as it can create incompatibility between the data and the schema.
 
