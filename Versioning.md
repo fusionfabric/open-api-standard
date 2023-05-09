@@ -127,9 +127,8 @@ The maturity level is defined in the API contract using a Finastra custom extens
 
 Notes: 
 - Finastra reserves the right to **make breaking changes to DRAFT and BETA APIs** e.g. field changes, end point changes, etc. This is done within a notice period that is communicated on the Developer Portal in the Community section. If applicable affected partners are also notified (see the API lifecycle section for further details)
-- An API can be DRAFT and BETA are not mandatory Step
-- GA and DEPRECATED
-- DRAFT and BETA can be removed if no market is appearing.
+- DRAFT and BETA are not mandatory Steps
+- DRAFT and BETA APIs can be removed if no market is appearing.
 - Once an API is DEPRECATED it will not be enhanced
 - Client calls to removed APIs will return a `404` error
 
