@@ -254,7 +254,7 @@ The following is a list of Finastra standards associated with custom fields:
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
 | CUS-001 | Support for custom fields in Finastra APIs is NOT provided by default and is NOT recommended but custom field support **MAY** be provided. The reason for not recommending custom fields within APIs is because of the increased complexity to the developer and the support overheads, however, there may be use cases for specific products where custom fields are a necessary requirement |
-| CUS-002 | Bank specific APIs supporting specific bank specific data extension customization **MUST NOT** be provided, rather, follow the technique described in this section |
+| CUS-002 | Bank specific APIs supporting bank specific data extension customization **MUST NOT** be provided, rather, follow the technique described in this section |
 | CUS-003 | Custom field data extension **MAY** be supported in Finastra APIs by ensuring that clients using the API can obtain details of the expected custom fields for a specific Bank |
 | CUS-004 | When implemented, custom fields schemas **MUST** adhere to [JSON Schema](https://json-schema.org/understanding-json-schema/basics.html) |
 | CUS-005 | When implemented, custom fields **SHOULD** be included in the payload of the associated business object i.e avoid providing a separate endpoint solely for custom-fields |
