@@ -71,7 +71,7 @@ At OAS3 the `securitySchemes` keyword is used to define the authentication types
 |:-------:|:------------ |
 | SEC-002 | For Finastra APIs the following security definitions are mandatory |
 
-- OAS2 security definition used for B2C and B2E APIs
+- OAS2 security definition used for B2B APIs
 
 ```yaml
 security:
@@ -84,7 +84,7 @@ securityDefinitions:
     flow: application
 ```
 
-- OAS2 security definition used for B2B APIs
+- OAS2 security definition used for B2C and B2E APIs
 
 ```yaml
 security:

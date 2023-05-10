@@ -233,7 +233,7 @@ by a schema which is retrieved using a url similar to the following:
 `GET /parties/custom-fields-schemas`. This custom schema endpoint would be used alongside 
 another endpoint e.g: `POST /parties` which allows the client to add and update both common and custom party fields.
 
-There are scenarios where multiple schemas for a specific resource resource are required, for example if the resource is `loans` then there may be custom fields schemas for different loan types such as `bicycle` or `car` loans.
+There are scenarios where multiple schemas for a specific resource are required, for example if the resource is `loans` then there may be custom fields schemas for different loan types such as `bicycle` or `car` loans.
 
 If having the capability to create a custom schema is possible, it is strongly not recommended to have a `PUT` end point, as it can create incompatibility between the data and the schema.
 
@@ -254,7 +254,7 @@ The following is a list of Finastra standards associated with custom fields:
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
 | CUS-001 | Support for custom fields in Finastra APIs is NOT provided by default and is NOT recommended but custom field support **MAY** be provided. The reason for not recommending custom fields within APIs is because of the increased complexity to the developer and the support overheads, however, there may be use cases for specific products where custom fields are a necessary requirement |
-| CUS-002 | Bank specific APIs supporting specific bank specific data extension customization **MUST NOT** be provided, rather, follow the technique described in this section |
+| CUS-002 | Bank specific APIs supporting bank specific data extension customization **MUST NOT** be provided, rather, follow the technique described in this section |
 | CUS-003 | Custom field data extension **MAY** be supported in Finastra APIs by ensuring that clients using the API can obtain details of the expected custom fields for a specific Bank |
 | CUS-004 | When implemented, custom fields schemas **MUST** adhere to [JSON Schema](https://json-schema.org/understanding-json-schema/basics.html) |
 | CUS-005 | When implemented, custom fields **SHOULD** be included in the payload of the associated business object i.e avoid providing a separate endpoint solely for custom-fields |

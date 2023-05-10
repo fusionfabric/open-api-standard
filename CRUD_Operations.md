@@ -182,6 +182,6 @@ The following lists the standards for handling resource collections:
 
 | Rule Identifier  | Description  |
 |:-------:|:------------ |
-| MRS-001 | Supporting Read a resource collection **SHOULD** be supported |
-| MRS-002 | Supporting Create Update Deletion on a resource collection **SHOULD** be avoided |
+| MRS-001 | Read a resource collection **SHOULD** be supported |
+| MRS-002 | Create Update Deletion on a resource collection **SHOULD** be avoided |
 | MRS-003 | Where support for Create Update Deletion on a resource collection is required the path **SHOULD** use `bulk` as an action keyword |
