@@ -80,7 +80,7 @@ The following rules apply:
 
 ## Open API Principles
 
-The following principles should apply when designing and developing an  Open APIs.
+The following principles should apply when designing and developing Open APIs.
 These principles are aimed at API designers and developers so that they 
 focus on the quality attributes of the API definition and the underlying
 API implementation.
